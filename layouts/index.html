@@ -11,20 +11,20 @@
         <span>BMPVIEW.EXE</span>
         <span aria-hidden="true">[_][□][X]</span>
       </div>
-      <div style="padding: 0.6rem; text-align: center; background-color: #f8ecc2;">
-        <img src="/images/profile.jpg" alt="Profile photo" style="width: 100%; max-width: 140px; height: auto; aspect-ratio: 1/1; object-fit: cover; border: 2px solid #2b2927; box-shadow: inset 2px 2px 0px rgba(0,0,0,0.2); display: block; margin: 0 auto; image-rendering: pixelated;" />
+      <div style="padding: 0.5rem; text-align: center; background-color: #f8ecc2;">
+        <img src="/images/profile.jpg" alt="Profile photo" style="width: 100%; max-width: 110px; height: auto; aspect-ratio: 1/1; object-fit: cover; border: 2px solid #2b2927; box-shadow: inset 2px 2px 0px rgba(0,0,0,0.2); display: block; margin: 0 auto; image-rendering: pixelated;" />
       </div>
-      <div style="font-family: monospace; font-size: 0.68rem; color: #5c5854; border-top: 1px dashed #2b2927; padding: 0.25rem 0.5rem; background-color: #efe0ad; display: flex; justify-content: space-between;">
+      <div style="font-family: monospace; font-size: 0.65rem; color: #5c5854; border-top: 1px dashed #2b2927; padding: 0.2rem 0.4rem; background-color: #efe0ad; display: flex; justify-content: space-between;">
         <span>PROFILE.BMP</span>
         <span>100%</span>
       </div>
     </div>
 
     <div style="text-align: center;">
-      <h1 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin: 0 0 0.4rem 0; font-weight: 700; letter-spacing: -0.02em; color: #1a1918;">alishabarretto</h1>
+      <h1 style="font-size: clamp(1.3rem, 3.5vw, 2.2rem); margin: 0 0 0.3rem 0; font-weight: 700; letter-spacing: -0.02em; color: #1a1918;">alishabarretto</h1>
       
       <!-- Subtitle -->
-      <div style="font-size: clamp(0.9rem, 2vw, 1.05rem); color: #383532; margin-bottom: 0.8rem; line-height: 1.4; font-family: monospace;">
+      <div style="font-size: clamp(0.85rem, 1.8vw, 1.05rem); color: #383532; margin-bottom: 0.7rem; line-height: 1.35; font-family: monospace;">
         <strong>Engineer & Builder.</strong> Specializing in local-first software, offline-native architecture, and low-power hardware systems.
       </div>
       
@@ -44,7 +44,7 @@
         </a>
       </div>
 
-      <div class="social-icons" style="display: flex; justify-content: center; gap: 14px; margin-top: 0.8rem;">
+      <div class="social-icons" style="display: flex; justify-content: center; gap: 12px; margin-top: 0.6rem;">
         {{ partial "social_icons.html" (dict "socialIcons" .Site.Params.socialIcons) }}
       </div>
     </div>
@@ -52,7 +52,7 @@
 
   <!-- Low-Power Hardware LED Panel & Telemetry Readout -->
   <div class="circuit-divider" aria-label="System Metrics">
-    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;">
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem;">
       <span>[⚙️ SOLVER: ACTIVE]</span>
       <span>[💾 18KB] [🌱 0.02g CO₂]</span>
       <span>[🔒 0 COOKIES]</span>
@@ -89,20 +89,26 @@
       /* Phone Viewport (< 600px) */
       @media (max-width: 599px) {
         .first-entry.home {
-          padding: 1rem 0.75rem 5rem 0.75rem;
+          padding: 0.75rem 0.5rem 5rem 0.5rem;
         }
         .photo-window {
-          max-width: 150px !important;
+          max-width: 110px !important;
+          margin-bottom: 0.8rem !important;
+        }
+        header {
+          margin-bottom: 1rem !important;
         }
         .action-bar {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 6px;
+          gap: 4px;
         }
         .action-bar .dialog-btn {
           width: 100%;
           text-align: center;
-          font-size: 0.7rem;
+          font-size: 0.68rem;
+          padding: 0.25rem 0.4rem;
+          min-height: 36px;
         }
         .dir-grid {
           grid-template-columns: 1fr !important;
@@ -211,7 +217,7 @@
         background-color: var(--bg-color);
         box-shadow: 4px 4px 0px var(--border-color);
         margin: 0 auto 1.2rem auto;
-        max-width: 200px;
+        max-width: 160px;
       }
       .window-titlebar {
         background-color: var(--border-color);
@@ -761,7 +767,7 @@
 
   function toggleStartMenu() {
     const menu = document.getElementById('start-menu');
-    if (menu) menu.classList.0 ? menu.classList.toggle('open') : menu.classList.toggle('open');
+    if (menu) menu.classList.toggle('open');
   }
 
   document.addEventListener('click', function(e) {
