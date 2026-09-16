@@ -504,6 +504,53 @@
 
     <p>Currently deep in solar panel research and LoRaWAN communications too, figuring out how to keep things running and talking to each other without needing a signal or a subscription.</p>
 
+    <!-- Interactive Solar Protocol Node Widget -->
+    <div style="background: #f8ecc2; border: 2px solid #2b2927; padding: 0.8rem; margin: 1.2rem 0; font-family: monospace; box-shadow: 3px 3px 0px #2b2927;">
+      <div style="font-size: 0.72rem; font-weight: bold; margin-bottom: 0.4rem; display: flex; justify-content: space-between;">
+        <span>[ ☀️ SOLAR_PROTOCOL_NODE_01 ]</span>
+        <span id="solar-status-badge" style="color: #b35900;">[ STATUS: STANDBY ]</span>
+      </div>
+      
+      <pre id="solar-ascii-display" style="margin: 0.4rem 0; font-family: monospace; font-size: 0.65rem; line-height: 1.1; color: #2b2927; background: #efe0ad; padding: 6px; border: 1px dashed #2b2927; overflow-x: auto;">
+[ UNLIT — CLICK TO QUERY SOLAR FEED ]
+      </pre>
+
+      <button onclick="querySolarPower()" class="dialog-btn" style="width: 100%; font-size: 0.75rem; margin-top: 0.4rem;">
+        [ ⚡ QUERY LOCAL SOLAR GENERATION ]
+      </button>
+    </div>
+
+    <script>
+      function querySolarPower() {
+        const display = document.getElementById('solar-ascii-display');
+        const badge = document.getElementById('solar-status-badge');
+        
+        display.textContent = "CONNECTING TO OFF-GRID NODE...";
+        badge.textContent = "[ PINGING... ]";
+        
+        setTimeout(() => {
+          const hour = new Date().getHours();
+          const isDaytime = hour >= 6 && hour < 18;
+          
+          if (isDaytime) {
+            display.innerHTML = 
+              "┌─[███]─[███]─[███]─┐\n" +
+              "│ [███] [███] [███] │ ──> 14.2W [GRID: ONLINE]\n" +
+              "└───────────────────┘ (POWERED BY SUNLIGHT)";
+            badge.textContent = "[ 🟢 LIGHT: ACTIVE ]";
+            badge.style.color = "#006600";
+          } else {
+            display.innerHTML = 
+              "┌─[░░░]─[░░░]─[░░░]─┐\n" +
+              "│ [░░░] [░░░] [░░░] │ ──> 0.2W [BATTERY RESERVE]\n" +
+              "└───────────────────┘ (NIGHT CYCLE / STORAGE)";
+            badge.textContent = "[ 🌙 LIGHT: BATTERY ]";
+            badge.style.color = "#800080";
+          }
+        }, 600);
+      }
+    </script>
+
     <p>Building FlowPlanned, a <span class="win95-tip" data-tooltip="Zero cloud calls. Runs 100% local.">local-first planner</span> for Windows. Local agents, no cloud, no account, no telemetry.</p>
 
     <p>Building LoRaWAN sensor projects. Long range, low power, works where there's no coverage and nothing to subscribe to.</p>
