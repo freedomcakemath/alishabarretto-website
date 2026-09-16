@@ -50,7 +50,7 @@
 
 <a href="#main-content" class="skip-link">[ SKIP TO MAIN CONTENT (TAB + ENTER) ]</a>
 
-<article class="first-entry home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0;" id="main-content">
+<article class="first-entry home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0 3.5rem 0;" id="main-content">
   
   
   <header style="margin-bottom: 1.8rem;">
@@ -60,7 +60,7 @@
         <span aria-hidden="true">[_][□][X]</span>
       </div>
       <div style="padding: 0.8rem; text-align: center; background-color: #f8ecc2;">
-        <img src="/images/profile.jpg" alt="Profile photo of Alisha Barretto" style="width: 160px; height: 160px; object-fit: cover; border: 2px solid #2b2927; box-shadow: inset 2px 2px 0px rgba(0,0,0,0.2); display: block; margin: 0 auto; image-rendering: pixelated;" />
+        <img src="/images/profile.jpg" alt="Profile photo" style="width: 160px; height: 160px; object-fit: cover; border: 2px solid #2b2927; box-shadow: inset 2px 2px 0px rgba(0,0,0,0.2); display: block; margin: 0 auto; image-rendering: pixelated;" />
       </div>
       <div style="font-family: monospace; font-size: 0.7rem; color: #5c5854; border-top: 1px dashed #2b2927; padding: 0.3rem 0.6rem; background-color: #efe0ad; display: flex; justify-content: space-between;">
         <span>PROFILE.BMP</span>
@@ -77,10 +77,19 @@
       </div>
       
       
-      <div>
+      <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
         <button onclick="document.body.classList.toggle('dark-mode')" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; cursor: pointer;">
-          [ 🌗 TOGGLE HIGH-CONTRAST MODE ]
+          [ 🌗 HIGH-CONTRAST ]
         </button>
+        <button onclick="toggleRecycleBin()" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; cursor: pointer;">
+          [ 🗑️ RECYCLE_BIN.EXE ]
+        </button>
+        <a href="#" onclick="openSecureMail(event)" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; text-decoration: none;">
+          [ ✉️ SEND_MESSAGE.EXE ]
+        </a>
+        <a href="/index.xml" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; text-decoration: none;" target="_blank" rel="noopener">
+          [ 📡 RSS_FEED.XML ]
+        </a>
       </div>
 
       <div class="social-icons" style="display: flex; justify-content: center; gap: 14px; margin-top: 0.8rem;">
@@ -143,7 +152,6 @@
   
   <div class="custom-bio" style="font-size: 1rem; line-height: 1.7; color: #1a1918; margin-top: 1.5rem;">
     <style>
-       
       .skip-link {
         position: absolute;
         top: -40px;
@@ -156,15 +164,12 @@
         z-index: 999;
         text-decoration: none;
       }
-      .skip-link:focus {
-        top: 0;
-      }
+      .skip-link:focus { top: 0; }
       a:focus, button:focus, input:focus, textarea:focus {
         outline: 2px dashed #000000 !important;
         outline-offset: 3px !important;
       }
 
-       
       body.dark-mode {
         background-color: #0d0d0d !important;
         color: #00ff66 !important;
@@ -177,14 +182,37 @@
       }
 
        
-      @media print {
-        body { background: #fff !important; color: #000 !important; }
-        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach { border: 1px solid #000 !important; box-shadow: none !important; }
-        a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
-        .skip-link, button { display: none !important; }
+      body.recycle-bin-mode {
+        background-color: #ffffff !important;
+        color: #111111 !important;
+        font-family: Georgia, serif !important;
+        line-height: 1.8 !important;
+      }
+      body.recycle-bin-mode .photo-window,
+      body.recycle-bin-mode .circuit-divider,
+      body.recycle-bin-mode .dialog-box,
+      body.recycle-bin-mode .guestbook-box,
+      body.recycle-bin-mode .win95-taskbar,
+      body.recycle-bin-mode .badge-row {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      body.recycle-bin-mode .dialog-btn,
+      body.recycle-bin-mode summary {
+        border: 1px solid #111 !important;
+        background: #fff !important;
+        color: #111 !important;
+        box-shadow: none !important;
       }
 
-       
+      @media print {
+        body { background: #fff !important; color: #000 !important; }
+        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach, .win95-taskbar { border: 1px solid #000 !important; box-shadow: none !important; }
+        a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+        .skip-link, button, .win95-taskbar { display: none !important; }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         * { animation: none !important; transition: none !important; }
       }
@@ -241,14 +269,12 @@
         transition: opacity 0.15s ease;
         z-index: 100;
       }
-      .win95-tip:hover::after {
-        opacity: 1;
-      }
+      .win95-tip:hover::after { opacity: 1; }
 
        
       details.win95-attach {
         margin-top: 0.4rem;
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.6rem;
         font-family: monospace;
         font-size: 0.78rem;
       }
@@ -289,6 +315,14 @@
         font-family: monospace;
       }
 
+      .case-study-link {
+        font-family: monospace;
+        font-size: 0.82rem;
+        font-weight: bold;
+        margin-top: 0.4rem;
+        margin-bottom: 1.2rem;
+      }
+
       .dir-index {
         background: #efe0ad;
         border: 1px dashed #2b2927;
@@ -311,10 +345,7 @@
         grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
         gap: 0.3rem 1rem;
       }
-      .dir-item {
-        color: #1a1918;
-        text-decoration: underline;
-      }
+      .dir-item { color: #1a1918; text-decoration: underline; }
 
       .dialog-box {
         border: 2px solid #2b2927;
@@ -334,20 +365,23 @@
         justify-content: space-between;
         align-items: center;
       }
-      .dialog-body {
-        padding: 1.2rem;
-      }
+      .dialog-body { padding: 1.2rem; }
       .dialog-btn {
         display: inline-block;
-        padding: 0.5rem 1.2rem;
+        padding: 0.4rem 0.9rem;
         background-color: #f6e7b4;
         color: #1a1918;
         font-family: monospace;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
         font-weight: bold;
         border: 2px solid #2b2927;
         box-shadow: 2px 2px 0px #2b2927;
         text-decoration: none !important;
+        cursor: pointer;
+      }
+      .dialog-btn:active {
+        box-shadow: none;
+        transform: translate(2px, 2px);
       }
 
       .guestbook-box {
@@ -365,9 +399,7 @@
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
-      .guestbook-field {
-        margin-bottom: 0.8rem;
-      }
+      .guestbook-field { margin-bottom: 0.8rem; }
       .guestbook-field label {
         display: block;
         font-size: 0.75rem;
@@ -409,14 +441,109 @@
         font-family: monospace;
         font-size: 0.75rem;
         color: #383532;
-        border-top: 1px dashed rgba(43, 41, 39, 0.4);
         margin-top: 2.5rem;
-        padding-top: 0.8rem;
         line-height: 1.5;
         background: #efe0ad;
         border: 1px solid #2b2927;
         padding: 0.8rem;
         box-shadow: 3px 3px 0px #2b2927;
+      }
+      .obfuscated-text {
+        unicode-bidi: bidi-override;
+        direction: rtl;
+        font-weight: bold;
+      }
+
+       
+      .win95-taskbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 32px;
+        background-color: #efe0ad;
+        border-top: 2px solid #2b2927;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6px;
+        font-family: monospace;
+        font-size: 0.78rem;
+        z-index: 9999;
+        box-shadow: 0 -2px 0px rgba(0,0,0,0.1);
+      }
+      .start-menu-btn {
+        font-weight: bold;
+        background: #f6e7b4;
+        border: 2px solid #2b2927;
+        padding: 2px 8px;
+        cursor: pointer;
+        box-shadow: 2px 2px 0px #2b2927;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .start-menu-btn:active {
+        box-shadow: none;
+        transform: translate(1px, 1px);
+      }
+      .win95-start-menu {
+        display: none;
+        position: fixed;
+        bottom: 34px;
+        left: 6px;
+        width: 220px;
+        background-color: #efe0ad;
+        border: 2px solid #2b2927;
+        box-shadow: 4px 4px 0px #2b2927;
+        z-index: 10000;
+        font-family: monospace;
+      }
+      .win95-start-menu.open { display: block; }
+      .start-sidebar {
+        background: #2b2927;
+        color: #efe0ad;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        padding: 8px 4px;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 0.85rem;
+        text-align: center;
+      }
+      .start-item {
+        display: block;
+        padding: 8px 12px;
+        color: #1a1918;
+        text-decoration: none;
+        border-bottom: 1px dashed rgba(43,41,39,0.3);
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+      .start-item:hover {
+        background-color: #2b2927;
+        color: #efe0ad;
+      }
+      .taskbar-middle {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .taskbar-app {
+        background: #f8ecc2;
+        border: 1px solid #2b2927;
+        padding: 2px 8px;
+        font-weight: bold;
+        font-size: 0.72rem;
+      }
+      .sys-tray {
+        border: 1px solid #2b2927;
+        background: #f8ecc2;
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: bold;
       }
     </style>
 
@@ -455,6 +582,7 @@
       Took a few months off after Basileia and the Happy Zoned attempt to travel through the Himalayas and Southeast Asia. Came back and built FlowPlanned, partly because of what that trip made obvious about paper planners and cloud apps not talking to each other.
     </div>
 
+    
     <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
     <p>A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.</p>
     <details class="win95-attach">
@@ -464,7 +592,11 @@
         <span>FIG 1.0 — LOCAL-FIRST CANVAS INTERFACE</span>
       </div>
     </details>
+    <div class="case-study-link">
+      <a href="/projects/flowplanned/">[ READ DEEP DIVE & ARCHITECTURE -> ]</a>
+    </div>
 
+    
     <h3 id="basileia">Basileia, 2023 to 2025</h3>
     <p>A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.</p>
     <details class="win95-attach">
@@ -474,7 +606,11 @@
         <span>FIG 2.0 — HANDMADE FORMULATIONS & PACKAGING</span>
       </div>
     </details>
+    <div class="case-study-link">
+      <a href="/projects/basileia/">[ READ CASE STUDY & FORMULATION LOGS -> ]</a>
+    </div>
 
+    
     <h3 id="happyzoned">Happy Zoned, 2024</h3>
     <p>Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.</p>
     <details class="win95-attach">
@@ -484,7 +620,11 @@
         <span>FIG 3.0 — MOBILE CARAVAN LAYOUT & SCHEMATICS</span>
       </div>
     </details>
+    <div class="case-study-link">
+      <a href="/projects/happyzoned-postmortem/">[ READ REGULATORY POST-MORTEM -> ]</a>
+    </div>
 
+    
     <h3 id="nature-hub">The Nature Hub</h3>
     <p>A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.</p>
     <details class="win95-attach">
@@ -525,6 +665,7 @@
       </div>
     </details>
 
+    
     <h3 id="open-dest">Open Destinations, 2019 to 2020</h3>
     <p>Engineering on Tineri, a mobile itinerary platform for tour operators. <span class="win95-tip" data-tooltip="Ionic 3 / Angular / Cordova stack">Ionic 3</span> and <span class="win95-tip" data-tooltip="Ruby 2.6 + Rails 5.2 backend">Ruby on Rails</span>, working on core modules of a real enterprise system.</p>
     <details class="win95-attach">
@@ -595,7 +736,11 @@
     
     <div class="guestbook-box" id="guestbook" role="form" aria-label="Guestbook Form">
       <div class="guestbook-title">📖 Sign the Guestbook / Leave a Note</div>
-      <form action="mailto:alishabarretto@protonmail.com" method="post" enctype="text/plain">
+      <form action="https://formsubmit.co/alishabarretto@protonmail.com" method="POST">
+        
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_captcha" value="false">
+        
         <div class="guestbook-field">
           <label for="gb-name">YOUR NAME / HANDLE:</label>
           <input type="text" id="gb-name" name="Name" placeholder="e.g. Visitor_99" required />
@@ -620,13 +765,87 @@
       <div>
         Engineered in accordance with <strong>EU Directive 2016/2102</strong> and <strong>WCAG 2.1 Level AA</strong>. Built with keyboard hotkeys (Press <code>G</code>=Guestbook, <code>E</code>=Essays, <code>T</code>=Top), zero cookies, and ultra-low carbon static delivery (&lt;20KB/view).
       </div>
+      <div style="margin-top: 0.6rem; font-size: 0.7rem; color: #5c5854;">
+        Direct Contact: <span class="obfuscated-text">moc.liamnotorp@otterrabahsila</span>
+      </div>
     </footer>
 
   </div>
 </article>
 
 
+<div class="win95-start-menu" id="start-menu">
+  <div style="display: flex;">
+    <div class="start-sidebar">WINDOWS 95</div>
+    <div style="flex-grow: 1;">
+      <a href="#flowplanned" onclick="toggleStartMenu()" class="start-item">🚀 Projects Index</a>
+      <a href="#essays" onclick="toggleStartMenu()" class="start-item">📄 Essays & Books</a>
+      <a href="#guestbook" onclick="toggleStartMenu()" class="start-item">📖 Sign Guestbook</a>
+      <a href="/index.xml" target="_blank" onclick="toggleStartMenu()" class="start-item">📡 RSS Feed (.XML)</a>
+      <a href="javascript:void(0)" onclick="toggleRecycleBin(); toggleStartMenu();" class="start-item">🗑️ Recycle Bin (Reader)</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="win95-taskbar" role="navigation" aria-label="System Taskbar">
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <button onclick="toggleStartMenu()" class="start-menu-btn" aria-label="Open Start Menu">
+      <span>🏁</span> <strong>Start</strong>
+    </button>
+    <div class="taskbar-middle">
+      <span class="taskbar-app">📄 ALISHABARRETTO.EXE</span>
+    </div>
+  </div>
+  <div class="sys-tray">
+    <span aria-hidden="true">🔊</span>
+    <span aria-hidden="true">💾</span>
+    <span id="win95-clock">12:00:00 AM</span>
+  </div>
+</div>
+
+
 <script>
+  
+  function openSecureMail(e) {
+    if (e) e.preventDefault();
+    const u = "alishabarretto";
+    const d = "protonmail.com";
+    window.location.href = "mailto:" + u + "@" + d;
+  }
+
+  
+  function updateClock() {
+    const clock = document.getElementById('win95-clock');
+    if (clock) {
+      const now = new Date();
+      clock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  
+  function toggleStartMenu() {
+    const menu = document.getElementById('start-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+
+  
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('start-menu');
+    const btn = document.querySelector('.start-menu-btn');
+    if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  
+  function toggleRecycleBin() {
+    document.body.classList.toggle('recycle-bin-mode');
+  }
+
+  
   document.addEventListener('keydown', function(e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     const key = e.key.toLowerCase();
