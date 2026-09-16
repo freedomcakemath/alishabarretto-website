@@ -102,7 +102,6 @@
       body.recycle-bin-mode .dialog-box,
       body.recycle-bin-mode .guestbook-box,
       body.recycle-bin-mode .win95-taskbar,
-      body.recycle-bin-mode .ascii-radio-window,
       body.recycle-bin-mode .badge-row {
         border: none !important;
         box-shadow: none !important;
@@ -223,27 +222,6 @@
         color: #5c5854;
         margin-top: 4px;
         font-family: monospace;
-      }
-
-      /* ASCII Radio Styling */
-      .ascii-radio-window {
-        border: 2px solid #2b2927;
-        background-color: #efe0ad;
-        box-shadow: 4px 4px 0px #2b2927;
-        margin: 2rem 0;
-        font-family: monospace;
-      }
-      .ascii-art-pre {
-        font-family: monospace;
-        font-size: 0.72rem;
-        line-height: 1.15;
-        color: #2b2927;
-        background: #f8ecc2;
-        padding: 0.8rem;
-        border: 1px dashed #2b2927;
-        margin: 0.6rem 0;
-        white-space: pre;
-        overflow-x: auto;
       }
 
       .case-study-link {
@@ -488,45 +466,6 @@
 
     <p>Talking to Japanese paper planner brands about licensing native offline software. Paper people already understand the argument, which makes the conversation short.</p>
 
-    <!-- 📻 RETRO ASCII RADIO / VOICE PODCAST PLAYER WIDGET -->
-    <div class="ascii-radio-window" id="ascii-radio" role="region" aria-label="ASCII Voice Radio Player">
-      <div style="background-color: #2b2927; color: #efe0ad; font-size: 0.78rem; font-weight: bold; padding: 0.3rem 0.6rem; display: flex; justify-content: space-between; align-items: center;">
-        <span>📻 RADIO.EXE — VOICE LOG TRANSMITTER</span>
-        <span aria-hidden="true">[FM 108.0 MHz]</span>
-      </div>
-      <div style="padding: 0.8rem;">
-        
-        <!-- ASCII Radio Receiver Art -->
-        <div class="ascii-art-pre">
-   .---------------------------------------------------.
-   |  [📻]  VOICE_LOG_RADIO // HARDWARE_STREAM_V1.0     |
-   |  FREQUENCY: [||||||||||||||||||||||......] 108.0MHz |
-   |  STATUS: <span id="radio-status-text">IDLE / STANDBY</span>                        |
-   '---------------------------------------------------'
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.6rem; margin-top: 0.6rem;">
-          <div>
-            <label for="podcast-select" style="font-size: 0.75rem; font-weight: bold; display: block; margin-bottom: 0.2rem;">SELECT TRANSMISSION:</label>
-            <select id="podcast-select" onchange="changeTrack()" style="background: #f8ecc2; border: 1px solid #2b2927; font-family: monospace; font-size: 0.78rem; padding: 3px;">
-              <option value="/audio/log-01.mp3">Track 01: Offline Systems & Nomad Work</option>
-              <option value="/audio/log-02.mp3">Track 02: Why Local-First AI Wins</option>
-              <option value="/audio/log-03.mp3">Track 03: Hardware Notes & Solar LoRa</option>
-            </select>
-          </div>
-
-          <div style="display: flex; gap: 6px;">
-            <button onclick="toggleAudio()" id="audio-play-btn" class="dialog-btn" style="font-size: 0.75rem; padding: 0.3rem 0.7rem;">
-              [ ▶ PLAY ]
-            </button>
-          </div>
-        </div>
-
-        <!-- HTML5 Audio Element -->
-        <audio id="podcast-audio" src="/audio/log-01.mp3" preload="metadata"></audio>
-      </div>
-    </div>
-
     <h2>THINGS I'VE BUILT</h2>
 
     <!-- Directory Listing Index -->
@@ -750,11 +689,9 @@
     <div style="flex-grow: 1;">
       <a href="#flowplanned" onclick="toggleStartMenu()" class="start-item">🚀 Projects Index</a>
       <a href="#essays" onclick="toggleStartMenu()" class="start-item">📄 Essays & Books</a>
-      <a href="#ascii-radio" onclick="toggleStartMenu()" class="start-item">📻 Voice Podcasts</a>
       <a href="#guestbook" onclick="toggleStartMenu()" class="start-item">📖 Sign Guestbook</a>
       <a href="{{ "index.xml" | relURL }}" target="_blank" onclick="toggleStartMenu()" class="start-item">📡 RSS Feed (.XML)</a>
       <a href="javascript:void(0)" onclick="toggleRecycleBin(); toggleStartMenu();" class="start-item">🗑️ Recycle Bin (Reader)</a>
-      <a href="https://github.com" target="_blank" rel="noopener" class="start-item">🐙 GitHub Profile</a>
     </div>
   </div>
 </div>
@@ -776,7 +713,7 @@
   </div>
 </div>
 
-<!-- Script for Clock, Start Menu, Recycle Bin, and Radio Audio -->
+<!-- Script for Clock, Start Menu, and Recycle Bin -->
 <script>
   // Dynamic Email Decoder
   function openSecureMail(e) {
@@ -815,38 +752,6 @@
   // Recycle Bin / Plain Text Reader Mode Toggle
   function toggleRecycleBin() {
     document.body.classList.toggle('recycle-bin-mode');
-  }
-
-  // ASCII Radio Podcast Controls
-  function toggleAudio() {
-    const audio = document.getElementById('podcast-audio');
-    const playBtn = document.getElementById('audio-play-btn');
-    const statusText = document.getElementById('radio-status-text');
-
-    if (audio.paused) {
-      audio.play();
-      playBtn.textContent = '[ ❚❚ PAUSE ]';
-      statusText.textContent = 'TRANSMITTING... [PLAYING]';
-      statusText.style.color = '#008000';
-    } else {
-      audio.pause();
-      playBtn.textContent = '[ ▶ PLAY ]';
-      statusText.textContent = 'PAUSED / STANDBY';
-      statusText.style.color = '#2b2927';
-    }
-  }
-
-  function changeTrack() {
-    const select = document.getElementById('podcast-select');
-    const audio = document.getElementById('podcast-audio');
-    const playBtn = document.getElementById('audio-play-btn');
-    const statusText = document.getElementById('radio-status-text');
-
-    audio.src = select.value;
-    audio.play();
-    playBtn.textContent = '[ ❚❚ PAUSE ]';
-    statusText.textContent = 'TRANSMITTING... [PLAYING]';
-    statusText.style.color = '#008000';
   }
 
   // Keyboard Shortcuts
