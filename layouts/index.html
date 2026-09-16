@@ -2,7 +2,7 @@
 <!-- Accessible Skip to Content Link (WCAG 2.4.1) -->
 <a href="#main-content" class="skip-link">[ SKIP TO MAIN CONTENT (TAB + ENTER) ]</a>
 
-<article class="first-entry home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0;" id="main-content">
+<article class="first-entry home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0 3.5rem 0;" id="main-content">
   
   <!-- Header with BMPVIEW.EXE Retro Photo Viewer -->
   <header style="margin-bottom: 1.8rem;">
@@ -28,13 +28,19 @@
         <strong>Engineer & Builder.</strong> Specializing in local-first software, offline-native architecture, and low-power hardware systems.
       </div>
       
-      <!-- Obfuscated Direct Email Trigger & High Contrast Toggle -->
+      <!-- Action Bar (Includes RSS Feed Button) -->
       <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
         <button onclick="document.body.classList.toggle('dark-mode')" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; cursor: pointer;">
-          [ 🌗 TOGGLE HIGH-CONTRAST MODE ]
+          [ 🌗 HIGH-CONTRAST ]
+        </button>
+        <button onclick="toggleRecycleBin()" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; cursor: pointer;">
+          [ 🗑️ RECYCLE_BIN.EXE ]
         </button>
         <a href="#" onclick="openSecureMail(event)" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; text-decoration: none;">
           [ ✉️ SEND_MESSAGE.EXE ]
+        </a>
+        <a href="{{ "index.xml" | relURL }}" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; text-decoration: none;" target="_blank" rel="noopener">
+          [ 📡 RSS_FEED.XML ]
         </a>
       </div>
 
@@ -84,11 +90,37 @@
         box-shadow: none !important;
       }
 
+      /* RECYCLE BIN / PLAIN READER MODE */
+      body.recycle-bin-mode {
+        background-color: #ffffff !important;
+        color: #111111 !important;
+        font-family: Georgia, serif !important;
+        line-height: 1.8 !important;
+      }
+      body.recycle-bin-mode .photo-window,
+      body.recycle-bin-mode .circuit-divider,
+      body.recycle-bin-mode .dialog-box,
+      body.recycle-bin-mode .guestbook-box,
+      body.recycle-bin-mode .win95-taskbar,
+      body.recycle-bin-mode .ascii-radio-window,
+      body.recycle-bin-mode .badge-row {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      body.recycle-bin-mode .dialog-btn,
+      body.recycle-bin-mode summary {
+        border: 1px solid #111 !important;
+        background: #fff !important;
+        color: #111 !important;
+        box-shadow: none !important;
+      }
+
       @media print {
         body { background: #fff !important; color: #000 !important; }
-        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach { border: 1px solid #000 !important; box-shadow: none !important; }
+        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach, .win95-taskbar { border: 1px solid #000 !important; box-shadow: none !important; }
         a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
-        .skip-link, button { display: none !important; }
+        .skip-link, button, .win95-taskbar { display: none !important; }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -193,6 +225,27 @@
         font-family: monospace;
       }
 
+      /* ASCII Radio Styling */
+      .ascii-radio-window {
+        border: 2px solid #2b2927;
+        background-color: #efe0ad;
+        box-shadow: 4px 4px 0px #2b2927;
+        margin: 2rem 0;
+        font-family: monospace;
+      }
+      .ascii-art-pre {
+        font-family: monospace;
+        font-size: 0.72rem;
+        line-height: 1.15;
+        color: #2b2927;
+        background: #f8ecc2;
+        padding: 0.8rem;
+        border: 1px dashed #2b2927;
+        margin: 0.6rem 0;
+        white-space: pre;
+        overflow-x: auto;
+      }
+
       .case-study-link {
         font-family: monospace;
         font-size: 0.82rem;
@@ -246,15 +299,20 @@
       .dialog-body { padding: 1.2rem; }
       .dialog-btn {
         display: inline-block;
-        padding: 0.5rem 1.2rem;
+        padding: 0.4rem 0.9rem;
         background-color: #f6e7b4;
         color: #1a1918;
         font-family: monospace;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
         font-weight: bold;
         border: 2px solid #2b2927;
         box-shadow: 2px 2px 0px #2b2927;
         text-decoration: none !important;
+        cursor: pointer;
+      }
+      .dialog-btn:active {
+        box-shadow: none;
+        transform: translate(2px, 2px);
       }
 
       .guestbook-box {
@@ -326,6 +384,98 @@
         direction: rtl;
         font-weight: bold;
       }
+
+      /* FIXED WIN95 TASKBAR & START MENU */
+      .win95-taskbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 32px;
+        background-color: #efe0ad;
+        border-top: 2px solid #2b2927;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6px;
+        font-family: monospace;
+        font-size: 0.78rem;
+        z-index: 9999;
+        box-shadow: 0 -2px 0px rgba(0,0,0,0.1);
+      }
+      .start-menu-btn {
+        font-weight: bold;
+        background: #f6e7b4;
+        border: 2px solid #2b2927;
+        padding: 2px 8px;
+        cursor: pointer;
+        box-shadow: 2px 2px 0px #2b2927;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .start-menu-btn:active {
+        box-shadow: none;
+        transform: translate(1px, 1px);
+      }
+      .win95-start-menu {
+        display: none;
+        position: fixed;
+        bottom: 34px;
+        left: 6px;
+        width: 220px;
+        background-color: #efe0ad;
+        border: 2px solid #2b2927;
+        box-shadow: 4px 4px 0px #2b2927;
+        z-index: 10000;
+        font-family: monospace;
+      }
+      .win95-start-menu.open { display: block; }
+      .start-sidebar {
+        background: #2b2927;
+        color: #efe0ad;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        padding: 8px 4px;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 0.85rem;
+        text-align: center;
+      }
+      .start-item {
+        display: block;
+        padding: 8px 12px;
+        color: #1a1918;
+        text-decoration: none;
+        border-bottom: 1px dashed rgba(43,41,39,0.3);
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+      .start-item:hover {
+        background-color: #2b2927;
+        color: #efe0ad;
+      }
+      .taskbar-middle {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .taskbar-app {
+        background: #f8ecc2;
+        border: 1px solid #2b2927;
+        padding: 2px 8px;
+        font-weight: bold;
+        font-size: 0.72rem;
+      }
+      .sys-tray {
+        border: 1px solid #2b2927;
+        background: #f8ecc2;
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: bold;
+      }
     </style>
 
     <h2>WHAT I'M DOING NOW</h2>
@@ -337,6 +487,45 @@
     <p>Building LoRaWAN sensor projects. Long range, low power, works where there's no coverage and nothing to subscribe to.</p>
 
     <p>Talking to Japanese paper planner brands about licensing native offline software. Paper people already understand the argument, which makes the conversation short.</p>
+
+    <!-- 📻 RETRO ASCII RADIO / VOICE PODCAST PLAYER WIDGET -->
+    <div class="ascii-radio-window" id="ascii-radio" role="region" aria-label="ASCII Voice Radio Player">
+      <div style="background-color: #2b2927; color: #efe0ad; font-size: 0.78rem; font-weight: bold; padding: 0.3rem 0.6rem; display: flex; justify-content: space-between; align-items: center;">
+        <span>📻 RADIO.EXE — VOICE LOG TRANSMITTER</span>
+        <span aria-hidden="true">[FM 108.0 MHz]</span>
+      </div>
+      <div style="padding: 0.8rem;">
+        
+        <!-- ASCII Radio Receiver Art -->
+        <div class="ascii-art-pre">
+   .---------------------------------------------------.
+   |  [📻]  VOICE_LOG_RADIO // HARDWARE_STREAM_V1.0     |
+   |  FREQUENCY: [||||||||||||||||||||||......] 108.0MHz |
+   |  STATUS: <span id="radio-status-text">IDLE / STANDBY</span>                        |
+   '---------------------------------------------------'
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.6rem; margin-top: 0.6rem;">
+          <div>
+            <label for="podcast-select" style="font-size: 0.75rem; font-weight: bold; display: block; margin-bottom: 0.2rem;">SELECT TRANSMISSION:</label>
+            <select id="podcast-select" onchange="changeTrack()" style="background: #f8ecc2; border: 1px solid #2b2927; font-family: monospace; font-size: 0.78rem; padding: 3px;">
+              <option value="/audio/log-01.mp3">Track 01: Offline Systems & Nomad Work</option>
+              <option value="/audio/log-02.mp3">Track 02: Why Local-First AI Wins</option>
+              <option value="/audio/log-03.mp3">Track 03: Hardware Notes & Solar LoRa</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 6px;">
+            <button onclick="toggleAudio()" id="audio-play-btn" class="dialog-btn" style="font-size: 0.75rem; padding: 0.3rem 0.7rem;">
+              [ ▶ PLAY ]
+            </button>
+          </div>
+        </div>
+
+        <!-- HTML5 Audio Element -->
+        <audio id="podcast-audio" src="/audio/log-01.mp3" preload="metadata"></audio>
+      </div>
+    </div>
 
     <h2>THINGS I'VE BUILT</h2>
 
@@ -514,7 +703,7 @@
       </div>
     </div>
 
-    <!-- Protected Webmaster Guestbook (FormSubmit backend hides raw mailto) -->
+    <!-- Protected Webmaster Guestbook -->
     <div class="guestbook-box" id="guestbook" role="form" aria-label="Guestbook Form">
       <div class="guestbook-title">📖 Sign the Guestbook / Leave a Note</div>
       <form action="https://formsubmit.co/alishabarretto@protonmail.com" method="POST">
@@ -554,14 +743,110 @@
   </div>
 </article>
 
-<!-- Hotkeys & Encrypted Mail Decoder -->
+<!-- START MENU POPUP DIALOG -->
+<div class="win95-start-menu" id="start-menu">
+  <div style="display: flex;">
+    <div class="start-sidebar">WINDOWS 95</div>
+    <div style="flex-grow: 1;">
+      <a href="#flowplanned" onclick="toggleStartMenu()" class="start-item">🚀 Projects Index</a>
+      <a href="#essays" onclick="toggleStartMenu()" class="start-item">📄 Essays & Books</a>
+      <a href="#ascii-radio" onclick="toggleStartMenu()" class="start-item">📻 Voice Podcasts</a>
+      <a href="#guestbook" onclick="toggleStartMenu()" class="start-item">📖 Sign Guestbook</a>
+      <a href="{{ "index.xml" | relURL }}" target="_blank" onclick="toggleStartMenu()" class="start-item">📡 RSS Feed (.XML)</a>
+      <a href="javascript:void(0)" onclick="toggleRecycleBin(); toggleStartMenu();" class="start-item">🗑️ Recycle Bin (Reader)</a>
+      <a href="https://github.com" target="_blank" rel="noopener" class="start-item">🐙 GitHub Profile</a>
+    </div>
+  </div>
+</div>
+
+<!-- FIXED WIN95 TASKBAR -->
+<div class="win95-taskbar" role="navigation" aria-label="System Taskbar">
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <button onclick="toggleStartMenu()" class="start-menu-btn" aria-label="Open Start Menu">
+      <span>🏁</span> <strong>Start</strong>
+    </button>
+    <div class="taskbar-middle">
+      <span class="taskbar-app">📄 ALISHABARRETTO.EXE</span>
+    </div>
+  </div>
+  <div class="sys-tray">
+    <span aria-hidden="true">🔊</span>
+    <span aria-hidden="true">💾</span>
+    <span id="win95-clock">12:00:00 AM</span>
+  </div>
+</div>
+
+<!-- Script for Clock, Start Menu, Recycle Bin, and Radio Audio -->
 <script>
-  // Dynamic Email Decoder (Prevents crawler scraping)
+  // Dynamic Email Decoder
   function openSecureMail(e) {
     if (e) e.preventDefault();
     const u = "alishabarretto";
     const d = "protonmail.com";
     window.location.href = "mailto:" + u + "@" + d;
+  }
+
+  // Live Win95 Clock
+  function updateClock() {
+    const clock = document.getElementById('win95-clock');
+    if (clock) {
+      const now = new Date();
+      clock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Start Menu Toggle
+  function toggleStartMenu() {
+    const menu = document.getElementById('start-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+
+  // Close Start menu on outside click
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('start-menu');
+    const btn = document.querySelector('.start-menu-btn');
+    if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  // Recycle Bin / Plain Text Reader Mode Toggle
+  function toggleRecycleBin() {
+    document.body.classList.toggle('recycle-bin-mode');
+  }
+
+  // ASCII Radio Podcast Controls
+  function toggleAudio() {
+    const audio = document.getElementById('podcast-audio');
+    const playBtn = document.getElementById('audio-play-btn');
+    const statusText = document.getElementById('radio-status-text');
+
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = '[ ❚❚ PAUSE ]';
+      statusText.textContent = 'TRANSMITTING... [PLAYING]';
+      statusText.style.color = '#008000';
+    } else {
+      audio.pause();
+      playBtn.textContent = '[ ▶ PLAY ]';
+      statusText.textContent = 'PAUSED / STANDBY';
+      statusText.style.color = '#2b2927';
+    }
+  }
+
+  function changeTrack() {
+    const select = document.getElementById('podcast-select');
+    const audio = document.getElementById('podcast-audio');
+    const playBtn = document.getElementById('audio-play-btn');
+    const statusText = document.getElementById('radio-status-text');
+
+    audio.src = select.value;
+    audio.play();
+    playBtn.textContent = '[ ❚❚ PAUSE ]';
+    statusText.textContent = 'TRANSMITTING... [PLAYING]';
+    statusText.style.color = '#008000';
   }
 
   // Keyboard Shortcuts
