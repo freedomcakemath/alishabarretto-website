@@ -1,0 +1,52 @@
+{{ define "main" }}
+<article class="home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0;">
+
+  <!-- ASCII Breadcrumb Header -->
+  <div style="font-family: monospace; font-size: 0.85rem; color: #6b6357; margin-bottom: 1.5rem;">
+    <a href="/" style="color: #2b2927; text-decoration: none;">[ HOME ]</a> / ESSAYS /
+  </div>
+
+  <h1 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; color: #1a1918;">Essays & Notes</h1>
+  <div style="font-size: 0.95rem; color: #5c5854; margin-bottom: 1.5rem;">
+    Long-form writing on offline systems, software craftsmanship, and product strategy.
+  </div>
+
+  <!-- ASCII Divider -->
+  <div style="font-family: monospace; font-size: 0.8rem; color: #6b6357; text-align: center; margin: 1.5rem 0; user-select: none;">
+    [+]==========================================================[+]
+  </div>
+
+  <!-- Essays Directory List -->
+  <div style="background: #efe0ad; border: 1px dashed #2b2927; padding: 1rem; font-family: monospace; font-size: 0.85rem; margin-bottom: 2rem;">
+    <div style="font-weight: bold; border-bottom: 1px solid rgba(43, 41, 39, 0.15); padding-bottom: 0.4rem; margin-bottom: 0.8rem; color: #1a1918;">
+      INDEX OF /essays
+    </div>
+
+    {{ range .Pages }}
+    <div style="margin-bottom: 0.8rem;">
+      <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+        <a href="{{ .RelPermalink }}" style="color: #1a1918; font-weight: bold; text-decoration: underline;">
+          📄 {{ .Title }}.txt
+        </a>
+        <span style="color: #6b6357;">{{ .Date.Format "2006-01-02" }}</span>
+      </div>
+      {{ if .Description }}
+      <div style="font-size: 0.78rem; color: #5c5854; margin-top: 0.2rem; padding-left: 1.2rem;">
+        └─ {{ .Description }}
+      </div>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div style="color: #5c5854;">No essays published yet.</div>
+    {{ end }}
+  </div>
+
+  <!-- Retro Status Footer Bar -->
+  <div style="font-family: monospace; font-size: 0.78rem; color: #5c5854; border-top: 1px solid rgba(43, 41, 39, 0.2); margin-top: 2.5rem; padding-top: 0.8rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+    <span>[●] DIR: /essays</span>
+    <span>COUNT: {{ len .Pages }} FILES</span>
+    <span>MODE: READ-ONLY</span>
+  </div>
+
+</article>
+{{ end }}

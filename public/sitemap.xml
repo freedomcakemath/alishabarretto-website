@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:36585/</loc>
+    <lastmod>2026-09-15T19:06:34+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:36585/posts/first-post/</loc>
+    <lastmod>2026-09-15T19:06:34+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:36585/posts/</loc>
+    <lastmod>2026-09-15T19:06:34+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:36585/essays/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:36585/essays/you-could-skip-the-person/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:36585/essays/power-of-genuine-users/</loc>
+    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:36585/categories/</loc>
+  </url><url>
+    <loc>http://localhost:36585/tags/</loc>
+  </url>
+</urlset>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Alisha Barretto</title>
+    <link>http://localhost:36585/posts/</link>
+    <description>Recent content in Posts on Alisha Barretto</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Sep 2026 19:06:34 +0000</lastBuildDate>
+    <atom:link href="http://localhost:36585/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First Post</title>
+      <link>http://localhost:36585/posts/first-post/</link>
+      <pubDate>Tue, 15 Sep 2026 19:06:34 +0000</pubDate>
+      <guid>http://localhost:36585/posts/first-post/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

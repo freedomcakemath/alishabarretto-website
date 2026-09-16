@@ -1,0 +1,41 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "Alisha Barretto"
+theme = "PaperMod"
+
+[params]
+  env = "development"
+  defaultTheme = "light"
+  disableThemeToggle = true
+  ShowCodeCopyButtons = false
+  customCSS = ["css/custom.css"]
+
+[[params.socialIcons]]
+  name = "twitter"
+  url = "https://twitter.com/alisha_barretto"
+
+[[params.socialIcons]]
+  name = "bluesky"
+  url = "https://bsky.app/profile/alishabarretto.bsky.social"
+
+[[params.socialIcons]]
+  name = "substack"
+  url = "https://substack.com/@alishabarretto"
+
+[[params.socialIcons]]
+  name = "medium"
+  url = "https://medium.com/@alishabarretto"
+
+[[params.socialIcons]]
+  name = "email"
+  url = "mailto:hello@alishabarretto.com"
+
+[[menu.main]]
+  name = "Essays"
+  url = "/essays/"
+  weight = 1
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

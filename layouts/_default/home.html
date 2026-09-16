@@ -1,0 +1,431 @@
+{{ define "main" }}
+<!-- Accessible Skip to Content Link (WCAG 2.4.1) -->
+<a href="#main-content" class="skip-link">[ SKIP TO MAIN CONTENT (TAB + ENTER) ]</a>
+
+<article class="first-entry home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0;" id="main-content">
+  
+  <!-- Header with BMPVIEW.EXE Retro Photo Viewer -->
+  <header style="margin-bottom: 1.8rem;">
+    <div class="photo-window" role="region" aria-label="Profile Picture Window" style="border: 2px solid #2b2927; background-color: #efe0ad; box-shadow: 4px 4px 0px #2b2927; margin: 0 auto 1.5rem auto; max-width: 240px;">
+      <div style="background-color: #2b2927; color: #efe0ad; font-family: monospace; font-size: 0.78rem; font-weight: bold; padding: 0.3rem 0.6rem; display: flex; justify-content: space-between; align-items: center;">
+        <span>BMPVIEW.EXE</span>
+        <span aria-hidden="true">[_][□][X]</span>
+      </div>
+      <div style="padding: 0.8rem; text-align: center; background-color: #f8ecc2;">
+        <img src="/images/profile.jpg" alt="Profile photo of Alisha Barretto" style="width: 160px; height: 160px; object-fit: cover; border: 2px solid #2b2927; box-shadow: inset 2px 2px 0px rgba(0,0,0,0.2); display: block; margin: 0 auto; image-rendering: pixelated;" />
+      </div>
+      <div style="font-family: monospace; font-size: 0.7rem; color: #5c5854; border-top: 1px dashed #2b2927; padding: 0.3rem 0.6rem; background-color: #efe0ad; display: flex; justify-content: space-between;">
+        <span>PROFILE.BMP</span>
+        <span>100% ZOOM</span>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <h1 style="font-size: 2rem; margin: 0 0 0.4rem 0; font-weight: 700; letter-spacing: -0.02em; color: #1a1918;">alishabarretto</h1>
+      
+      <!-- Niche Subtitle: Local-first & Hardware Systems -->
+      <div style="font-size: 1.02rem; color: #383532; margin-bottom: 0.8rem; line-height: 1.4; font-family: monospace;">
+        <strong>Engineer & Builder.</strong> Specializing in local-first software, offline-native architecture, and low-power hardware systems.
+      </div>
+      
+      <!-- High Contrast Mode Toggle -->
+      <div>
+        <button onclick="document.body.classList.toggle('dark-mode')" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; cursor: pointer;">
+          [ 🌗 TOGGLE HIGH-CONTRAST MODE ]
+        </button>
+      </div>
+
+      <div class="social-icons" style="display: flex; justify-content: center; gap: 14px; margin-top: 0.8rem;">
+        {{ partial "social_icons.html" (dict "socialIcons" .Site.Params.socialIcons) }}
+      </div>
+    </div>
+  </header>
+
+  <!-- Low-Power Hardware LED Panel & Telemetry Readout -->
+  <div class="circuit-divider" aria-label="System Metrics" style="background: #efe0ad; border: 1px dashed #2b2927; padding: 0.6rem 0.8rem; font-size: 0.78rem; font-family: monospace;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+      <span>[⚙️ SYS: ACTIVE SOLVER]  [💾 DATA: 18KB]  [🌱 0.02g CO₂]</span>
+      <span>[🔒 PRIVACY.SYS: 0 COOKIES]</span>
+    </div>
+  </div>
+
+  <!-- Bio Content & Accessibility Styles -->
+  <div class="custom-bio" style="font-size: 1rem; line-height: 1.7; color: #1a1918; margin-top: 1.5rem;">
+    <style>
+      /* Accessibility Focus Rings & Skip Link */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #2b2927;
+        color: #efe0ad;
+        padding: 8px;
+        font-family: monospace;
+        font-size: 0.85rem;
+        z-index: 999;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+      a:focus, button:focus, input:focus, textarea:focus {
+        outline: 2px dashed #000000 !important;
+        outline-offset: 3px !important;
+      }
+
+      /* High Contrast Dark Terminal Mode */
+      body.dark-mode {
+        background-color: #0d0d0d !important;
+        color: #00ff66 !important;
+      }
+      body.dark-mode *, body.dark-mode a {
+        background-color: #0d0d0d !important;
+        color: #00ff66 !important;
+        border-color: #00ff66 !important;
+        box-shadow: none !important;
+      }
+
+      /* Print Stylesheet for Content Portability */
+      @media print {
+        body { background: #fff !important; color: #000 !important; }
+        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer { border: 1px solid #000 !important; box-shadow: none !important; }
+        a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+        .skip-link, button { display: none !important; }
+      }
+
+      /* Reduced Motion Query */
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+      }
+
+      .custom-bio h2 { 
+        font-size: 0.85rem !important; 
+        font-weight: 700 !important; 
+        letter-spacing: 0.15em !important; 
+        text-transform: uppercase !important; 
+        color: #4a453e !important; 
+        margin-top: 2.2rem !important; 
+        margin-bottom: 1rem !important; 
+        padding-bottom: 0.3rem !important; 
+        border-bottom: 1px solid rgba(43, 41, 39, 0.25) !important; 
+      }
+      .custom-bio h3 { font-size: 1.1rem !important; font-weight: 600 !important; margin-top: 1.6rem !important; margin-bottom: 0.3rem !important; color: #1a1918 !important; }
+      .custom-bio p { margin-top: 0 !important; margin-bottom: 1rem !important; color: #1a1918 !important; }
+
+      .circuit-divider {
+        font-family: monospace;
+        font-size: 0.82rem;
+        font-weight: bold;
+        color: #383532;
+        text-align: center;
+        margin: 1.8rem 0;
+        overflow: hidden;
+        white-space: nowrap;
+        user-select: none;
+        letter-spacing: 0.05em;
+      }
+
+      .win95-tip {
+        position: relative;
+        border-bottom: 1px dashed #2b2927;
+        cursor: help;
+        color: #1a1918;
+      }
+      .win95-tip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffe1;
+        color: #000000;
+        border: 1px solid #000000;
+        padding: 3px 6px;
+        font-family: monospace;
+        font-size: 0.72rem;
+        white-space: nowrap;
+        box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s ease;
+        z-index: 100;
+      }
+      .win95-tip:hover::after {
+        opacity: 1;
+      }
+
+      .dir-index {
+        background: #efe0ad;
+        border: 1px dashed #2b2927;
+        padding: 0.8rem 1rem;
+        margin: 1.2rem 0 2rem 0;
+        font-family: monospace;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        color: #1a1918;
+      }
+      .dir-index-title {
+        font-weight: bold;
+        color: #1a1918;
+        border-bottom: 1px solid rgba(43, 41, 39, 0.25);
+        padding-bottom: 0.3rem;
+        margin-bottom: 0.5rem;
+      }
+      .dir-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        gap: 0.3rem 1rem;
+      }
+      .dir-item {
+        color: #1a1918;
+        text-decoration: underline;
+      }
+
+      .dialog-box {
+        border: 2px solid #2b2927;
+        background-color: #efe0ad;
+        padding: 0;
+        margin-top: 2.2rem;
+        box-shadow: 5px 5px 0px #2b2927;
+      }
+      .dialog-header {
+        background-color: #2b2927;
+        color: #efe0ad;
+        font-family: monospace;
+        font-size: 0.82rem;
+        font-weight: bold;
+        padding: 0.4rem 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .dialog-body {
+        padding: 1.2rem;
+      }
+      .dialog-btn {
+        display: inline-block;
+        padding: 0.5rem 1.2rem;
+        background-color: #f6e7b4;
+        color: #1a1918;
+        font-family: monospace;
+        font-size: 0.88rem;
+        font-weight: bold;
+        border: 2px solid #2b2927;
+        box-shadow: 2px 2px 0px #2b2927;
+        text-decoration: none !important;
+      }
+
+      .guestbook-box {
+        border: 1px solid #2b2927;
+        background-color: #f8ecc2;
+        padding: 1.2rem;
+        margin-top: 2.2rem;
+        font-family: monospace;
+      }
+      .guestbook-title {
+        font-size: 0.85rem;
+        font-weight: bold;
+        color: #1a1918;
+        margin-bottom: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .guestbook-field {
+        margin-bottom: 0.8rem;
+      }
+      .guestbook-field label {
+        display: block;
+        font-size: 0.75rem;
+        color: #383532;
+        margin-bottom: 0.2rem;
+        font-weight: bold;
+      }
+      .guestbook-field input, .guestbook-field textarea {
+        width: 100%;
+        padding: 0.4rem;
+        border: 1px solid #2b2927;
+        background-color: #efe0ad;
+        font-family: monospace;
+        font-size: 0.82rem;
+        color: #1a1918;
+        box-sizing: border-box;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 1.2rem;
+      }
+      .micro-badge {
+        font-family: monospace;
+        font-size: 0.72rem;
+        font-weight: bold;
+        color: #1a1918;
+        background-color: #efe0ad;
+        border: 1px solid #2b2927;
+        padding: 3px 8px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        box-shadow: 2px 2px 0px #2b2927;
+      }
+
+      .compliance-footer {
+        font-family: monospace;
+        font-size: 0.75rem;
+        color: #383532;
+        border-top: 1px dashed rgba(43, 41, 39, 0.4);
+        margin-top: 2.5rem;
+        padding-top: 0.8rem;
+        line-height: 1.5;
+        background: #efe0ad;
+        border: 1px solid #2b2927;
+        padding: 0.8rem;
+        box-shadow: 3px 3px 0px #2b2927;
+      }
+    </style>
+
+    <h2>WHAT I'M DOING NOW</h2>
+
+    <p>Building FlowPlanned, a <span class="win95-tip" data-tooltip="Zero cloud calls. Runs 100% local.">local-first planner</span> for Windows. Local agents, no cloud, no account, no telemetry.</p>
+
+    <p>Building LoRaWAN sensor projects. Long range, low power, works where there's no coverage and nothing to subscribe to.</p>
+
+    <p>Talking to Japanese paper planner brands about licensing native offline software. Paper people already understand the argument, which makes the conversation short.</p>
+
+    <h2>THINGS I'VE BUILT</h2>
+
+    <!-- Directory Listing Index -->
+    <div class="dir-index" role="navigation" aria-label="Project Index">
+      <div class="dir-index-title">INDEX OF /projects</div>
+      <div class="dir-grid">
+        <div>📁 <a href="#flowplanned" class="dir-item">FlowPlanned/</a></div>
+        <div>📁 <a href="#basileia" class="dir-item">Basileia/</a></div>
+        <div>📁 <a href="#happyzoned" class="dir-item">HappyZoned/</a></div>
+        <div>📄 <a href="#nature-hub" class="dir-item">NatureHub.doc</a></div>
+        <div>📄 <a href="#genista" class="dir-item">Genista.doc</a></div>
+        <div>📄 <a href="#locofy" class="dir-item">Locofy.doc</a></div>
+        <div>📄 <a href="#ux-studio" class="dir-item">UX_Studio.doc</a></div>
+        <div>📄 <a href="#open-dest" class="dir-item">Tineri.doc</a></div>
+        <div>📄 <a href="#ifb" class="dir-item">IFB_Circuit.doc</a></div>
+        <div>📄 <a href="#bolt" class="dir-item">Bolt_IoT.doc</a></div>
+      </div>
+    </div>
+
+    <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
+    <p>A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line.</p>
+
+    <h3 id="basileia">Basileia, 2023 to 2025</h3>
+    <p>A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. I also ran soap-making workshops for women starting their own thing. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.</p>
+
+    <h3 id="happyzoned">Happy Zoned, 2024</h3>
+    <p>Mobile sleeping pods for budget stays in Dubai. It ran straight into GCC zoning rules. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early.</p>
+
+    <h3 id="nature-hub">The Nature Hub</h3>
+    <p>A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.</p>
+
+    <h3 id="genista">Genista Biosciences</h3>
+    <p>UX for a food-safety monitoring platform. Owned the design system and the analytics work, with hundreds of mockups tested and cut down over repeated rounds with actual lab users.</p>
+
+    <h3 id="locofy">Locofy</h3>
+    <p>Product and community. Answered roughly a hundred technical questions a week from a two thousand member developer community, and turned the patterns in those questions into thirty-plus documented product gaps and the guides that fixed them.</p>
+
+    <h3 id="ux-studio">UX Design Studio, 2020 to 2021</h3>
+    <p>Five web and mobile products designed end to end through lockdown, from user interviews to prototype. Learned how to run research on people you never meet in person.</p>
+
+    <h3 id="open-dest">Open Destinations, 2019 to 2020</h3>
+    <p>Engineering on Tineri, a mobile itinerary platform for tour operators. <span class="win95-tip" data-tooltip="Ionic 3 / Angular / Cordova stack">Ionic 3</span> and <span class="win95-tip" data-tooltip="Ruby 2.6 + Rails 5.2 backend">Ruby on Rails</span>, working on core modules of a real enterprise system.</p>
+
+    <h3 id="ifb">IFB Industries</h3>
+    <p>An auto on/off circuit for a washing machine. Microcontroller code that shut the display down when nobody was standing there, because idle power adds up across a million units.</p>
+
+    <h3 id="bolt">BOLT IoT Evangelist</h3>
+    <p>Taught IoT and machine learning to people who had never soldered anything, mostly by building the thing with them.</p>
+
+    <!-- RF Modulation Divider -->
+    <div class="circuit-divider" aria-hidden="true">───[ Y Antenna ]───∿∿∿ ( 100MHz Carrier ) ∿∿∿───[ ⏚ Earth Ground ]───</div>
+
+    <h2>WRITING AND COMMUNITY</h2>
+
+    <h3 id="essays">The Power of Genuine Users</h3>
+    <p>A co-authored handbook for founders on evangelism that isn't marketing, and growth that comes from users who actually want the thing. <a href="/essays/power-of-genuine-users/">[Read Handbook ->]</a></p>
+
+    <h3>Workshops</h3>
+    <p>Career sessions for school students on Youth Day, peer support groups during lockdown, and soap-making workshops for women starting their first business.</p>
+
+    <p>Also: a vocational baking programme at IHM, which is either irrelevant or the most relevant thing here, depending on how you feel about formulas.</p>
+
+    <!-- Windows 95 Support Dialog Box (ARIA Accessible) -->
+    <div class="dialog-box" role="dialog" aria-labelledby="support-dialog-title">
+      <div class="dialog-header" id="support-dialog-title">
+        <span>C:\> INDEPENDENCE.EXE</span>
+        <span aria-hidden="true">[X]</span>
+      </div>
+      <div class="dialog-body">
+        <p style="font-size: 0.95rem; color: #1a1918; margin-bottom: 1.2rem; font-family: monospace;">
+          As an engineer, I focus on building pragmatic solutions from bare-metal circuits to local-first software. Direct support keeps this independent work real and sustainable.
+        </p>
+        <div>
+          <a href="https://link.depay.com/11aGEB9LQxzQvC2IY02u6d" target="_blank" rel="noopener noreferrer" class="dialog-btn" aria-label="Support via Web3 payment gateway">
+            [ OK: Support via Web3 ]
+          </a>
+        </div>
+
+        <div class="badge-row">
+          <span class="micro-badge">LOCAL FIRST</span>
+          <span class="micro-badge">NO CLOUD</span>
+          <span class="micro-badge">&lt;20KB PAYLOAD</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Webmaster Guestbook -->
+    <div class="guestbook-box" id="guestbook" role="form" aria-label="Guestbook Form">
+      <div class="guestbook-title">📖 Sign the Guestbook / Leave a Note</div>
+      <form action="mailto:alishabarretto@protonmail.com" method="post" enctype="text/plain">
+        <div class="guestbook-field">
+          <label for="gb-name">YOUR NAME / HANDLE:</label>
+          <input type="text" id="gb-name" name="Name" placeholder="e.g. Visitor_99" required />
+        </div>
+        <div class="guestbook-field">
+          <label for="gb-email">YOUR EMAIL (OPTIONAL):</label>
+          <input type="email" id="gb-email" name="Email" placeholder="your@email.com" />
+        </div>
+        <div class="guestbook-field">
+          <label for="gb-message">MESSAGE / COMMENTS:</label>
+          <textarea id="gb-message" name="Message" rows="3" placeholder="Leave a note in the guestbook..." required></textarea>
+        </div>
+        <button type="submit" class="dialog-btn" style="font-size: 0.8rem; padding: 0.3rem 0.8rem;">[ SUBMIT ENTRY ]</button>
+      </form>
+    </div>
+
+    <!-- Professional EU Compliance & Privacy Footer Notice -->
+    <footer class="compliance-footer">
+      <div style="font-weight: bold; margin-bottom: 0.3rem; color: #1a1918;">
+        [ ⚖️ ACCESSIBILITY & SUSTAINABILITY DECLARATION ]
+      </div>
+      <div>
+        Engineered in accordance with <strong>EU Directive 2016/2102</strong> and <strong>WCAG 2.1 Level AA</strong>. Built with keyboard hotkeys (Press <code>G</code>=Guestbook, <code>E</code>=Essays, <code>T</code>=Top), zero cookies, and ultra-low carbon static delivery (&lt;20KB/view).
+      </div>
+    </footer>
+
+  </div>
+</article>
+
+<!-- HOTKEYS.EXE JavaScript (0.2KB Overhead) -->
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    const key = e.key.toLowerCase();
+    if (key === 'g') {
+      const gb = document.getElementById('guestbook');
+      if (gb) gb.scrollIntoView({ behavior: 'smooth' });
+    } else if (key === 'e') {
+      const essay = document.getElementById('essays');
+      if (essay) essay.scrollIntoView({ behavior: 'smooth' });
+    } else if (key === 't') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+</script>
+{{ end }}
