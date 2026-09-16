@@ -88,7 +88,7 @@
       /* Print Stylesheet for Content Portability */
       @media print {
         body { background: #fff !important; color: #000 !important; }
-        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer { border: 1px solid #000 !important; box-shadow: none !important; }
+        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach { border: 1px solid #000 !important; box-shadow: none !important; }
         a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
         .skip-link, button { display: none !important; }
       }
@@ -110,7 +110,7 @@
         border-bottom: 1px solid rgba(43, 41, 39, 0.25) !important; 
       }
       .custom-bio h3 { font-size: 1.1rem !important; font-weight: 600 !important; margin-top: 1.6rem !important; margin-bottom: 0.3rem !important; color: #1a1918 !important; }
-      .custom-bio p { margin-top: 0 !important; margin-bottom: 1rem !important; color: #1a1918 !important; }
+      .custom-bio p { margin-top: 0 !important; margin-bottom: 0.8rem !important; color: #1a1918 !important; }
 
       .circuit-divider {
         font-family: monospace;
@@ -152,6 +152,50 @@
       }
       .win95-tip:hover::after {
         opacity: 1;
+      }
+
+      /* Retro Collapsible System Attachment Bars */
+      details.win95-attach {
+        margin-top: 0.4rem;
+        margin-bottom: 1.2rem;
+        font-family: monospace;
+        font-size: 0.78rem;
+      }
+      details.win95-attach summary {
+        cursor: pointer;
+        color: #2b2927;
+        background: #efe0ad;
+        border: 1px dashed #2b2927;
+        padding: 3px 6px;
+        display: inline-block;
+        user-select: none;
+        font-weight: bold;
+      }
+      details.win95-attach summary:hover {
+        background: #2b2927;
+        color: #efe0ad;
+      }
+      .attach-frame {
+        margin-top: 0.4rem;
+        padding: 6px;
+        background: #f8ecc2;
+        border: 2px solid #2b2927;
+        box-shadow: 3px 3px 0px #2b2927;
+        max-width: 440px;
+      }
+      .attach-frame img {
+        width: 100%;
+        height: auto;
+        border: 1px solid #2b2927;
+        display: block;
+        image-rendering: pixelated;
+      }
+      .attach-frame span {
+        display: block;
+        font-size: 0.7rem;
+        color: #5c5854;
+        margin-top: 4px;
+        font-family: monospace;
       }
 
       .dir-index {
@@ -322,33 +366,103 @@
 
     <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
     <p>A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: FLOWPLANNED_SCREEN.BMP (142 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/flowplanned.png" alt="FlowPlanned interface preview" />
+        <span>FIG 1.0 — LOCAL-FIRST CANVAS INTERFACE</span>
+      </div>
+    </details>
 
     <h3 id="basileia">Basileia, 2023 to 2025</h3>
     <p>A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: BASILEIA_BRAND.BMP (198 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/basileia.jpg" alt="Basileia packaging and brand showcase" />
+        <span>FIG 2.0 — HANDMADE FORMULATIONS & PACKAGING</span>
+      </div>
+    </details>
 
     <h3 id="happyzoned">Happy Zoned, 2024</h3>
     <p>Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: HAPPYZONED_PODS.BMP (210 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/happyzoned.jpg" alt="Happy Zoned sleeping pod layout" />
+        <span>FIG 3.0 — MOBILE CARAVAN LAYOUT & SCHEMATICS</span>
+      </div>
+    </details>
 
     <h3 id="nature-hub">The Nature Hub</h3>
     <p>A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: NATURE_HUB_MAP.BMP (175 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/nature-hub.jpg" alt="Nature Hub 15-zone site map" />
+        <span>FIG 4.0 — 15-ZONE SPATIAL SITE MAP</span>
+      </div>
+    </details>
 
     <h3 id="genista">Genista Biosciences</h3>
     <p>UX for a food-safety monitoring platform. Owned the design system and the analytics work, tested and cut down over repeated rounds with actual lab users, the kind of people who will tell you exactly what's wrong with your interface and not soften it.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: GENISTA_UX.BMP (160 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/genista.png" alt="Genista Biosciences UX dashboard" />
+        <span>FIG 5.0 — LAB ANALYTICS DASHBOARD INTERFACE</span>
+      </div>
+    </details>
 
     <h3 id="no-code">No-Code and Low-Code Era</h3>
     <p>Worked across Editor X, Locofy, and a handful of other companies building in this space. Active in the communities themselves too, not just the products. Answered roughly a hundred technical questions a week from a two thousand member developer community, and built free indie tools and templates for people in the space to use. Also consulted for a few early-stage startups building through 2021 to 2023.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: NO_CODE_TOOLS.BMP (125 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/nocode-templates.png" alt="No-code community tools and templates" />
+        <span>FIG 6.0 — COMMUNITY TOOLKIT & TEMPLATES</span>
+      </div>
+    </details>
 
     <h3 id="ux-studio">UX Design Studio, 2020 to 2021</h3>
-    <p>Five web and mobile products designed end to end through lockdown, from user interviews to prototype, across a community SaaS platform, a real estate company, and a web3 research company. One of them was an app for apartment owners, so they could track construction progress and book their kitchen without ever calling anyone. Learned how to run user research on people you never meet in person, which was most of them.</p>
+    <p>Five web and mobile products designed end to end through lockdown, from user interviews to prototype, across a community SaaS platform, a real estate company, and a web3 research company. The community platform was about giving people a place to express themselves without feeling judged, something other platforms never quite let you do without feeling exposed. It also helped people find mentors and coaches they'd never otherwise meet, and book 1:1 and group calls that actually went somewhere. One of the other projects was an app for apartment owners, so they could track construction progress and book their kitchen without ever calling anyone. Learned how to run user research on people you never meet in person, which was most of them.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: UX_STUDIO_FLOW.BMP (188 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/ux-studio.png" alt="UX Design Studio wireframes and user flow" />
+        <span>FIG 7.0 — SAAS COMMUNITY & MOBILE USER FLOWS</span>
+      </div>
+    </details>
 
     <h3 id="open-dest">Open Destinations, 2019 to 2020</h3>
     <p>Engineering on Tineri, a mobile itinerary platform for tour operators. <span class="win95-tip" data-tooltip="Ionic 3 / Angular / Cordova stack">Ionic 3</span> and <span class="win95-tip" data-tooltip="Ruby 2.6 + Rails 5.2 backend">Ruby on Rails</span>, working on core modules of a real enterprise system.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: TINERI_MOBILE.BMP (110 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/tineri.png" alt="Tineri Mobile Itinerary Platform" />
+        <span>FIG 8.0 — TINERI MOBILE ITINERARY MODULES</span>
+      </div>
+    </details>
 
     <h3 id="ifb">IFB Industries</h3>
     <p>An auto on/off circuit for a washing machine. Microcontroller code that shut the display down when nobody was standing there, because idle power adds up across a million units.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: IFB_CIRCUIT.BMP (95 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/ifb-circuit.jpg" alt="IFB Washing Machine Auto-Off Circuit Diagram" />
+        <span>FIG 9.0 — MICROCONTROLLER AUTO-OFF CIRCUIT SCHEMATIC</span>
+      </div>
+    </details>
 
     <h3 id="bolt">BOLT IoT Evangelist</h3>
     <p>Taught IoT and machine learning to people who had never soldered anything, mostly by building the thing with them.</p>
+    <details class="win95-attach">
+      <summary>[ 📎 ATTACHMENT: BOLT_WORKSHOP.BMP (130 KB) ]</summary>
+      <div class="attach-frame">
+        <img src="/images/bolt-iot.jpg" alt="BOLT IoT workshop demo setup" />
+        <span>FIG 10.0 — IOT & MACHINE LEARNING HARDWARE DEMO</span>
+      </div>
+    </details>
 
     <!-- RF Modulation Divider -->
     <div class="circuit-divider" aria-hidden="true">───[ Y Antenna ]───∿∿∿ ( 100MHz Carrier ) ∿∿∿───[ ⏚ Earth Ground ]───</div>
