@@ -1,5 +1,5 @@
 baseURL = "https://alishabarretto-website.vercel.app/"
-languageCode = "en-us"
+locale = "en-us"
 title = "Alisha Barretto"
 theme = "PaperMod"
 
@@ -15,7 +15,7 @@ buildExpired = false
   author = 'Alisha Barretto'
   images = ["/cover.png"]
   
-  # Set Light Mode as Strict Default
+  # Strict Light Mode Default with Toggle Enabled
   defaultTheme = "light"
   disableThemeToggle = false
   disableScrollToTop = false
