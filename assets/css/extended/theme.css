@@ -1,8 +1,8 @@
 /* --------------------------------------------------------------------------
-   PaperMod Color Variables Override (Light Default, Clean Dark Toggle)
+   PaperMod Universal High-Contrast Theme Engine
    -------------------------------------------------------------------------- */
 
-/* Standard Light Mode */
+/* Light Mode (Strict System Default) */
 :root {
   --theme: #ffffff;
   --entry: #ffffff;
@@ -14,7 +14,7 @@
   --border: #e4e4e7;
 }
 
-/* Enforced Dark Mode via PaperMod's native .dark class */
+/* Enforced Dark Mode Palette */
 .dark {
   --theme: #121212;
   --entry: #1e1e1e;
@@ -26,18 +26,44 @@
   --border: #27272a;
 }
 
-/* Smooth background transition */
+/* Force body and all custom embedded text nodes to adapt dynamically */
 body {
-  background-color: var(--theme);
-  color: var(--primary);
+  background-color: var(--theme) !important;
+  color: var(--primary) !important;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Link visibility */
+/* Target custom retro/terminal boxes, forms, inputs, and custom spans */
+body.dark *,
+body.dark p,
+body.dark div,
+body.dark span,
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark label,
+body.dark input,
+body.dark textarea,
+body.dark button {
+  color: var(--primary) !important;
+  border-color: var(--border) !important;
+}
+
+/* Ensure background of custom cards/containers adapt */
+body.dark input,
+body.dark textarea,
+body.dark button,
+body.dark pre,
+body.dark code {
+  background-color: var(--entry) !important;
+}
+
+/* Accessible Hyperlinks in Dark Mode */
 a {
   color: #2563eb;
 }
 
-.dark a {
-  color: #60a5fa;
+body.dark a {
+  color: #60a5fa !important;
 }
