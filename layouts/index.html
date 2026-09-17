@@ -188,6 +188,12 @@
       details.win95-attach {
         margin-top: 0.4rem; margin-bottom: 0.6rem; font-family: monospace; font-size: 0.78rem;
       }
+/* Explicit state styling when the toggle is OPEN (WCAG visual indicator) */
+      details.win95-attach[open] summary {
+        border-style: solid;
+        background-color: var(--primary) !important;
+        color: var(--theme) !important;
+      }
       details.win95-attach summary {
         cursor: pointer; color: var(--primary); border: 1px dashed var(--primary);
         padding: 3px 6px; display: inline-block; user-select: none; font-weight: bold;
@@ -560,9 +566,3 @@
 </script>
 {{ end }}
 
-      /* Explicit state styling when the toggle is OPEN (WCAG visual indicator) */
-      details.win95-attach[open] summary {
-        border-style: solid;
-        background-color: var(--primary) !important;
-        color: var(--theme) !important;
-      }
