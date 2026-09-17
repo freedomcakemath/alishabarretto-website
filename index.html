@@ -1,0 +1,32 @@
+<!-- Retro Custom Styling & Scripting -->
+<link rel="stylesheet" href="assets/css/custom.css">
+<script src="assets/js/main.js" defer></script>
+
+<!-- Win95 Retro Taskbar & Start Menu -->
+<div class="win95-taskbar" id="taskbar">
+  <div class="taskbar-left">
+    <button class="start-menu-btn" id="start-btn">
+      <span>&#9632;</span> Start
+    </button>
+  </div>
+  <div class="taskbar-middle">
+    <div class="taskbar-app">BMPVIEW.EXE</div>
+  </div>
+  <div class="sys-tray">
+    <button onclick="toggleDarkMode()" style="cursor:pointer; background:none; border:none; font-family:inherit; font-size:inherit; padding:0;">[THEME]</button>
+    <span id="sys-clock">--:-- --</span>
+  </div>
+</div>
+
+<!-- Start Menu Popup -->
+<div class="win95-start-menu" id="start-menu">
+  <div class="start-menu-inner">
+    <div class="start-sidebar">RETRO OS</div>
+    <div class="start-menu-items">
+      <a href="#top" class="start-item">Home / Top</a>
+      <a href="#bio" class="start-item">System Log</a>
+      <a href="#projects" class="start-item">Directory</a>
+      <a href="javascript:void(0)" onclick="toggleDarkMode()" class="start-item">Toggle High-Contrast</a>
+    </div>
+  </div>
+</div>
