@@ -1,84 +1,61 @@
 /* ==========================================================================
-   Hugo PaperMod - Clean Retro/Win95 Dark Mode Integration
+   Lightweight Win95 Retro Theme (Light Only)
    ========================================================================== */
 
-/* 1. Light Mode Variable Defaults */
 :root {
   --theme: #ffffff;
   --entry: #f8f9fa;
-  --primary: #212529;
+  --primary: #000000;
   --secondary: #6c757d;
-  --tertiary: #e9ecef;
-  --content: #212529;
+  --tertiary: #c0c0c0;
+  --content: #000000;
+  --border-dark: #808080;
+  --border-light: #ffffff;
 }
 
-
-/* 3. Base Body Transitions */
 body {
   background-color: var(--theme);
   color: var(--primary);
-  transition: background-color 0.15s ease, color 0.15s ease;
+  font-family: monospace, sans-serif;
+  padding-bottom: 3.5rem; /* Prevents content from hiding behind mobile taskbar */
 }
 
-/* 4. Targeted Element Mappings */
-html.dark .post-card,
-html.dark .entry,
-html.dark .profile_inner,
-html.dark .win95-taskbar,
-html.dark .win95-start-menu {
-  background-color: var(--entry) !important;
-  border-color: var(--tertiary) !important;
-  color: var(--primary) !important;
-}
-
-/* 5. Hyperlinks Contrast */
-a {
-  color: #2563eb;
-}
-
-html.dark a {
-  color: #8ab4f8 !important;
-}
-
-html.dark a:hover {
-  color: #aecbfa !important;
+/* Retro Win95 Window Container Style */
+.win95-window, .post-card, .entry, .profile_inner {
+  background-color: var(--entry);
+  border-top: 2px solid var(--border-light);
+  border-left: 2px solid var(--border-light);
+  border-right: 2px solid var(--border-dark);
+  border-bottom: 2px solid var(--border-dark);
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* ==========================================================================
-   MOBILE TASKBAR & RESPONSIVE FIXES
+   Mobile Responsive Breakpoints & Taskbar Fixes
    ========================================================================== */
+
 @media screen and (max-width: 768px) {
-  /* Prevent content from being hidden behind the fixed taskbar */
   body {
-    padding-bottom: 40px !important;
+    padding-bottom: 45px !important;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
-  /* Compact the taskbar to fit narrow mobile screens */
   .win95-taskbar {
     padding: 0 4px !important;
-    font-size: 0.68rem !important;
-    height: 28px !important;
+    font-size: 0.7rem !important;
+    height: 30px !important;
   }
 
-  /* Hide non-essential middle apps/trays to prevent crowding */
   .taskbar-middle {
-    display: none !important;
+    display: none !important; /* Hides clutter on narrow screens */
   }
 
-  /* Make the start menu span nicely across mobile screens */
   .win95-start-menu {
-    width: calc(100vw - 12px) !important;
-    right: 6px !important;
-    bottom: 34px !important;
-  }
-
-  .start-sidebar {
-    font-size: 0.75rem !important;
-    padding: 6px 2px !important;
-  }
-
-  .start-item {
-    padding: 6px 10px !important;
-    font-size: 0.75rem !important;
+    width: calc(100vw - 10px) !important;
+    right: 5px !important;
+    bottom: 35px !important;
   }
 }
+
