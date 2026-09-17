@@ -1,0 +1,9 @@
+{
+  "builds": [
+    {
+      "src": "hugo.toml",
+      "use": "@vercel/hugo",
+      "config": { "hugoVersion": "0.125.0" }
+    }
+  ]
+}
