@@ -1,41 +1,37 @@
-baseURL = "http://localhost:1313/"
-languageCode = "en-us"
-title = "Alisha Barretto"
-theme = "PaperMod"
+baseURL = 'https://alishabarretto-website.vercel.app/'
+languageCode = 'en-us'
+title = 'Alisha Barretto'
+theme = 'PaperMod'
 
 [params]
-  env = "development"
-  defaultTheme = "light"
-  disableThemeToggle = true
-  ShowCodeCopyButtons = false
-  customCSS = ["css/custom.css"]
+  env = 'production'
+  title = 'Alisha Barretto'
+  description = 'Personal website and portfolio'
+  author = 'Alisha Barretto'
+  disableScrollToTop = false
+  disableThemeToggle = false
+  ShowShareButtons = false
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
 
-[[params.socialIcons]]
-  name = "twitter"
-  url = "https://twitter.com/alisha_barretto"
+[params.profileMode]
+  enabled = true
+  title = 'Alisha Barretto'
+  subtitle = 'Welcome to my website'
 
-[[params.socialIcons]]
-  name = "bluesky"
-  url = "https://bsky.app/profile/alishabarretto.bsky.social"
+[menu]
+  [[menu.main]]
+    identifier = 'essays'
+    name = 'Essays'
+    url = '/essays/'
+    weight = 10
 
-[[params.socialIcons]]
-  name = "substack"
-  url = "https://substack.com/@alishabarretto"
-
-[[params.socialIcons]]
-  name = "medium"
-  url = "https://medium.com/@alishabarretto"
-
-[[params.socialIcons]]
-  name = "email"
-  url = "mailto:hello@alishabarretto.com"
-
-[[menu.main]]
-  name = "Essays"
-  url = "/essays/"
-  weight = 1
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+[params.socialIcons]
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/alishabarretto"
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/alishabarretto"
