@@ -2,6 +2,7 @@
 title: "Happy Zoned"
 date: 2026-09-17
 draft: false
+url: "/projects/happyzoned-postmortem/"
 summary: "Designing mobile caravan sleeping pods in Dubai to bridge the gap between traditional renting and high hotel prices."
 ---
 
