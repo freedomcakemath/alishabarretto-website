@@ -559,3 +559,10 @@
   });
 </script>
 {{ end }}
+
+      /* Explicit state styling when the toggle is OPEN (WCAG visual indicator) */
+      details.win95-attach[open] summary {
+        border-style: solid;
+        background-color: var(--primary) !important;
+        color: var(--theme) !important;
+      }
