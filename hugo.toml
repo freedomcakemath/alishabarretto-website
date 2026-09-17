@@ -6,8 +6,9 @@ theme = "PaperMod"
 [params]
   env = 'production'
   title = 'Alisha Barretto'
-  description = 'Personal website and portfolio'
+  description = 'Writing on decentralized systems, human coordination, and building software that respects agency.'
   author = 'Alisha Barretto'
+  images = ["/cover.png"]
   disableScrollToTop = false
   disableThemeToggle = false
   ShowShareButtons = false
@@ -37,10 +38,14 @@ theme = "PaperMod"
     name = "email"
     url = "mailto:alishabarretto@protonmail.com"
 
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
 [params.profileMode]
   enabled = true
   title = 'Alisha Barretto'
-  subtitle = 'Welcome to my website'
+  subtitle = 'Writing on decentralized systems, human coordination, and building software that respects agency.'
 
 [[menu.main]]
   identifier = 'essays'
