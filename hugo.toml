@@ -21,17 +21,16 @@ theme = 'PaperMod'
   title = 'Alisha Barretto'
   subtitle = 'Welcome to my website'
 
-[menu]
-  [[menu.main]]
-    identifier = 'essays'
-    name = 'Essays'
-    url = '/essays/'
-    weight = 10
+[[menu.main]]
+  identifier = 'essays'
+  name = 'Essays'
+  url = '/essays/'
+  weight = 10
 
-[params.socialIcons]
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/alishabarretto"
-  [[params.socialIcons]]
-    name = "twitter"
-    url = "https://twitter.com/alishabarretto"
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/alishabarretto"
+
+[[params.socialIcons]]
+  name = "twitter"
+  url = "https://twitter.com/alishabarretto"
