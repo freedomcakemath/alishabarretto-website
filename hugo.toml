@@ -53,9 +53,13 @@ buildExpired = false
     url = "/index.xml"
 
   [params.profileMode]
-    enabled = false
+    enabled = true
     title = 'Alisha Barretto'
     subtitle = 'Writing on decentralized systems, human coordination, and building software that respects agency.'
+    imageUrl = '/images/profile.webp'
+    imageWidth = 150
+    imageHeight = 150
+    imageTitle = 'Alisha Barretto'
 
 [[menu.main]]
   identifier = 'essays'
