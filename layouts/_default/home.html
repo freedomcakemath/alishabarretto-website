@@ -2,69 +2,64 @@
 <!-- Accessible Skip to Content Link (WCAG 2.4.1) -->
 <a href="#main-content" class="skip-link">[ SKIP TO MAIN CONTENT (TAB + ENTER) ]</a>
 
-<article class="first-entry home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0 5rem 0;" id="main-content">
-  
-  <!-- Header with BMPVIEW.EXE Retro Photo Viewer (Yellow Frame Restored) -->
-  <header style="margin-bottom: 1.8rem;">
-    <div class="photo-window" role="region" aria-label="Profile Picture Window" style="border: 2px solid #2b2927; background-color: #efe0ad; margin: 0 auto 1.5rem auto; max-width: 240px;">
-      <div style="background-color: #2b2927; color: #efe0ad; font-family: monospace; font-size: 0.78rem; font-weight: bold; padding: 0.3rem 0.6rem; display: flex; justify-content: space-between; align-items: center;">
+<article class="first-entry home page-wrap" id="main-content">
+
+  <!-- Header with BMPVIEW.EXE Retro Photo Viewer -->
+  <header class="page-header">
+    <div class="photo-window" role="region" aria-label="Profile Picture Window">
+      <div class="photo-titlebar">
         <span>BMPVIEW.EXE</span>
         <span aria-hidden="true">[_][□][X]</span>
       </div>
-      <div style="padding: 0.8rem; text-align: center; background-color: #f8ecc2;">
-        <img src="/images/profile.jpg" alt="Profile photo" width="160" height="160" style="width: 160px; height: 160px; object-fit: cover; border: 2px solid #2b2927; display: block; margin: 0 auto; image-rendering: pixelated;" />
+      <div class="photo-body">
+        <img src="/images/profile.jpg" alt="Profile photo" width="160" height="160" class="profile-img" />
       </div>
-      <div style="font-family: monospace; font-size: 0.7rem; color: #5c5854; border-top: 1px dashed #2b2927; padding: 0.3rem 0.6rem; background-color: #efe0ad; display: flex; justify-content: space-between;">
+      <div class="photo-statusbar">
         <span>PROFILE.BMP</span>
         <span>100% ZOOM</span>
       </div>
     </div>
 
-    <div style="text-align: center;">
-      <h1 style="font-size: 2rem; margin: 0 0 0.4rem 0; font-weight: 700; letter-spacing: -0.02em; color: #1a1918;">alishabarretto</h1>
-      
-      <!-- Subtitle -->
-      <div style="font-size: 1.02rem; color: #383532; margin-bottom: 0.8rem; line-height: 1.4; font-family: monospace;">
-        <strong>Engineer & Builder.</strong> Specializing in local-first software, offline-native architecture, and low-power hardware systems.
+    <div class="header-center">
+      <h1 class="site-title">alishabarretto</h1>
+
+      <div class="subtitle-text">
+        <strong>Engineer &amp; Builder.</strong> Specializing in local-first software, offline-native architecture, and low-power hardware systems.
       </div>
-      
-      <!-- Action Bar -->
-      <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
-        <button onclick="document.body.classList.toggle('dark-mode')" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; cursor: pointer;">
+
+      <div class="action-bar">
+        <button onclick="document.body.classList.toggle('dark-mode')" class="dialog-btn">
           [ 🌗 HIGH-CONTRAST ]
         </button>
-        <a href="#" onclick="openSecureMail(event)" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; text-decoration: none;">
+        <a href="#" onclick="openSecureMail(event)" class="dialog-btn">
           [ ✉️ SEND_MESSAGE.EXE ]
         </a>
-        <a href="{{ "index.xml" | relURL }}" class="dialog-btn" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; text-decoration: none;" target="_blank" rel="noopener">
+        <a href="{{ "index.xml" | relURL }}" class="dialog-btn" target="_blank" rel="noopener">
           [ 📡 RSS_FEED.XML ]
         </a>
       </div>
 
-      <div class="social-icons" style="display: flex; justify-content: center; gap: 14px; margin-top: 0.8rem;">
+      <div class="social-icons">
         {{ partial "social_icons.html" (dict "socialIcons" .Site.Params.socialIcons) }}
       </div>
     </div>
   </header>
 
-  <!-- Bio Content & CSS Rules -->
-  <div class="custom-bio" style="font-size: 1rem; line-height: 1.7; color: #1a1918; margin-top: 1.5rem;">
+  <!-- Bio Content -->
+  <div class="custom-bio">
     <style>
+      .page-wrap { max-width: 640px; margin: 0 auto; padding: 1.5rem 0 5rem 0; }
+      .page-header { margin-bottom: 1.8rem; }
+
       .skip-link {
-        position: fixed;
-        top: -40px;
-        left: 0;
-        background: #2b2927;
-        color: #efe0ad;
-        padding: 8px;
-        font-family: monospace;
-        font-size: 0.85rem;
-        z-index: 99999;
-        text-decoration: none;
+        position: fixed; top: -40px; left: 0;
+        background: #2b2927; color: #efe0ad;
+        padding: 8px; font-family: monospace; font-size: 0.85rem;
+        z-index: 99999; text-decoration: none;
       }
       .skip-link:focus { top: 0; }
       a:focus, button:focus, input:focus, textarea:focus {
-        outline: 2px dashed #000000 !important;
+        outline: 2px dashed #000 !important;
         outline-offset: 3px !important;
       }
 
@@ -79,13 +74,61 @@
         box-shadow: none !important;
       }
 
-      /* CLEAN RETRO OVERRIDES */
-      .dialog-btn, 
-      .win95-attach summary, 
-      .attach-frame, 
-      .dir-index, 
-      .dialog-box, 
-      .guestbook-box, 
+      .photo-window {
+        border: 2px solid #2b2927;
+        background-color: #efe0ad;
+        margin: 0 auto 1.5rem auto;
+        max-width: 240px;
+      }
+      .photo-titlebar {
+        background-color: #2b2927; color: #efe0ad;
+        font-family: monospace; font-size: 0.78rem; font-weight: bold;
+        padding: 0.3rem 0.6rem;
+        display: flex; justify-content: space-between; align-items: center;
+      }
+      .photo-body {
+        padding: 0.8rem; text-align: center; background-color: #f8ecc2;
+      }
+      .profile-img {
+        width: 160px; height: 160px; object-fit: cover;
+        border: 2px solid #2b2927; display: block; margin: 0 auto;
+        image-rendering: pixelated;
+      }
+      .photo-statusbar {
+        font-family: monospace; font-size: 0.7rem; color: #5c5854;
+        border-top: 1px dashed #2b2927; padding: 0.3rem 0.6rem;
+        background-color: #efe0ad;
+        display: flex; justify-content: space-between;
+      }
+
+      .header-center { text-align: center; }
+      .site-title {
+        font-size: 2rem; margin: 0 0 0.4rem 0; font-weight: 700;
+        letter-spacing: -0.02em; color: #1a1918;
+      }
+      .subtitle-text {
+        font-size: 1.02rem; color: #383532; margin-bottom: 0.8rem;
+        line-height: 1.4; font-family: monospace;
+      }
+      .action-bar {
+        display: flex; justify-content: center; gap: 8px;
+        flex-wrap: wrap; margin-bottom: 0.8rem;
+      }
+      .social-icons {
+        display: flex; justify-content: center; gap: 14px; margin-top: 0.8rem;
+      }
+
+      .custom-bio {
+        font-size: 1rem; line-height: 1.7; color: #1a1918; margin-top: 1.5rem;
+      }
+
+      /* RETRO ELEMENT OVERRIDES */
+      .dialog-btn,
+      .win95-attach summary,
+      .attach-frame,
+      .dir-index,
+      .dialog-box,
+      .guestbook-box,
       .compliance-footer,
       .guestbook-field input,
       .guestbook-field textarea,
@@ -94,15 +137,11 @@
         box-shadow: none !important;
       }
 
-      .dialog-box, 
-      .attach-frame, 
-      .compliance-footer {
-        box-shadow: none !important;
-      }
-
       @media print {
         body { background: #fff !important; color: #000 !important; }
-        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach, .win95-taskbar { border: 1px solid #000 !important; box-shadow: none !important; }
+        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach, .win95-taskbar {
+          border: 1px solid #000 !important; box-shadow: none !important;
+        }
         a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
         .skip-link, button, .win95-taskbar { display: none !important; }
       }
@@ -111,319 +150,177 @@
         * { animation: none !important; transition: none !important; }
       }
 
-      .custom-bio h2 { 
-        font-size: 0.85rem !important; 
-        font-weight: 700 !important; 
-        letter-spacing: 0.15em !important; 
-        text-transform: uppercase !important; 
-        color: #4a453e !important; 
-        margin-top: 2.2rem !important; 
-        margin-bottom: 1rem !important; 
-        padding-bottom: 0.3rem !important; 
-        border-bottom: 1px solid rgba(43, 41, 39, 0.25) !important; 
+      .custom-bio h2 {
+        font-size: 0.85rem !important; font-weight: 700 !important;
+        letter-spacing: 0.15em !important; text-transform: uppercase !important;
+        color: #4a453e !important; margin-top: 2.2rem !important; margin-bottom: 1rem !important;
+        padding-bottom: 0.3rem !important;
+        border-bottom: 1px solid rgba(43, 41, 39, 0.25) !important;
       }
-      .custom-bio h3 { font-size: 1.1rem !important; font-weight: 600 !important; margin-top: 1.6rem !important; margin-bottom: 0.3rem !important; color: #1a1918 !important; }
-      .custom-bio p { margin-top: 0 !important; margin-bottom: 0.8rem !important; color: #1a1918 !important; }
+      .custom-bio h3 {
+        font-size: 1.1rem !important; font-weight: 600 !important;
+        margin-top: 1.6rem !important; margin-bottom: 0.3rem !important;
+        color: #1a1918 !important;
+      }
+      .custom-bio p {
+        margin-top: 0 !important; margin-bottom: 0.8rem !important; color: #1a1918 !important;
+      }
 
       .circuit-divider {
-        font-family: monospace;
-        font-size: 0.82rem;
-        font-weight: bold;
-        color: #383532;
-        text-align: center;
-        margin: 1.8rem 0;
-        overflow: hidden;
-        white-space: nowrap;
-        user-select: none;
-        letter-spacing: 0.05em;
+        font-family: monospace; font-size: 0.82rem; font-weight: bold;
+        color: #383532; text-align: center; margin: 1.8rem 0;
+        overflow: hidden; white-space: nowrap; user-select: none; letter-spacing: 0.05em;
       }
 
       .win95-tip {
-        position: relative;
-        border-bottom: 1px dashed #2b2927;
-        cursor: help;
-        color: #1a1918;
+        position: relative; border-bottom: 1px dashed #2b2927; cursor: help; color: #1a1918;
       }
       .win95-tip::after {
         content: attr(data-tooltip);
-        position: absolute;
-        bottom: 125%;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #ffffe1;
-        color: #000000;
-        border: 1px solid #000000;
-        padding: 3px 6px;
-        font-family: monospace;
-        font-size: 0.72rem;
-        white-space: nowrap;
+        position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+        background-color: #ffffe1; color: #000; border: 1px solid #000;
+        padding: 3px 6px; font-family: monospace; font-size: 0.72rem; white-space: nowrap;
         box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.15s ease;
-        z-index: 100;
+        opacity: 0; pointer-events: none; transition: opacity 0.15s ease; z-index: 100;
       }
       .win95-tip:hover::after { opacity: 1; }
 
       details.win95-attach {
-        margin-top: 0.4rem;
-        margin-bottom: 0.6rem;
-        font-family: monospace;
-        font-size: 0.78rem;
+        margin-top: 0.4rem; margin-bottom: 0.6rem; font-family: monospace; font-size: 0.78rem;
       }
       details.win95-attach summary {
-        cursor: pointer;
-        color: #2b2927;
-        background: transparent;
-        border: 1px dashed #2b2927;
-        padding: 3px 6px;
-        display: inline-block;
-        user-select: none;
-        font-weight: bold;
+        cursor: pointer; color: #2b2927; border: 1px dashed #2b2927;
+        padding: 3px 6px; display: inline-block; user-select: none; font-weight: bold;
       }
-      details.win95-attach summary:hover {
-        background: #2b2927;
-        color: #efe0ad;
-      }
+      details.win95-attach summary:hover { background: #2b2927; color: #efe0ad; }
+
       .attach-frame {
-        margin-top: 0.4rem;
-        padding: 6px;
-        background: transparent;
-        border: 2px solid #2b2927;
-        max-width: 440px;
+        margin-top: 0.4rem; padding: 6px; border: 2px solid #2b2927; max-width: 440px;
       }
       .attach-frame img {
-        width: 100%;
-        height: auto;
-        border: 1px solid #2b2927;
-        display: block;
-        image-rendering: pixelated;
+        width: 100%; height: auto; border: 1px solid #2b2927; display: block; image-rendering: pixelated;
       }
       .attach-frame span {
-        display: block;
-        font-size: 0.7rem;
-        color: #5c5854;
-        margin-top: 4px;
-        font-family: monospace;
+        display: block; font-size: 0.7rem; color: #5c5854; margin-top: 4px; font-family: monospace;
       }
 
       .case-study-link {
-        font-family: monospace;
-        font-size: 0.82rem;
-        font-weight: bold;
-        margin-top: 0.4rem;
-        margin-bottom: 1.2rem;
+        font-family: monospace; font-size: 0.82rem; font-weight: bold;
+        margin-top: 0.4rem; margin-bottom: 1.2rem;
+      }
+
+      .standby-log {
+        border: 1px dashed #2b2927; padding: 1rem 1.2rem; margin-bottom: 2rem;
+        font-family: monospace; font-size: 0.9rem; line-height: 1.6;
       }
 
       .dir-index {
-        background: transparent;
-        border: 1px dashed #2b2927;
-        padding: 0.8rem 1rem;
-        margin: 1.2rem 0 2rem 0;
-        font-family: monospace;
-        font-size: 0.82rem;
-        line-height: 1.6;
-        color: #1a1918;
+        border: 1px dashed #2b2927; padding: 0.8rem 1rem; margin: 1.2rem 0 2rem 0;
+        font-family: monospace; font-size: 0.82rem; line-height: 1.6; color: #1a1918;
       }
       .dir-index-title {
-        font-weight: bold;
-        color: #1a1918;
+        font-weight: bold; color: #1a1918;
         border-bottom: 1px solid rgba(43, 41, 39, 0.25);
-        padding-bottom: 0.3rem;
-        margin-bottom: 0.5rem;
+        padding-bottom: 0.3rem; margin-bottom: 0.5rem;
       }
       .dir-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
         gap: 0.3rem 1rem;
       }
       .dir-item { color: #1a1918; text-decoration: underline; }
 
-      .dialog-box {
-        border: 2px solid #2b2927;
-        background-color: transparent;
-        padding: 0;
-        margin-top: 2.2rem;
-      }
+      .dialog-box { border: 2px solid #2b2927; padding: 0; margin-top: 2.2rem; }
       .dialog-header {
-        background-color: #2b2927;
-        color: #efe0ad;
-        font-family: monospace;
-        font-size: 0.82rem;
-        font-weight: bold;
+        background-color: #2b2927; color: #efe0ad;
+        font-family: monospace; font-size: 0.82rem; font-weight: bold;
         padding: 0.4rem 0.8rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex; justify-content: space-between; align-items: center;
       }
       .dialog-body { padding: 1.2rem; }
+      .dialog-body-text {
+        font-size: 0.95rem; color: #1a1918; margin-bottom: 1.2rem; font-family: monospace;
+      }
       .dialog-btn {
-        display: inline-block;
-        padding: 0.4rem 0.9rem;
-        background-color: transparent;
-        color: #1a1918;
-        font-family: monospace;
-        font-size: 0.82rem;
-        font-weight: bold;
-        border: 2px solid #2b2927;
-        text-decoration: none !important;
-        cursor: pointer;
+        display: inline-block; padding: 0.4rem 0.9rem; color: #1a1918;
+        font-family: monospace; font-size: 0.82rem; font-weight: bold;
+        border: 2px solid #2b2927; text-decoration: none !important; cursor: pointer;
       }
 
       .guestbook-box {
-        border: 1px solid #2b2927;
-        background-color: transparent;
-        padding: 1.2rem;
-        margin-top: 2.2rem;
-        font-family: monospace;
+        border: 1px solid #2b2927; padding: 1.2rem; margin-top: 2.2rem; font-family: monospace;
       }
       .guestbook-title {
-        font-size: 0.85rem;
-        font-weight: bold;
-        color: #1a1918;
-        margin-bottom: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        font-size: 0.85rem; font-weight: bold; color: #1a1918;
+        margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;
       }
       .guestbook-field { margin-bottom: 0.8rem; }
       .guestbook-field label {
-        display: block;
-        font-size: 0.75rem;
-        color: #383532;
-        margin-bottom: 0.2rem;
-        font-weight: bold;
+        display: block; font-size: 0.75rem; color: #383532;
+        margin-bottom: 0.2rem; font-weight: bold;
       }
       .guestbook-field input, .guestbook-field textarea {
-        width: 100%;
-        padding: 0.4rem;
-        border: 1px solid #2b2927;
-        background-color: transparent;
-        font-family: monospace;
-        font-size: 0.82rem;
-        color: #1a1918;
-        box-sizing: border-box;
+        width: 100%; padding: 0.4rem; border: 1px solid #2b2927;
+        font-family: monospace; font-size: 0.82rem; color: #1a1918; box-sizing: border-box;
       }
+      .guestbook-submit { font-size: 0.8rem; padding: 0.3rem 0.8rem; }
 
-      .badge-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 1.2rem;
-      }
+      .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.2rem; }
       .micro-badge {
-        font-family: monospace;
-        font-size: 0.72rem;
-        font-weight: bold;
-        color: #1a1918;
-        background-color: transparent;
-        border: 1px solid #2b2927;
-        padding: 3px 8px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
+        font-family: monospace; font-size: 0.72rem; font-weight: bold; color: #1a1918;
+        border: 1px solid #2b2927; padding: 3px 8px;
+        letter-spacing: 0.05em; text-transform: uppercase;
       }
 
       .compliance-footer {
-        font-family: monospace;
-        font-size: 0.75rem;
-        color: #383532;
-        margin-top: 2.5rem;
-        line-height: 1.5;
-        background: transparent;
-        border: 1px solid #2b2927;
-        padding: 0.8rem;
+        font-family: monospace; font-size: 0.75rem; color: #383532;
+        margin-top: 2.5rem; line-height: 1.5; border: 1px solid #2b2927; padding: 0.8rem;
       }
-      .obfuscated-text {
-        unicode-bidi: bidi-override;
-        direction: rtl;
-        font-weight: bold;
+      .compliance-title { font-weight: bold; margin-bottom: 0.3rem; color: #1a1918; }
+      .obfuscated-text { unicode-bidi: bidi-override; direction: rtl; font-weight: bold; }
+      .contact-line { margin-top: 0.6rem; font-size: 0.7rem; color: #5c5854; }
+      .credits-line {
+        margin-top: 0.8rem; padding-top: 0.6rem;
+        border-top: 1px dashed rgba(43, 41, 39, 0.25);
+        font-size: 0.7rem; color: #5c5854;
+        display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;
       }
+      .credits-line a { color: #383532; text-decoration: underline; }
 
-      /* FLOATING BOTTOM-RIGHT WIN95 TASKBAR */
       .win95-taskbar {
-        position: fixed !important;
-        bottom: 0 !important;
-        right: 0 !important;
-        left: auto !important;
-        width: auto !important;
-        height: 32px;
-        background-color: transparent;
+        position: fixed !important; bottom: 0 !important; right: 0 !important;
+        left: auto !important; width: auto !important; height: 32px;
         border: 2px solid #2b2927;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 6px;
-        font-family: monospace;
-        font-size: 0.78rem;
-        z-index: 9999;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 6px; font-family: monospace; font-size: 0.78rem; z-index: 9999;
       }
+      .taskbar-left { display: flex; align-items: center; gap: 8px; }
       .start-menu-btn {
-        font-weight: bold;
-        background: transparent;
-        border: 1px solid #2b2927;
-        padding: 2px 8px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 4px;
+        font-weight: bold; border: 1px solid #2b2927; padding: 2px 8px;
+        cursor: pointer; display: flex; align-items: center; gap: 4px;
       }
       .win95-start-menu {
-        display: none;
-        position: fixed;
-        bottom: 38px;
-        right: 6px;
-        left: auto;
-        width: 220px;
-        background-color: #efe0ad;
-        border: 2px solid #2b2927;
-        z-index: 10000;
-        font-family: monospace;
+        display: none; position: fixed; bottom: 38px; right: 6px; left: auto;
+        width: 220px; background-color: #efe0ad; border: 2px solid #2b2927;
+        z-index: 10000; font-family: monospace;
       }
       .win95-start-menu.open { display: block; }
+      .start-menu-inner { display: flex; }
       .start-sidebar {
-        background: #2b2927;
-        color: #efe0ad;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        padding: 8px 4px;
-        font-weight: bold;
-        letter-spacing: 0.1em;
-        font-size: 0.85rem;
-        text-align: center;
+        background: #2b2927; color: #efe0ad; writing-mode: vertical-rl;
+        transform: rotate(180deg); padding: 8px 4px; font-weight: bold;
+        letter-spacing: 0.1em; font-size: 0.85rem; text-align: center;
       }
+      .start-menu-items { flex-grow: 1; }
       .start-item {
-        display: block;
-        padding: 8px 12px;
-        color: #1a1918;
-        text-decoration: none;
-        border-bottom: 1px dashed rgba(43,41,39,0.3);
-        font-size: 0.8rem;
-        font-weight: bold;
+        display: block; padding: 8px 12px; color: #1a1918; text-decoration: none;
+        border-bottom: 1px dashed rgba(43,41,39,0.3); font-size: 0.8rem; font-weight: bold;
       }
-      .start-item:hover {
-        background-color: #2b2927;
-        color: #efe0ad;
-      }
-      .taskbar-middle {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-        margin: 0 6px;
-      }
-      .taskbar-app {
-        background: transparent;
-        border: 1px solid #2b2927;
-        padding: 2px 8px;
-        font-weight: bold;
-        font-size: 0.72rem;
-      }
+      .start-item:hover { background-color: #2b2927; color: #efe0ad; }
+      .taskbar-middle { display: flex; gap: 6px; align-items: center; margin: 0 6px; }
+      .taskbar-app { border: 1px solid #2b2927; padding: 2px 8px; font-weight: bold; font-size: 0.72rem; }
       .sys-tray {
-        border: 1px solid #2b2927;
-        background: transparent;
-        padding: 2px 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: bold;
+        border: 1px solid #2b2927; padding: 2px 8px;
+        display: flex; align-items: center; gap: 8px; font-weight: bold;
       }
     </style>
 
@@ -439,7 +336,6 @@
 
     <h2>THINGS I'VE BUILT</h2>
 
-    <!-- Directory Listing Index -->
     <div class="dir-index" role="navigation" aria-label="Project Index">
       <div class="dir-index-title">INDEX OF /projects</div>
       <div class="dir-grid">
@@ -455,21 +351,19 @@
         <div>📄 <a href="#bolt" class="dir-item">Bolt_IoT.doc</a></div>
       </div>
     </div>
-    
-    <!-- Travel / Gap Bridge with Attachment -->
-    <div style="background: transparent; border: 1px dashed #2b2927; padding: 1rem 1.2rem; margin-bottom: 2rem; font-family: monospace; font-size: 0.9rem; line-height: 1.6;">
+
+    <div class="standby-log">
       <strong>[ LOG: SYSTEM STANDBY ]</strong><br>
       Took a few months off after Basileia and the Happy Zoned attempt to travel through the Himalayas and Southeast Asia. Came back and built FlowPlanned, partly because of what that trip made obvious about paper planners and cloud apps not talking to each other.
-      <details class="win95-attach" style="margin-top: 0.8rem;">
+      <details class="win95-attach">
         <summary>[ 📎 ATTACHMENT: HIMALAYAS_ROUTE.BMP (165 KB) ]</summary>
         <div class="attach-frame">
           <img src="/images/himalayas.jpg" alt="Himalayas and Southeast Asia travel route map" loading="lazy" width="440" height="280" />
-          <span>FIG 0.0 — HIMALAYAS & SOUTHEAST ASIA TRAVEL ROUTE</span>
+          <span>FIG 0.0 — HIMALAYAS &amp; SOUTHEAST ASIA TRAVEL ROUTE</span>
         </div>
       </details>
     </div>
 
-    <!-- Flagship Project: FlowPlanned -->
     <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
     <p>A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.</p>
     <details class="win95-attach">
@@ -480,38 +374,35 @@
       </div>
     </details>
     <div class="case-study-link">
-      <a href="/projects/flowplanned/">[ READ DEEP DIVE & ARCHITECTURE -> ]</a>
+      <a href="/projects/flowplanned/">[ READ DEEP DIVE &amp; ARCHITECTURE -&gt; ]</a>
     </div>
 
-    <!-- Flagship Project: Basileia -->
     <h3 id="basileia">Basileia, 2023 to 2025</h3>
     <p>A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.</p>
     <details class="win95-attach">
       <summary>[ 📎 ATTACHMENT: BASILEIA_BRAND.BMP (198 KB) ]</summary>
       <div class="attach-frame">
         <img src="/images/basileia.jpg" alt="Basileia packaging and brand showcase" loading="lazy" width="440" height="280" />
-        <span>FIG 2.0 — HANDMADE FORMULATIONS & PACKAGING</span>
+        <span>FIG 2.0 — HANDMADE FORMULATIONS &amp; PACKAGING</span>
       </div>
     </details>
     <div class="case-study-link">
-      <a href="/projects/basileia/">[ READ CASE STUDY & FORMULATION LOGS -> ]</a>
+      <a href="/projects/basileia/">[ READ CASE STUDY &amp; FORMULATION LOGS -&gt; ]</a>
     </div>
 
-    <!-- Post-Mortem Project: Happy Zoned -->
     <h3 id="happyzoned">Happy Zoned, 2024</h3>
     <p>Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.</p>
     <details class="win95-attach">
       <summary>[ 📎 ATTACHMENT: HAPPYZONED_PODS.BMP (210 KB) ]</summary>
       <div class="attach-frame">
         <img src="/images/happyzoned.jpg" alt="Happy Zoned sleeping pod layout" loading="lazy" width="440" height="280" />
-        <span>FIG 3.0 — MOBILE CARAVAN LAYOUT & SCHEMATICS</span>
+        <span>FIG 3.0 — MOBILE CARAVAN LAYOUT &amp; SCHEMATICS</span>
       </div>
     </details>
     <div class="case-study-link">
-      <a href="/projects/happyzoned-postmortem/">[ READ REGULATORY POST-MORTEM -> ]</a>
+      <a href="/projects/happyzoned-postmortem/">[ READ REGULATORY POST-MORTEM -&gt; ]</a>
     </div>
 
-    <!-- Other Projects -->
     <h3 id="nature-hub">The Nature Hub</h3>
     <p>A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.</p>
 
@@ -533,27 +424,25 @@
     <h3 id="bolt">BOLT IoT Evangelist</h3>
     <p>Taught IoT and machine learning to people who had never soldered anything, mostly by building the thing with them.</p>
 
-    <!-- RF Modulation Divider -->
     <div class="circuit-divider" aria-hidden="true">───[ Y Antenna ]───∿∿∿ ( 100MHz Carrier ) ∿∿∿───[ ⏚ Earth Ground ]───</div>
 
     <h2>WRITING AND COMMUNITY</h2>
 
     <h3 id="essays">The Power of Genuine Users</h3>
-    <p>A co-authored handbook for founders on evangelism that isn't marketing, and growth that comes from users who actually want the thing. <a href="/essays/power-of-genuine-users/">[Read Handbook ->]</a></p>
+    <p>A co-authored handbook for founders on evangelism that isn't marketing, and growth that comes from users who actually want the thing. <a href="/essays/power-of-genuine-users/">[Read Handbook -&gt;]</a></p>
 
     <h3>Workshops</h3>
     <p>Career sessions for school students on Youth Day, peer support groups during lockdown, and soap-making workshops for women starting their first business.</p>
 
     <p>Also: a vocational baking programme at IHM, which is either irrelevant or the most relevant thing here, depending on how you feel about formulas.</p>
 
-    <!-- Support Dialog Box -->
     <div class="dialog-box" role="dialog" aria-labelledby="support-dialog-title">
       <div class="dialog-header" id="support-dialog-title">
-        <span>C:\> INDEPENDENCE.EXE</span>
+        <span>C:\&gt; INDEPENDENCE.EXE</span>
         <span aria-hidden="true">[X]</span>
       </div>
       <div class="dialog-body">
-        <p style="font-size: 0.95rem; color: #1a1918; margin-bottom: 1.2rem; font-family: monospace;">
+        <p class="dialog-body-text">
           As an engineer, I focus on building pragmatic solutions from bare-metal circuits to local-first software. Direct support keeps this independent work real and sustainable.
         </p>
         <div>
@@ -570,13 +459,12 @@
       </div>
     </div>
 
-    <!-- Protected Webmaster Guestbook -->
     <div class="guestbook-box" id="guestbook" role="form" aria-label="Guestbook Form">
       <div class="guestbook-title">📖 Sign the Guestbook / Leave a Note</div>
       <form action="https://formsubmit.co/alishabarretto@protonmail.com" method="POST">
         <input type="text" name="_honey" style="display:none">
         <input type="hidden" name="_captcha" value="false">
-        
+
         <div class="guestbook-field">
           <label for="gb-name">YOUR NAME / HANDLE:</label>
           <input type="text" id="gb-name" name="Name" placeholder="e.g. Visitor_99" required />
@@ -589,46 +477,45 @@
           <label for="gb-message">MESSAGE / COMMENTS:</label>
           <textarea id="gb-message" name="Message" rows="3" placeholder="Leave a note in the guestbook..." required></textarea>
         </div>
-        <button type="submit" class="dialog-btn" style="font-size: 0.8rem; padding: 0.3rem 0.8rem;">[ SUBMIT ENTRY ]</button>
+        <button type="submit" class="dialog-btn guestbook-submit">[ SUBMIT ENTRY ]</button>
       </form>
     </div>
 
-<!-- Compliance & Credits Footer -->
     <footer class="compliance-footer">
-      <div style="font-weight: bold; margin-bottom: 0.3rem; color: #1a1918;">
-        [ ⚖️ ACCESSIBILITY & SUSTAINABILITY DECLARATION ]
+      <div class="compliance-title">
+        [ ⚖️ ACCESSIBILITY &amp; SUSTAINABILITY DECLARATION ]
       </div>
       <div>
         Engineered in accordance with <strong>EU Directive 2016/2102</strong> and <strong>WCAG 2.1 Level AA</strong>. Built with keyboard hotkeys (Press <code>G</code>=Guestbook, <code>E</code>=Essays, <code>T</code>=Top), zero cookies, and ultra-low carbon static delivery (&lt;20KB/view).
       </div>
-      <div style="margin-top: 0.6rem; font-size: 0.7rem; color: #5c5854;">
+      <div class="contact-line">
         Direct Contact: <span class="obfuscated-text">moc.liamnotorp@otterrabahsila</span>
       </div>
-      <div style="margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px dashed rgba(43, 41, 39, 0.25); font-size: 0.7rem; color: #5c5854; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
-        <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" style="color: #383532; text-decoration: underline;">Hugo</a></span>
-        <span>Theme: <a href="https://github.com/adityatelange/hugo-PaperMod" target="_blank" rel="noopener noreferrer" style="color: #383532; text-decoration: underline;">PaperMod</a></span>
+      <div class="credits-line">
+        <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a></span>
+        <span>Theme: <a href="https://github.com/adityatelange/hugo-PaperMod" target="_blank" rel="noopener noreferrer">PaperMod</a></span>
       </div>
     </footer>
 
   </div>
 </article>
 
-<!-- START MENU POPUP DIALOG -->
+<!-- START MENU POPUP -->
 <div class="win95-start-menu" id="start-menu">
-  <div style="display: flex;">
+  <div class="start-menu-inner">
     <div class="start-sidebar">WINDOWS 95</div>
-    <div style="flex-grow: 1;">
+    <div class="start-menu-items">
       <a href="#flowplanned" onclick="toggleStartMenu()" class="start-item">🚀 Projects Index</a>
-      <a href="#essays" onclick="toggleStartMenu()" class="start-item">📄 Essays & Books</a>
+      <a href="#essays" onclick="toggleStartMenu()" class="start-item">📄 Essays &amp; Books</a>
       <a href="#guestbook" onclick="toggleStartMenu()" class="start-item">📖 Sign Guestbook</a>
       <a href="{{ "index.xml" | relURL }}" target="_blank" onclick="toggleStartMenu()" class="start-item">📡 RSS Feed (.XML)</a>
     </div>
   </div>
 </div>
 
-<!-- FLOATING RIGHT-ALIGNED WIN95 TASKBAR -->
+<!-- FLOATING TASKBAR -->
 <div class="win95-taskbar" role="navigation" aria-label="System Taskbar">
-  <div style="display: flex; align-items: center; gap: 8px;">
+  <div class="taskbar-left">
     <button onclick="toggleStartMenu()" class="start-menu-btn" aria-label="Open Start Menu">
       <span>🏁</span> <strong>Start</strong>
     </button>
@@ -643,7 +530,6 @@
   </div>
 </div>
 
-<!-- Script for Clock, Start Menu, and Hotkeys -->
 <script>
   function openSecureMail(e) {
     if (e) e.preventDefault();
@@ -653,8 +539,7 @@
   function updateClock() {
     const clock = document.getElementById('win95-clock');
     if (clock) {
-      const now = new Date();
-      clock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      clock.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
   }
   setInterval(updateClock, 1000);
@@ -665,7 +550,7 @@
     if (menu) menu.classList.toggle('open');
   }
 
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     const menu = document.getElementById('start-menu');
     const btn = document.querySelector('.start-menu-btn');
     if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
@@ -673,15 +558,13 @@
     }
   });
 
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     const key = e.key.toLowerCase();
     if (key === 'g') {
-      const gb = document.getElementById('guestbook');
-      if (gb) gb.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('guestbook')?.scrollIntoView({ behavior: 'smooth' });
     } else if (key === 'e') {
-      const essay = document.getElementById('essays');
-      if (essay) essay.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('essays')?.scrollIntoView({ behavior: 'smooth' });
     } else if (key === 't') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
