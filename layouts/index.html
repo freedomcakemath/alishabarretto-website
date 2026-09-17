@@ -325,33 +325,33 @@
       }
     </style>
 
-    <h2>WHAT I'M DOING NOW</h2>
+    <!-- BUILD LOG: Active / Current Work -->
+    <h2>BUILD_LOG.TXT &mdash; active / current work</h2>
+
+    <p>Building FlowPlanned, a <span class="win95-tip" data-tooltip="Zero cloud calls. Runs 100% local.">local-first planner</span> for Windows. Local agents, no cloud, no account, no telemetry.</p>
+    
+    <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
+    <p>A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.</p>
+    
+    <!-- DYNAMIC FLOWPLANNED CASE STUDY PULL -->
+{{ $flowplanned := site.GetPage "projects/flowplanned.md" }}
+{{ if $flowplanned }}
+<details class="win95-attach">
+  <summary>[ ATT: READ MORE: {{ $flowplanned.Title }} ]</summary>
+  <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
+    {{ $flowplanned.Content }}
+  </div>
+</details>
+{{ end }}
+    <p>Building LoRaWAN sensor projects. Long range, low power, works where there's no coverage and nothing to subscribe to.</p>
 
     <p>Currently deep in solar panel research and LoRaWAN communications too, figuring out how to keep things running and talking to each other without needing a signal or a subscription.</p>
 
-    <p>Building FlowPlanned, a <span class="win95-tip" data-tooltip="Zero cloud calls. Runs 100% local.">local-first planner</span> for Windows. Local agents, no cloud, no account, no telemetry.</p>
-
-    <p>Building LoRaWAN sensor projects. Long range, low power, works where there's no coverage and nothing to subscribe to.</p>
-
     <p>Talking to Japanese paper planner brands about licensing native offline software. Paper people already understand the argument, which makes the conversation short.</p>
 
-    <h2>THINGS I'VE BUILT</h2>
 
-    <div class="dir-index" role="navigation" aria-label="Project Index">
-      <div class="dir-index-title">INDEX OF /projects</div>
-      <div class="dir-grid">
-        <div>[DIR] <a href="#flowplanned" class="dir-item">FlowPlanned/</a></div>
-        <div>[DIR] <a href="#basileia" class="dir-item">Basileia/</a></div>
-        <div>[DIR] <a href="#happyzoned" class="dir-item">HappyZoned/</a></div>
-        <div>[DOC] <a href="#nature-hub" class="dir-item">NatureHub.doc</a></div>
-        <div>[DOC] <a href="#genista" class="dir-item">Genista.doc</a></div>
-        <div>[DOC] <a href="#no-code" class="dir-item">No_Code.doc</a></div>
-        <div>[DOC] <a href="#ux-studio" class="dir-item">UX_Studio.doc</a></div>
-        <div>[DOC] <a href="#open-dest" class="dir-item">Tineri.doc</a></div>
-        <div>[DOC] <a href="#ifb" class="dir-item">IFB_Circuit.doc</a></div>
-        <div>[DOC] <a href="#bolt" class="dir-item">Bolt_IoT.doc</a></div>
-      </div>
-    </div>
+    <!-- ARCHIVE: Closed, Done, or Dormant -->
+    <h2>ARCHIVE.DIR &mdash; closed, done, or dormant</h2>
 
     <div class="standby-log">
       <strong>[ LOG: SYSTEM STANDBY ]</strong><br>
@@ -365,51 +365,32 @@
       </details>
     </div>
 
-    <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
-    <p>A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.</p>
-    
-    <!-- DYNAMIC FLOWPLANNED CASE STUDY PULL -->
-    {{ range where .Site.RegularPages "Section" "case-studies" }}
-      {{ if eq .Title "FlowPlanned" }}
-      <details class="win95-attach">
-        <summary>[ ATT: READ MORE: {{ .Title }} ]</summary>
-        <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
-          {{ .Content }}
-        </div>
-      </details>
-      {{ end }}
-    {{ end }}
-
-    <h3 id="basileia">Basileia, 2023 to 2025</h3>
+    <h3 id="basileia">Basileia, 2023 to 2025 (exited)</h3>
     <p>A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.</p>
     
     <!-- DYNAMIC BASILEIA CASE STUDY PULL -->
-    {{ range where .Site.RegularPages "Section" "case-studies" }}
-      {{ if eq .Title "Basileia" }}
-      <details class="win95-attach">
-        <summary>[ ATT: READ MORE: {{ .Title }} ]</summary>
-        <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
-          {{ .Content }}
-        </div>
-      </details>
-      {{ end }}
-    {{ end }}
-
-    <h3 id="happyzoned">Happy Zoned, 2024</h3>
+{{ $basileia := site.GetPage "projects/basileia.md" }}
+{{ if $basileia }}
+<details class="win95-attach">
+  <summary>[ ATT: READ MORE: {{ $basileia.Title }} ]</summary>
+  <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
+    {{ $basileia.Content }}
+  </div>
+</details>
+{{ end }}
+    <h3 id="happyzoned">Happy Zoned, 2024 (archived)</h3>
     <p>Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.</p>
     
     <!-- DYNAMIC HAPPY ZONED CASE STUDY PULL -->
-    {{ range where .Site.RegularPages "Section" "case-studies" }}
-      {{ if eq .Title "Happy Zoned" }}
-      <details class="win95-attach">
-        <summary>[ ATT: READ MORE: {{ .Title }} ]</summary>
-        <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
-          {{ .Content }}
-        </div>
-      </details>
-      {{ end }}
-    {{ end }}
-
+{{ $happyzoned := site.GetPage "projects/happy-zoned.md" }}
+{{ if $happyzoned }}
+<details class="win95-attach">
+  <summary>[ ATT: READ MORE: {{ $happyzoned.Title }} ]</summary>
+  <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
+    {{ $happyzoned.Content }}
+  </div>
+</details>
+{{ end }}
     <h3 id="nature-hub">The Nature Hub</h3>
     <p>A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.</p>
 
