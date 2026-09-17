@@ -1,0 +1,46 @@
+/* Default / Light Mode Variables */
+:root {
+  --theme: #ffffff;
+  --entry: #ffffff;
+  --primary: #212529;
+  --secondary: #6c757d;
+  --tertiary: #f8f9fa;
+  --content: #212529;
+}
+
+/* Enforced Dark Mode Variables */
+.dark {
+  --theme: #1d1e20 !important;
+  --entry: #2e2e33 !important;
+  --primary: #e1e1e1 !important;
+  --secondary: #a9a9b3 !important;
+  --tertiary: #2e2e33 !important;
+  --content: #e1e1e1 !important;
+}
+
+/* Base Body Color Fallbacks */
+body {
+  background-color: var(--theme) !important;
+  color: var(--primary) !important;
+}
+
+body.dark,
+body.dark *,
+body.dark .post-title,
+body.dark .post-content,
+body.dark .first-entry,
+body.dark .entry-header,
+body.dark .entry-content,
+body.dark .profile,
+body.dark .profile_inner {
+  color: var(--primary) !important;
+  background-color: transparent;
+}
+
+body.dark {
+  background-color: var(--theme) !important;
+}
+
+body.dark a {
+  color: #8ab4f8 !important;
+}

@@ -15,12 +15,12 @@ buildExpired = false
   author = 'Alisha Barretto'
   images = ["/cover.png"]
   
-  # Theme & Toggle Settings
+  # Theme Settings
   defaultTheme = "auto"
   disableThemeToggle = false
   disableScrollToTop = false
 
-  # Post Layout UI
+  # UI Options
   ShowShareButtons = false
   ShowReadingTime = true
   ShowPostNavLinks = true
