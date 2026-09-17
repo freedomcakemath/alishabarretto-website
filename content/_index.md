@@ -3,16 +3,12 @@ title: "Alisha Barretto"
 draft: false
 ---
 
-## WHAT I'M DOING NOW
-
-* **Building FlowPlanned:** A local-first planner for Windows. Local agents, no cloud, no account, no telemetry.
-* **Building LoRaWAN sensor projects:** Long range, low power, works where there's no coverage and nothing to subscribe to.
-* **Talking to Japanese paper planner brands:** Licensing native offline software to teams who already value physical ownership.
-
-## THINGS I'VE BUILT
+## BUILD_LOG.TXT          <- active / current work
 
 ### FlowPlanned (2025 – Present)
 A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried required an account before writing a single line.
+
+## ARCHIVE.DIR             <- closed, done, or dormant
 
 ### Basileia (2023 – 2025)
 A personal care brand bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. Ran soap-making workshops for women starting their own businesses. Exited by transferring stock and IP to a local founder.
@@ -26,7 +22,7 @@ A fifteen-zone agri-leisure and education destination for a golf resort. Spatial
 ### Genista Biosciences
 UX architecture for a food-safety monitoring platform. Owned the design system and analytics pipeline across extensive rounds of testing with lab users.
 
-### No Code and Low-Code Era
+### No-Code and Low-Code Era
 Worked across Editor X, Locofy, and a handful of other companies building in this space. Was active in the communities themselves too, not just the products. Answered roughly a hundred technical questions a week from a two thousand member developer community, and built free indie tools and templates for people in the space to use. Also consulted for a few early-stage startups building through 2021 to 2023.
 
 ### UX Design Studio (2020 – 2021)
@@ -41,8 +37,3 @@ An auto on/off microcontroller circuit for washing machines that eliminated disp
 ### BOLT IoT Evangelist
 Taught IoT and machine learning through hands-on hardware builds and microcontrollers.
 
-## WRITING AND COMMUNITY
-
-* **The Power of Genuine Users:** A co-authored handbook for founders on genuine user evangelism and sustainable growth.
-* **Workshops:** Career sessions for students, peer support groups, and soap-making workshops for independent founders.
-* **Vocational Baking (IHM):** Formulations, ratios, and repeatable physical recipes.
