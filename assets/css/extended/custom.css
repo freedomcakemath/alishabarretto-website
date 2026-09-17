@@ -53,3 +53,42 @@ html.dark a {
 html.dark a:hover {
   color: #aecbfa !important;
 }
+
+/* ==========================================================================
+   MOBILE TASKBAR & RESPONSIVE FIXES
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+  /* Prevent content from being hidden behind the fixed taskbar */
+  body {
+    padding-bottom: 40px !important;
+  }
+
+  /* Compact the taskbar to fit narrow mobile screens */
+  .win95-taskbar {
+    padding: 0 4px !important;
+    font-size: 0.68rem !important;
+    height: 28px !important;
+  }
+
+  /* Hide non-essential middle apps/trays to prevent crowding */
+  .taskbar-middle {
+    display: none !important;
+  }
+
+  /* Make the start menu span nicely across mobile screens */
+  .win95-start-menu {
+    width: calc(100vw - 12px) !important;
+    right: 6px !important;
+    bottom: 34px !important;
+  }
+
+  .start-sidebar {
+    font-size: 0.75rem !important;
+    padding: 6px 2px !important;
+  }
+
+  .start-item {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+  }
+}
