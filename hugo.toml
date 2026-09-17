@@ -15,8 +15,8 @@ buildExpired = false
   author = 'Alisha Barretto'
   images = ["/cover.png"]
   
-  # Theme Settings
-  defaultTheme = "auto"
+  # Set Light Mode as Strict Default
+  defaultTheme = "light"
   disableThemeToggle = false
   disableScrollToTop = false
 
