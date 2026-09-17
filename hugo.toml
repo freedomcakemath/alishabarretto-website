@@ -1,7 +1,7 @@
-baseURL = 'https://alishabarretto-website.vercel.app/'
-languageCode = 'en-us'
-title = 'Alisha Barretto'
-theme = 'PaperMod'
+baseURL = "https://alishabarretto-website.vercel.app/"
+languageCode = "en-us"
+title = "Alisha Barretto"
+theme = "PaperMod"
 
 [params]
   env = 'production'
@@ -15,26 +15,8 @@ theme = 'PaperMod'
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-
-[params.profileMode]
-  enabled = true
-  title = 'Alisha Barretto'
-  subtitle = 'Welcome to my website'
-
-[[menu.main]]
-  identifier = 'essays'
-  name = 'Essays'
-  url = '/essays/'
-  weight = 10
-
-[params]
   defaultTheme = "auto"
-  showReadingTime = true
-  showShareButtons = true
-  showBreadCrumbs = true
-  showCodeCopyButtons = true
 
-  # Social Icons
   [[params.socialIcons]]
     name = "substack"
     url = "https://substack.com/@alishabarretto"
@@ -53,4 +35,15 @@ theme = 'PaperMod'
 
   [[params.socialIcons]]
     name = "email"
-    url = "mailto:alishabarretto@protonmail.com"
+    url = "mailto:your-email@example.com"
+
+[params.profileMode]
+  enabled = true
+  title = 'Alisha Barretto'
+  subtitle = 'Welcome to my website'
+
+[[menu.main]]
+  identifier = 'essays'
+  name = 'Essays'
+  url = '/essays/'
+  weight = 10
