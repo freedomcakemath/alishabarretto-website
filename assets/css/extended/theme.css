@@ -1,8 +1,8 @@
-/* --------------------------------------------------------------------------
-   PaperMod Universal High-Contrast Theme Engine
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   PaperMod Universal Dynamic Palette & Inline Style Override Engine
+   ========================================================================== */
 
-/* Light Mode Defaults */
+/* 1. Base Variables (Light Mode Default) */
 :root {
   --theme: #ffffff;
   --entry: #ffffff;
@@ -14,7 +14,7 @@
   --border: #e4e4e7;
 }
 
-/* Enforced Dark Mode Palette */
+/* 2. Dark Mode Variable Set */
 .dark {
   --theme: #121212 !important;
   --entry: #1e1e1e !important;
@@ -26,55 +26,57 @@
   --border: #374151 !important;
 }
 
-/* Base Body Styles */
+/* 3. Base Body Transitions */
 body {
-  background-color: var(--theme);
-  color: var(--primary);
+  background-color: var(--theme) !important;
+  color: var(--primary) !important;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Force All Elements in Dark Mode to Inherit Visible Text Colors (Overrides Inline HTML Styles) */
+/* 4. Nuclear Inline Style Override for Dark Mode */
+/* Forces all inline style attributes [style*="color"] to adopt theme contrast */
 body.dark,
 body.dark *,
-body.dark div,
-body.dark p,
-body.dark span,
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark h4,
-body.dark h5,
-body.dark h6,
-body.dark li,
-body.dark td,
-body.dark th,
-body.dark label,
-body.dark strong,
-body.dark b,
-body.dark code,
-body.dark pre {
+body.dark [style],
+body.dark [style*="color"],
+body.dark [style*="COLOR"] {
   color: #f4f4f5 !important;
 }
 
-/* Background overrides for containers, code blocks, and form controls in dark mode */
+/* Force backgrounds on custom containers, windows, cards, and forms */
+body.dark [style*="background"],
+body.dark [style*="BACKGROUND"] {
+  background-color: #121212 !important;
+}
+
+body.dark div,
+body.dark article,
+body.dark section,
+body.dark pre,
+body.dark code,
 body.dark input,
 body.dark textarea,
-body.dark select,
 body.dark button,
+body.dark select,
 body.dark table,
-body.dark .highlight,
-body.dark pre {
+body.dark form,
+body.dark fieldset {
   background-color: #1e1e1e !important;
-  color: #f4f4f5 !important;
   border-color: #374151 !important;
+  color: #f4f4f5 !important;
 }
 
-/* Accessible Hyperlinks in Dark Mode */
+/* 5. Hyperlinks Contrast */
 a {
   color: #2563eb;
 }
 
 body.dark a,
-body.dark a * {
+body.dark a *,
+body.dark a[style] {
   color: #60a5fa !important;
+}
+
+body.dark a:hover {
+  color: #93c5fd !important;
 }
