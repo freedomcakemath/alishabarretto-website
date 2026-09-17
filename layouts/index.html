@@ -367,42 +367,48 @@
 
     <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
     <p>A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.</p>
-    <details class="win95-attach">
-      <summary>[ ATT: FLOWPLANNED_SCREEN.BMP (142 KB) ]</summary>
-      <div class="attach-frame">
-        <img src="/images/flowplanned.png" alt="FlowPlanned interface preview" loading="lazy" width="440" height="280" />
-        <span>FIG 1.0 — LOCAL-FIRST CANVAS INTERFACE</span>
-      </div>
-    </details>
-    <div class="case-study-link">
-      <a href="/projects/flowplanned/">[ READ DEEP DIVE &amp; ARCHITECTURE -&gt; ]</a>
-    </div>
+    
+    <!-- DYNAMIC FLOWPLANNED CASE STUDY PULL -->
+    {{ range where .Site.RegularPages "Section" "case-studies" }}
+      {{ if eq .Title "FlowPlanned" }}
+      <details class="win95-attach">
+        <summary>[ ATT: READ MORE: {{ .Title }} ]</summary>
+        <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
+          {{ .Content }}
+        </div>
+      </details>
+      {{ end }}
+    {{ end }}
 
     <h3 id="basileia">Basileia, 2023 to 2025</h3>
     <p>A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.</p>
-    <details class="win95-attach">
-      <summary>[ ATT: BASILEIA_BRAND.BMP (198 KB) ]</summary>
-      <div class="attach-frame">
-        <img src="/images/basileia.jpg" alt="Basileia packaging and brand showcase" loading="lazy" width="440" height="280" />
-        <span>FIG 2.0 — HANDMADE FORMULATIONS &amp; PACKAGING</span>
-      </div>
-    </details>
-    <div class="case-study-link">
-      <a href="/projects/basileia/">[ READ CASE STUDY &amp; FORMULATION LOGS -&gt; ]</a>
-    </div>
+    
+    <!-- DYNAMIC BASILEIA CASE STUDY PULL -->
+    {{ range where .Site.RegularPages "Section" "case-studies" }}
+      {{ if eq .Title "Basileia" }}
+      <details class="win95-attach">
+        <summary>[ ATT: READ MORE: {{ .Title }} ]</summary>
+        <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
+          {{ .Content }}
+        </div>
+      </details>
+      {{ end }}
+    {{ end }}
 
     <h3 id="happyzoned">Happy Zoned, 2024</h3>
     <p>Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.</p>
-    <details class="win95-attach">
-      <summary>[ ATT: HAPPYZONED_PODS.BMP (210 KB) ]</summary>
-      <div class="attach-frame">
-        <img src="/images/happyzoned.jpg" alt="Happy Zoned sleeping pod layout" loading="lazy" width="440" height="280" />
-        <span>FIG 3.0 — MOBILE CARAVAN LAYOUT &amp; SCHEMATICS</span>
-      </div>
-    </details>
-    <div class="case-study-link">
-      <a href="/projects/happyzoned-postmortem/">[ READ REGULATORY POST-MORTEM -&gt; ]</a>
-    </div>
+    
+    <!-- DYNAMIC HAPPY ZONED CASE STUDY PULL -->
+    {{ range where .Site.RegularPages "Section" "case-studies" }}
+      {{ if eq .Title "Happy Zoned" }}
+      <details class="win95-attach">
+        <summary>[ ATT: READ MORE: {{ .Title }} ]</summary>
+        <div class="attach-frame" style="max-width: 100%; border: none; padding: 0;">
+          {{ .Content }}
+        </div>
+      </details>
+      {{ end }}
+    {{ end }}
 
     <h3 id="nature-hub">The Nature Hub</h3>
     <p>A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.</p>
