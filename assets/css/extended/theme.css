@@ -2,7 +2,7 @@
    PaperMod Universal High-Contrast Theme Engine
    -------------------------------------------------------------------------- */
 
-/* Light Mode (Strict System Default) */
+/* Light Mode Defaults */
 :root {
   --theme: #ffffff;
   --entry: #ffffff;
@@ -16,47 +16,57 @@
 
 /* Enforced Dark Mode Palette */
 .dark {
-  --theme: #121212;
-  --entry: #1e1e1e;
-  --primary: #f4f4f5;
-  --secondary: #a1a1aa;
-  --tertiary: #71717a;
-  --content: #f4f4f5;
-  --code-bg: #27272a;
-  --border: #27272a;
+  --theme: #121212 !important;
+  --entry: #1e1e1e !important;
+  --primary: #f4f4f5 !important;
+  --secondary: #a1a1aa !important;
+  --tertiary: #71717a !important;
+  --content: #f4f4f5 !important;
+  --code-bg: #27272a !important;
+  --border: #374151 !important;
 }
 
-/* Force body and all custom embedded text nodes to adapt dynamically */
+/* Base Body Styles */
 body {
-  background-color: var(--theme) !important;
-  color: var(--primary) !important;
+  background-color: var(--theme);
+  color: var(--primary);
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Target custom retro/terminal boxes, forms, inputs, and custom spans */
+/* Force All Elements in Dark Mode to Inherit Visible Text Colors (Overrides Inline HTML Styles) */
+body.dark,
 body.dark *,
-body.dark p,
 body.dark div,
+body.dark p,
 body.dark span,
 body.dark h1,
 body.dark h2,
 body.dark h3,
 body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark li,
+body.dark td,
+body.dark th,
 body.dark label,
-body.dark input,
-body.dark textarea,
-body.dark button {
-  color: var(--primary) !important;
-  border-color: var(--border) !important;
+body.dark strong,
+body.dark b,
+body.dark code,
+body.dark pre {
+  color: #f4f4f5 !important;
 }
 
-/* Ensure background of custom cards/containers adapt */
+/* Background overrides for containers, code blocks, and form controls in dark mode */
 body.dark input,
 body.dark textarea,
+body.dark select,
 body.dark button,
-body.dark pre,
-body.dark code {
-  background-color: var(--entry) !important;
+body.dark table,
+body.dark .highlight,
+body.dark pre {
+  background-color: #1e1e1e !important;
+  color: #f4f4f5 !important;
+  border-color: #374151 !important;
 }
 
 /* Accessible Hyperlinks in Dark Mode */
@@ -64,6 +74,7 @@ a {
   color: #2563eb;
 }
 
-body.dark a {
+body.dark a,
+body.dark a * {
   color: #60a5fa !important;
 }
