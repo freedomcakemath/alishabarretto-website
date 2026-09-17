@@ -3,6 +3,11 @@ languageCode = "en-us"
 title = "Alisha Barretto"
 theme = "PaperMod"
 
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
 [params]
   env = 'production'
   title = 'Alisha Barretto'
@@ -17,6 +22,11 @@ theme = "PaperMod"
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
   defaultTheme = "auto"
+
+  ShowFullTextInRSS = false
+  ShowToc = true
+  disableSpecial108 = true
+  disableHLJS = true
 
   [[params.socialIcons]]
     name = "substack"
@@ -42,13 +52,41 @@ theme = "PaperMod"
     name = "rss"
     url = "/index.xml"
 
-[params.profileMode]
-  enabled = false
-  title = 'Alisha Barretto'
-  subtitle = 'Writing on decentralized systems, human coordination, and building software that respects agency.'
+  [params.profileMode]
+    enabled = false
+    title = 'Alisha Barretto'
+    subtitle = 'Writing on decentralized systems, human coordination, and building software that respects agency.'
 
 [[menu.main]]
   identifier = 'essays'
   name = 'Essays'
   url = '/essays/'
   weight = 10
+
+[[menu.main]]
+  identifier = 'privacy'
+  name = 'Privacy'
+  url = '/privacy/'
+  weight = 20
+
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.twitter]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true
+    privacyEnhanced = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    noClasses = false
