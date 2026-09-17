@@ -27,10 +27,30 @@ theme = 'PaperMod'
   url = '/essays/'
   weight = 10
 
-[[params.socialIcons]]
-  name = "github"
-  url = "https://github.com/alishabarretto"
+[params]
+  defaultTheme = "auto"
+  showReadingTime = true
+  showShareButtons = true
+  showBreadCrumbs = true
+  showCodeCopyButtons = true
 
-[[params.socialIcons]]
-  name = "twitter"
-  url = "https://twitter.com/alishabarretto"
+  # Social Icons
+  [[params.socialIcons]]
+    name = "substack"
+    url = "https://substack.com/@alishabarretto"
+
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://x.com/alisha_barretto"
+
+  [[params.socialIcons]]
+    name = "bluesky"
+    url = "https://bsky.app/profile/alishabarretto.bsky.social"
+
+  [[params.socialIcons]]
+    name = "medium"
+    url = "https://alishabarretto.medium.com"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:alishabarretto@protonmail.com"
