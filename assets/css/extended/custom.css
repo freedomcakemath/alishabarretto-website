@@ -1,0 +1,62 @@
+/* ==========================================================================
+   MOBILE & RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Ensure the main page wrapper accounts for the fixed Win95 taskbar on mobile */
+.page-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem 1rem 4.5rem 1rem; /* Added bottom padding so content isn't hidden behind the taskbar */
+}
+
+/* Mobile adjustments for smaller screens (under 768px) */
+@media screen and (max-width: 768px) {
+  .site-title {
+    font-size: 1.5rem !important;
+  }
+
+  .subtitle-text {
+    font-size: 0.9rem !important;
+  }
+
+  /* Make the retro photo window scale nicely on mobile */
+  .photo-window {
+    max-width: 100% !important;
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Adjust Win95 taskbar items to prevent overcrowding on narrow mobile screens */
+  .win95-taskbar {
+    padding: 0 4px;
+    font-size: 0.7rem;
+  }
+
+  .taskbar-middle {
+    display: none; /* Hide non-essential taskbar apps on mobile to save space */
+  }
+
+  .win95-start-menu {
+    width: calc(100vw - 16px) !important;
+    right: 8px !important;
+    bottom: 38px !important;
+  }
+}
+
+/* Extra small screens (under 480px) */
+@media screen and (max-width: 480px) {
+  .page-wrap {
+    padding: 0.8rem 0.6rem 4.5rem 0.6rem;
+  }
+
+  .action-bar {
+    gap: 4px;
+  }
+
+  .sys-tray span {
+    display: none; /* Hide clock text on ultra-small screens if needed, keep toggle button */
+  }
+}
