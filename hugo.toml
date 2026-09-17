@@ -63,12 +63,6 @@ buildExpired = false
   url = '/essays/'
   weight = 10
 
-[[menu.main]]
-  identifier = 'privacy'
-  name = 'Privacy'
-  url = '/privacy/'
-  weight = 20
-
 [privacy]
   [privacy.disqus]
     disable = true
