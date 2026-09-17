@@ -14,19 +14,20 @@ buildExpired = false
   description = 'Writing on decentralized systems, human coordination, and building software that respects agency.'
   author = 'Alisha Barretto'
   images = ["/cover.png"]
-  disableScrollToTop = false
+  
+  # Theme & Toggle Settings
+  defaultTheme = "auto"
   disableThemeToggle = false
+  disableScrollToTop = false
+
+  # Post Layout UI
   ShowShareButtons = false
   ShowReadingTime = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-  defaultTheme = "auto"
-
   ShowFullTextInRSS = false
   ShowToc = true
-  disableSpecial108 = true
-  disableHLJS = true
 
   [[params.socialIcons]]
     name = "substack"
@@ -85,6 +86,6 @@ buildExpired = false
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      unsafe = false
+      unsafe = true
   [markup.highlight]
     noClasses = false
