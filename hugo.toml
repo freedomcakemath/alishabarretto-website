@@ -17,7 +17,8 @@ buildExpired = false
   
   # Base Theme Parameters
   defaultTheme = "light"
-  disableThemeToggle = false
+  disableThemeToggle = true
+
   disableScrollToTop = false
 
   # Post Layout UI

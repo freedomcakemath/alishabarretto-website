@@ -12,16 +12,6 @@
   --content: #212529;
 }
 
-/* 2. Dark Mode Variable Overrides (Targeting HTML root for PaperMod compatibility) */
-html.dark,
-body.dark {
-  --theme: #1d1e20 !important;
-  --entry: #2e2e33 !important;
-  --primary: #e1e1e1 !important;
-  --secondary: #a9a9b3 !important;
-  --tertiary: #38383f !important;
-  --content: #e1e1e1 !important;
-}
 
 /* 3. Base Body Transitions */
 body {
