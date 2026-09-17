@@ -1,60 +1,43 @@
 /* --------------------------------------------------------------------------
-   PaperMod Universal High-Contrast Theme Engine
+   PaperMod Color Variables Override (Light Default, Clean Dark Toggle)
    -------------------------------------------------------------------------- */
 
-/* Light Mode (Strict System Default) */
+/* Standard Light Mode */
 :root {
-  --theme: #ffffff !important;
-  --entry: #ffffff !important;
-  --primary: #18181b !important;
-  --secondary: #52525b !important;
-  --tertiary: #a1a1aa !important;
-  --content: #18181b !important;
-  --code-bg: #f4f4f5 !important;
-  --border: #e4e4e7 !important;
+  --theme: #ffffff;
+  --entry: #ffffff;
+  --primary: #18181b;
+  --secondary: #52525b;
+  --tertiary: #a1a1aa;
+  --content: #18181b;
+  --code-bg: #f4f4f5;
+  --border: #e4e4e7;
 }
 
-/* Dark Mode (Class Target) */
-body.dark {
-  --theme: #121212 !important;
-  --entry: #1e1e1e !important;
-  --primary: #f4f4f5 !important;
-  --secondary: #a1a1aa !important;
-  --tertiary: #71717a !important;
-  --content: #f4f4f5 !important;
-  --code-bg: #27272a !important;
-  --border: #27272a !important;
+/* Enforced Dark Mode via PaperMod's native .dark class */
+.dark {
+  --theme: #121212;
+  --entry: #1e1e1e;
+  --primary: #f4f4f5;
+  --secondary: #a1a1aa;
+  --tertiary: #71717a;
+  --content: #f4f4f5;
+  --code-bg: #27272a;
+  --border: #27272a;
 }
 
-/* Enforce Variable Inheritance Across All Child Nodes */
+/* Smooth background transition */
 body {
-  background-color: var(--theme) !important;
-  color: var(--primary) !important;
+  background-color: var(--theme);
+  color: var(--primary);
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-body *,
-body.dark *,
-.post-title,
-.post-content,
-.entry-header,
-.entry-content,
-.profile_inner,
-.profile_inner h1,
-.profile_inner .subtitle,
-.first-entry {
-  color: var(--primary) !important;
-}
-
-/* Link Contrast Ratios */
+/* Link visibility */
 a {
-  color: #2563eb !important;
+  color: #2563eb;
 }
 
-body.dark a {
-  color: #60a5fa !important;
-}
-
-/* Buttons and Controls */
-#theme-toggle {
-  color: var(--primary) !important;
+.dark a {
+  color: #60a5fa;
 }
