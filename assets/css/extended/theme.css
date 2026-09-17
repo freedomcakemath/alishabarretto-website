@@ -1,0 +1,60 @@
+/* --------------------------------------------------------------------------
+   PaperMod Universal High-Contrast Theme Engine
+   -------------------------------------------------------------------------- */
+
+/* Light Mode (Strict System Default) */
+:root {
+  --theme: #ffffff !important;
+  --entry: #ffffff !important;
+  --primary: #18181b !important;
+  --secondary: #52525b !important;
+  --tertiary: #a1a1aa !important;
+  --content: #18181b !important;
+  --code-bg: #f4f4f5 !important;
+  --border: #e4e4e7 !important;
+}
+
+/* Dark Mode (Class Target) */
+body.dark {
+  --theme: #121212 !important;
+  --entry: #1e1e1e !important;
+  --primary: #f4f4f5 !important;
+  --secondary: #a1a1aa !important;
+  --tertiary: #71717a !important;
+  --content: #f4f4f5 !important;
+  --code-bg: #27272a !important;
+  --border: #27272a !important;
+}
+
+/* Enforce Variable Inheritance Across All Child Nodes */
+body {
+  background-color: var(--theme) !important;
+  color: var(--primary) !important;
+}
+
+body *,
+body.dark *,
+.post-title,
+.post-content,
+.entry-header,
+.entry-content,
+.profile_inner,
+.profile_inner h1,
+.profile_inner .subtitle,
+.first-entry {
+  color: var(--primary) !important;
+}
+
+/* Link Contrast Ratios */
+a {
+  color: #2563eb !important;
+}
+
+body.dark a {
+  color: #60a5fa !important;
+}
+
+/* Buttons and Controls */
+#theme-toggle {
+  color: var(--primary) !important;
+}

@@ -15,12 +15,12 @@ buildExpired = false
   author = 'Alisha Barretto'
   images = ["/cover.png"]
   
-  # Strict Light Mode Default with Toggle Enabled
+  # Base Theme Parameters
   defaultTheme = "light"
   disableThemeToggle = false
   disableScrollToTop = false
 
-  # UI Options
+  # Post Layout UI
   ShowShareButtons = false
   ShowReadingTime = true
   ShowPostNavLinks = true
