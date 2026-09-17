@@ -26,8 +26,8 @@ A fifteen-zone agri-leisure and education destination for a golf resort. Spatial
 ### Genista Biosciences
 UX architecture for a food-safety monitoring platform. Owned the design system and analytics pipeline across extensive rounds of testing with lab users.
 
-### Locofy
-Product and community growth. Addressed technical developer queries across a 2,000-member community, converting recurring friction points into 30+ documented product fixes and guides.
+### No Code and Low-Code Era
+Worked across Editor X, Locofy, and a handful of other companies building in this space. Was active in the communities themselves too, not just the products. Answered roughly a hundred technical questions a week from a two thousand member developer community, and built free indie tools and templates for people in the space to use. Also consulted for a few early-stage startups building through 2021 to 2023.
 
 ### UX Design Studio (2020 – 2021)
 Five web and mobile products designed end-to-end through remote user research and interactive prototyping.
