@@ -15,13 +15,10 @@ buildExpired = false
   author = 'Alisha Barretto'
   images = ["/cover.png"]
   
-  # Base Theme Parameters
   defaultTheme = "light"
   disableThemeToggle = true
-
   disableScrollToTop = false
 
-  # Post Layout UI
   ShowShareButtons = false
   ShowReadingTime = true
   ShowPostNavLinks = true
@@ -68,6 +65,12 @@ buildExpired = false
   name = 'Essays'
   url = '/essays/'
   weight = 10
+
+[[menu.main]]
+  identifier = 'archives'
+  name = 'Archives'
+  url = '/archives/'
+  weight = 20
 
 [privacy]
   [privacy.disqus]
