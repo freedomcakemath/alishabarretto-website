@@ -7,6 +7,8 @@ theme = 'PaperMod'
   env = 'production'
   defaultTheme = 'auto'
   disableThemeToggle = false
+  canonifyURLs = false
+  relativeURLs = true
 
 [menu]
   [[menu.main]]
