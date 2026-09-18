@@ -8,14 +8,14 @@ theme = 'PaperMod'
   defaultTheme = 'auto'
   disableThemeToggle = false
 
-[[menu.main]]
-  identifier = "essays"
-  name = "Essays"
-  url = "/essays/"
-  weight = 10
-
-[[menu.main]]
-  identifier = "archives"
-  name = "Archives"
-  url = "/archives/"
-  weight = 20
+[menu]
+  [[menu.main]]
+    identifier = "essays"
+    name = "Essays"
+    url = "/essays/"
+    weight = 10
+  [[menu.main]]
+    identifier = "archives"
+    name = "Archives"
+    url = "/archives/"
+    weight = 20
