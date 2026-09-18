@@ -1,51 +1,46 @@
 {{ define "main" }}
-<article class="home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0;">
+<article class="home" style="max-width: 640px; margin: 0 auto; padding: 1.5rem 0; font-family: monospace;">
 
   <!-- ASCII Breadcrumb Header -->
-  <div style="font-family: monospace; font-size: 0.85rem; color: #6b6357; margin-bottom: 1.5rem;">
-    <a href="/" style="color: #2b2927; text-decoration: none;">[ HOME ]</a> / ARCHIVES /
+  <div style="font-size: 0.85rem; color: #6b6357; margin-bottom: 1.5rem;">
+    <a href="/" style="color: #2b2927; text-decoration: none; font-weight: bold;">[ HOME ]</a> / ARCHIVES /
   </div>
 
-  <h1 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; color: #1a1918;">ARCHIVE.DIR</h1>
-  <div style="font-size: 0.95rem; color: #5c5854; margin-bottom: 1.5rem;">
-    Closed, done, or dormant work.
+  <h1 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.4rem; color: #1a1918; letter-spacing: -0.5px;">C:\ARCHIVES> DIR</h1>
+  <div style="font-size: 0.85rem; color: #5c5854; margin-bottom: 1.5rem;">
+    Closed, done, or dormant work records.
   </div>
 
   <!-- ASCII Divider -->
-  <div style="font-family: monospace; font-size: 0.8rem; color: #6b6357; text-align: center; margin: 1.5rem 0; user-select: none;">
-    [+]==========================================================[+]
-  </div>
-
-  <!-- Standby Log Box -->
-  <div style="background: #efe0ad; border: 1px dashed #2b2927; padding: 1rem; font-family: monospace; font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.5; color: #1a1918;">
-    <strong>[ LOG: SYSTEM STANDBY ]</strong><br>
-    Took a few months off after Basileia and the Happy Zoned attempt to travel through the Himalayas and Southeast Asia. Came back and built FlowPlanned, partly because of what that trip made obvious about paper planners and cloud apps not talking to each other.
+  <div style="font-size: 0.8rem; color: #6b6357; text-align: center; margin: 1.5rem 0; user-select: none;">
+    +----------------------------------------------------------+
   </div>
 
   <!-- Archives Directory List -->
-  <div style="background: #efe0ad; border: 1px dashed #2b2927; padding: 1rem; font-family: monospace; font-size: 0.85rem; margin-bottom: 2rem;">
-    <div style="font-weight: bold; border-bottom: 1px solid rgba(43, 41, 39, 0.15); padding-bottom: 0.4rem; margin-bottom: 0.8rem; color: #1a1918;">
-      INDEX OF /archives
+  <div style="border: 1px solid #2b2927; padding: 1rem; font-size: 0.85rem; margin-bottom: 2rem; background: #faf8f5;">
+    <div style="font-weight: bold; border-bottom: 1px solid #2b2927; padding-bottom: 0.4rem; margin-bottom: 0.8rem; color: #1a1918; display: flex; justify-content: space-between;">
+      <span>Directory of C:\ARCHIVES</span>
+      <span style="color: #6b6357; font-weight: normal;">[READ-ONLY]</span>
     </div>
 
     <!-- Basileia -->
-    <div style="margin-bottom: 1rem;">
+    <div style="margin-bottom: 1.2rem;">
       <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; font-weight: bold; color: #1a1918;">
-        <span>📦 Basileia</span>
-        <span style="color: #6b6357;">2023 to 2025 (exited)</span>
+        <span>[DIR] Basileia</span>
+        <span style="color: #6b6357; font-weight: normal;">2023 - 2025 (EXITED)</span>
       </div>
-      <div style="font-size: 0.78rem; color: #5c5854; margin-top: 0.2rem; padding-left: 1.2rem; line-height: 1.4;">
-        └─ A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.
+      <div style="font-size: 0.8rem; color: #4a4744; margin-top: 0.2rem; padding-left: 1rem; line-height: 1.45;">
+        └── A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.
       </div>
 
       {{ $basileia := site.GetPage "projects/basileia.md" }}
       {{ if $basileia }}
-      <details class="win95-attach" style="margin-top: 0.5rem; padding-left: 1.2rem;">
-        <summary style="cursor: pointer; color: #1a1918; font-weight: bold; text-decoration: underline;">[ READ CASE STUDY ]</summary>
-        <div style="background: #e8d79f; border: 1px solid #2b2927; padding: 1rem; margin-top: 0.5rem; font-family: sans-serif; font-size: 0.9rem; line-height: 1.6; color: #1a1918;">
+      <details class="retro-attach" style="margin-top: 0.5rem; padding-left: 1rem;">
+        <summary style="cursor: pointer; color: #1a1918; font-weight: bold;">└─► [ READ CASE STUDY ]</summary>
+        <div style="background: #efe0ad; border: 1px dashed #2b2927; padding: 1rem; margin-top: 0.5rem; font-family: monospace; font-size: 0.85rem; line-height: 1.6; color: #1a1918;">
           {{ $basileia.Content }}
-          <div style="text-align: right; margin-top: 1rem; border-top: 1px dashed #2b2927; padding-top: 0.5rem; font-family: monospace;">
-            <button type="button" class="close-drawer-btn" style="background: transparent; border: 1px solid #2b2927; padding: 2px 6px; font-family: monospace; font-size: 0.75rem; font-weight: bold; cursor: pointer;">▲ COLLAPSE</button>
+          <div style="text-align: right; margin-top: 1rem; border-top: 1px dashed #2b2927; padding-top: 0.5rem;">
+            <button type="button" class="close-drawer-btn" style="background: #2b2927; color: #efe0ad; border: none; padding: 2px 8px; font-family: monospace; font-size: 0.75rem; font-weight: bold; cursor: pointer;">[^] COLLAPSE</button>
           </div>
         </div>
       </details>
@@ -53,88 +48,88 @@
     </div>
 
     <!-- Happy Zoned -->
-    <div style="margin-bottom: 1rem;">
+    <div style="margin-bottom: 1.2rem;">
       <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; font-weight: bold; color: #1a1918;">
-        <span>🚚 Happy Zoned</span>
-        <span style="color: #6b6357;">2024 (archived)</span>
+        <span>[DIR] Happy Zoned</span>
+        <span style="color: #6b6357; font-weight: normal;">2024 (ARCHIVED)</span>
       </div>
-      <div style="font-size: 0.78rem; color: #5c5854; margin-top: 0.2rem; padding-left: 1.2rem; line-height: 1.4;">
-        └─ Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.
+      <div style="font-size: 0.8rem; color: #4a4744; margin-top: 0.2rem; padding-left: 1rem; line-height: 1.45;">
+        └── Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.
       </div>
 
       {{ $happyzoned := site.GetPage "projects/happy-zoned.md" }}
       {{ if $happyzoned }}
-      <details class="win95-attach" style="margin-top: 0.5rem; padding-left: 1.2rem;">
-        <summary style="cursor: pointer; color: #1a1918; font-weight: bold; text-decoration: underline;">[ READ CASE STUDY ]</summary>
-        <div style="background: #e8d79f; border: 1px solid #2b2927; padding: 1rem; margin-top: 0.5rem; font-family: sans-serif; font-size: 0.9rem; line-height: 1.6; color: #1a1918;">
+      <details class="retro-attach" style="margin-top: 0.5rem; padding-left: 1rem;">
+        <summary style="cursor: pointer; color: #1a1918; font-weight: bold;">└─► [ READ CASE STUDY ]</summary>
+        <div style="background: #efe0ad; border: 1px dashed #2b2927; padding: 1rem; margin-top: 0.5rem; font-family: monospace; font-size: 0.85rem; line-height: 1.6; color: #1a1918;">
           {{ $happyzoned.Content }}
-          <div style="text-align: right; margin-top: 1rem; border-top: 1px dashed #2b2927; padding-top: 0.5rem; font-family: monospace;">
-            <button type="button" class="close-drawer-btn" style="background: transparent; border: 1px solid #2b2927; padding: 2px 6px; font-family: monospace; font-size: 0.75rem; font-weight: bold; cursor: pointer;">▲ COLLAPSE</button>
+          <div style="text-align: right; margin-top: 1rem; border-top: 1px dashed #2b2927; padding-top: 0.5rem;">
+            <button type="button" class="close-drawer-btn" style="background: #2b2927; color: #efe0ad; border: none; padding: 2px 8px; font-family: monospace; font-size: 0.75rem; font-weight: bold; cursor: pointer;">[^] COLLAPSE</button>
           </div>
         </div>
       </details>
       {{ end }}
     </div>
 
-    <div style="border-top: 1px dashed rgba(43, 41, 39, 0.3); margin: 1.2rem 0 1rem 0;"></div>
+    <div style="border-top: 1px dashed #2b2927; margin: 1.2rem 0 1rem 0;"></div>
 
     <!-- Additional Projects -->
-    <div style="margin-bottom: 0.8rem;">
-      <div style="font-weight: bold; color: #1a1918;">📄 The Nature Hub</div>
-      <div style="font-size: 0.78rem; color: #5c5854; padding-left: 1.2rem; line-height: 1.4;">
-        └─ A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.
+    <div style="margin-bottom: 0.9rem;">
+      <div style="font-weight: bold; color: #1a1918;">[FILE] The Nature Hub</div>
+      <div style="font-size: 0.8rem; color: #4a4744; padding-left: 1rem; line-height: 1.45;">
+        └── A fifteen-zone agri-leisure and education destination for a golf resort. Spatial layouts, revenue models, vendor database, and event packages priced for real budgets. My favourite kind of problem: physical space, real constraints, no software.
       </div>
     </div>
 
-    <div style="margin-bottom: 0.8rem;">
-      <div style="font-weight: bold; color: #1a1918;">📄 Genista Biosciences</div>
-      <div style="font-size: 0.78rem; color: #5c5854; padding-left: 1.2rem; line-height: 1.4;">
-        └─ UX for a food-safety monitoring platform. Owned the design system and the analytics work, tested and cut down over repeated rounds with actual lab users, the kind of people who will tell you exactly what's wrong with your interface and not soften it.
+    <div style="margin-bottom: 0.9rem;">
+      <div style="font-weight: bold; color: #1a1918;">[FILE] Genista Biosciences</div>
+      <div style="font-size: 0.8rem; color: #4a4744; padding-left: 1rem; line-height: 1.45;">
+        └── UX for a food-safety monitoring platform. Owned the design system and the analytics work, tested and cut down over repeated rounds with actual lab users, the kind of people who will tell you exactly what's wrong with your interface and not soften it.
       </div>
     </div>
 
-    <div style="margin-bottom: 0.8rem;">
-      <div style="font-weight: bold; color: #1a1918;">📄 No-Code and Low-Code Era</div>
-      <div style="font-size: 0.78rem; color: #5c5854; padding-left: 1.2rem; line-height: 1.4;">
-        └─ Worked across Editor X, Locofy, and a handful of other companies building in this space. Active in the communities themselves too, not just the products. Answered roughly a hundred technical questions a week from a two thousand member developer community, and built free indie tools and templates for people in the space to use. Also consulted for a few early-stage startups building through 2021 to 2023.
+    <div style="margin-bottom: 0.9rem;">
+      <div style="font-weight: bold; color: #1a1918;">[FILE] No-Code and Low-Code Era</div>
+      <div style="font-size: 0.8rem; color: #4a4744; padding-left: 1rem; line-height: 1.45;">
+        └── Worked across Editor X, Locofy, and a handful of other companies building in this space. Active in the communities themselves too, not just the products. Answered roughly a hundred technical questions a week from a two thousand member developer community, and built free indie tools and templates for people in the space to use. Also consulted for a few early-stage startups building through 2021 to 2023.
       </div>
     </div>
 
-    <div style="margin-bottom: 0.8rem;">
-      <div style="font-weight: bold; color: #1a1918;">📄 UX Design Studio, 2020 to 2021</div>
-      <div style="font-size: 0.78rem; color: #5c5854; padding-left: 1.2rem; line-height: 1.4;">
-        └─ Five web and mobile products designed end to end through lockdown, from user interviews to prototype, across a community SaaS platform, a real estate company, and a web3 research company. The community platform was about giving people a place to express themselves without feeling judged, something other platforms never quite let you do without feeling exposed. It also helped people find mentors and coaches they'd never otherwise meet, and book 1:1 and group calls that actually went somewhere. One of the other projects was an app for apartment owners, so they could track construction progress and book their kitchen without ever calling anyone. Learned how to run user research on people you never meet in person, which was most of them.
+    <div style="margin-bottom: 0.9rem;">
+      <div style="font-weight: bold; color: #1a1918;">[FILE] UX Design Studio (2020 - 2021)</div>
+      <div style="font-size: 0.8rem; color: #4a4744; padding-left: 1rem; line-height: 1.45;">
+        └── Five web and mobile products designed end to end through lockdown, from user interviews to prototype, across a community SaaS platform, a real estate company, and a web3 research company. The community platform was about giving people a place to express themselves without feeling judged, something other platforms never quite let you do without feeling exposed. It also helped people find mentors and coaches they'd never otherwise meet, and book 1:1 and group calls that actually went somewhere. One of the other projects was an app for apartment owners, so they could track construction progress and book their kitchen without ever calling anyone. Learned how to run user research on people you never meet in person, which was most of them.
       </div>
     </div>
 
-    <div style="margin-bottom: 0.8rem;">
-      <div style="font-weight: bold; color: #1a1918;">📄 Open Destinations, 2019 to 2020</div>
-      <div style="font-size: 0.78rem; color: #5c5854; padding-left: 1.2rem; line-height: 1.4;">
-        └─ Engineering on Tineri, a mobile itinerary platform for tour operators. Ionic 3 and Ruby on Rails, working on core modules of a real enterprise system.
+    <div style="margin-bottom: 0.9rem;">
+      <div style="font-weight: bold; color: #1a1918;">[FILE] Open Destinations (2019 - 2020)</div>
+      <div style="font-size: 0.8rem; color: #4a4744; padding-left: 1rem; line-height: 1.45;">
+        └── Engineering on Tineri, a mobile itinerary platform for tour operators. Ionic 3 and Ruby on Rails, working on core modules of a real enterprise system.
       </div>
     </div>
 
-    <div style="margin-bottom: 0.8rem;">
-      <div style="font-weight: bold; color: #1a1918;">📄 IFB Industries</div>
-      <div style="font-size: 0.78rem; color: #5c5854; padding-left: 1.2rem; line-height: 1.4;">
-        └─ An auto on/off circuit for a washing machine. Microcontroller code that shut the display down when nobody was standing there, because idle power adds up across a million units.
+    <div style="margin-bottom: 0.9rem;">
+      <div style="font-weight: bold; color: #1a1918;">[FILE] IFB Industries</div>
+      <div style="font-size: 0.8rem; color: #4a4744; padding-left: 1rem; line-height: 1.45;">
+        └── An auto on/off circuit for a washing machine. Microcontroller code that shut the display down when nobody was standing there, because idle power adds up across a million units.
       </div>
     </div>
 
-    <div style="margin-bottom: 0.8rem;">
-      <div style="font-weight: bold; color: #1a1918;">📄 BOLT IoT Evangelist</div>
-      <div style="font-size: 0.78rem; color: #5c5854; padding-left: 1.2rem; line-height: 1.4;">
-        └─ Taught IoT and machine learning to people who had never soldered anything, mostly by building the thing with them.
+    <div style="margin-bottom: 0.9rem;">
+      <div style="font-weight: bold; color: #1a1918;">[FILE] BOLT IoT Evangelist</div>
+      <div style="font-size: 0.8rem; color: #4a4744; padding-left: 1rem; line-height: 1.45;">
+        └── Taught IoT and machine learning to people who had never soldered anything, mostly by building the thing with them.
       </div>
     </div>
 
   </div>
 
   <!-- Retro Status Footer Bar -->
-  <div style="font-family: monospace; font-size: 0.78rem; color: #5c5854; border-top: 1px solid rgba(43, 41, 39, 0.2); margin-top: 2.5rem; padding-top: 0.8rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-    <span>[●] DIR: /archives</span>
-    <span>STATUS: ARCHIVED</span>
-    <span>MODE: READ-ONLY</span>
+  <div style="font-size: 0.78rem; color: #5c5854; border-top: 1px solid rgba(43, 41, 39, 0.2); margin-top: 2.5rem; padding-top: 0.8rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+    <span>[OK] 7 File(s) 2 Dir(s)</span>
+    <span>PATH: C:\ARCHIVES</span>
+    <span>PROMPT> _</span>
   </div>
 
 </article>
@@ -153,7 +148,7 @@
   document.addEventListener('keydown', function (e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'Escape') {
-      const openDetails = document.querySelectorAll('details.win95-attach[open]');
+      const openDetails = document.querySelectorAll('details.retro-attach[open]');
       if (openDetails.length > 0) {
         const activeDetails = openDetails[openDetails.length - 1];
         activeDetails.open = false;
