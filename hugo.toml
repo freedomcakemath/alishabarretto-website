@@ -7,8 +7,6 @@ theme = 'PaperMod'
   env = 'production'
   defaultTheme = 'auto'
   disableThemeToggle = false
-  ShowFullTextinRSS = true
-  ShowCodeCopyButtons = true
 
 [[menu.main]]
   identifier = "essays"
