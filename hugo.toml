@@ -1,23 +1,8 @@
-baseURL = 'https://alishabarretto.statichost.page/'
+baseURL = '/'
 languageCode = 'en-us'
-title = 'Alisha Barretto'
+title = 'alishabarretto'
 theme = 'PaperMod'
 
 [params]
   env = 'production'
-  defaultTheme = 'auto'
-  disableThemeToggle = false
-  canonifyURLs = false
-  relativeURLs = true
-
-[menu]
-  [[menu.main]]
-    identifier = "essays"
-    name = "Essays"
-    url = "/essays/"
-    weight = 10
-  [[menu.main]]
-    identifier = "archives"
-    name = "Archives"
-    url = "/archives/"
-    weight = 20
+  description = 'Engineer & Builder'
