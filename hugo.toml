@@ -9,21 +9,26 @@ buildFuture = true
 
 [params]
   env = 'production'
-  # Enable social icons display
   ShowSocials = true
 
-  # Social Icons Config
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/alishabarretto"
+  # Restored Social Icons
   [[params.socialIcons]]
     name = "twitter"
     url = "https://twitter.com/alishabarretto"
   [[params.socialIcons]]
-    name = "linkedin"
-    url = "https://linkedin.com/in/alishabarretto"
+    name = "substack"
+    url = "https://alishabarretto.substack.com"
+  [[params.socialIcons]]
+    name = "medium"
+    url = "https://medium.com/@alishabarretto"
+  [[params.socialIcons]]
+    name = "bluesky"
+    url = "https://bsky.app/profile/alishabarretto.bsky.social"
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:alishabarretto@protonmail.com"
 
-# Header Navigation Menu
+# Header Navigation Menu (Projects removed)
 [[menu.main]]
   identifier = "essays"
   name = "Essays"
@@ -35,12 +40,6 @@ buildFuture = true
   name = "Archives"
   url = "/archives/"
   weight = 20
-
-[[menu.main]]
-  identifier = "projects"
-  name = "Projects"
-  url = "/projects/"
-  weight = 30
 
 [markup]
   [markup.goldmark]
