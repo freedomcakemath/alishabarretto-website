@@ -1,9 +1,16 @@
 baseURL = '/'
-relativeURLs = true
-canonifyURLs = false
 locale = 'en-us'
-title = 'alishabarretto'
+title = 'Alisha Barretto'
 theme = 'PaperMod'
+
+enableRobotsTXT = true
+buildDrafts = true
+buildFuture = true
 
 [params]
   env = 'production'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
