@@ -1,7 +1,5 @@
-image: ubuntu:22.04
-command: |
-  apt-get update && apt-get install -y wget ca-certificates git && \
-  wget https://github.com/gohugoio/hugo/releases/download/v0.146.0/hugo_extended_0.146.0_linux-amd64.tar.gz && \
-  tar -xzf hugo_extended_0.146.0_linux-amd64.tar.gz -C /usr/local/bin && \
-  hugo --minify
-public: public
+build:
+  command: |
+    wget https://github.com/gohugoio/hugo/releases/download/v0.146.0/hugo_extended_0.146.0_linux-amd64.tar.gz && \
+    tar -xzf hugo_extended_0.146.0_linux-amd64.tar.gz -C /usr/local/bin && \
+    hugo --minify --baseURL "/"
