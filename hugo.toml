@@ -9,6 +9,38 @@ buildFuture = true
 
 [params]
   env = 'production'
+  # Enable social icons display
+  ShowSocials = true
+
+  # Social Icons Config
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/alishabarretto"
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/alishabarretto"
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/alishabarretto"
+
+# Header Navigation Menu
+[[menu.main]]
+  identifier = "essays"
+  name = "Essays"
+  url = "/essays/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "archives"
+  name = "Archives"
+  url = "/archives/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "projects"
+  name = "Projects"
+  url = "/projects/"
+  weight = 30
 
 [markup]
   [markup.goldmark]
