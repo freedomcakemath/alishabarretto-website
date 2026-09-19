@@ -13,7 +13,7 @@ buildFuture = true
 
   # Restored Social Icons
   [[params.socialIcons]]
-    name = "twitter"
+    name = "x"
     url = "https://x.com/alisha_barretto"
   [[params.socialIcons]]
     name = "substack"
