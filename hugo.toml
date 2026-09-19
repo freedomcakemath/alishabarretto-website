@@ -1,8 +1,9 @@
 baseURL = '/'
-languageCode = 'en-us'
+relativeURLs = true
+canonifyURLs = false
+locale = 'en-us'
 title = 'alishabarretto'
 theme = 'PaperMod'
 
 [params]
   env = 'production'
-  description = 'Engineer & Builder'
