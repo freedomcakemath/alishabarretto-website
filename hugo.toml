@@ -14,7 +14,7 @@ buildFuture = true
   # Restored Social Icons
   [[params.socialIcons]]
     name = "twitter"
-    url = "https://twitter.com/alishabarretto"
+    url = "https://x.com/alisha_barretto"
   [[params.socialIcons]]
     name = "substack"
     url = "https://alishabarretto.substack.com"
@@ -28,7 +28,7 @@ buildFuture = true
     name = "email"
     url = "mailto:alishabarretto@protonmail.com"
 
-# Header Navigation Menu (Projects removed)
+# Header Navigation Menu
 [[menu.main]]
   identifier = "essays"
   name = "Essays"
