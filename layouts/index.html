@@ -146,11 +146,11 @@
         justify-content: space-between;
         padding: 0 16px;
         z-index: 100;
-        pointer-events: none; /* Allows clicking through empty space */
+        pointer-events: none;
       }
       
       .sidebar-layout-grid .desktop-gutter {
-        pointer-events: auto; /* Re-enables clicking on the cards */
+        pointer-events: auto;
         position: static;
         width: 140px;
         display: flex;
@@ -159,7 +159,6 @@
         font-family: monospace;
       }
 
-      /* TRAVEL / FIELD STICKY NOTE CARDS (SMALL, COMPACT) */
       .sticky-note-card {
         background: var(--entry);
         border: 1px solid var(--primary);
@@ -182,7 +181,6 @@
         color: var(--primary);
       }
 
-      /* PHOTO ATTACHMENT CARDS (SMALL, COMPACT) */
       .photo-attachment-card {
         background: var(--theme);
         border: 1px solid var(--primary);
@@ -214,13 +212,11 @@
         font-weight: bold;
       }
 
-      /* MOBILE & TABLET FALLBACK INLINE DRAWER */
       .mobile-notes-fallback {
         display: none;
         margin-bottom: 1.5rem;
       }
 
-      /* RESPONSIVE BREAKPOINT SWITCHING: STACK ON PHONES ONLY, KEEP SIDE-BY-SIDE ON TABLETS & DESKTOPS */
       @media (max-width: 768px) {
         .sidebar-layout-grid { display: none !important; }
         .mobile-notes-fallback { display: block !important; }
@@ -231,7 +227,6 @@
         .photo-titlebar { font-size: 0.72rem; padding: 0.2rem 0.4rem; }
       }
 
-      /* RETRO WINDOW SYSTEM */
       .photo-window, .img-window {
         border: 2px solid var(--primary);
         background-color: var(--theme);
@@ -297,7 +292,6 @@
         display: none !important;
       }
 
-      /* ASCII MARGINALIA & SCHEMATICS */
       .ascii-marginalia {
         font-family: monospace;
         font-size: 0.72rem;
@@ -320,7 +314,6 @@
         box-sizing: border-box;
       }
 
-      /* TYPOGRAPHY & UX INFORMATION HIERARCHY */
       .header-center { text-align: center; }
       .site-title {
         font-size: 2.2rem; margin: 0 0 0.4rem 0; font-weight: 700;
@@ -776,6 +769,16 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
       <div>
         Engineered in accordance with <strong>EU Directive 2016/2102</strong> and <strong>WCAG 2.1 Level AA</strong>. Built with keyboard hotkeys (Press <code>G</code>=Guestbook, <code>E</code>=Essays, <code>T</code>=Top), zero cookies, and ultra-low carbon static delivery (&lt;20KB/view).
       </div>
+
+      <div style="margin-top: 1rem; border-top: 1px dashed var(--border); padding-top: 0.8rem;">
+        <div class="compliance-title">
+          [ ON AI USE ]
+        </div>
+        <div>
+          I used AI to move faster on code and drafts. The words and the design decisions were mine, checked and rewritten until they sounded right.
+        </div>
+      </div>
+
       <div class="contact-line">
         Direct Contact: <span class="obfuscated-text">moc.liamnotorp@otterrabahsila</span>
       </div>
@@ -869,7 +872,7 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
     }
   });
 
-  /* MINIMIZE WINDOW CONTROLS ONLY (CLOSE & RESTORE REMOVED) */
+  /* MINIMIZE WINDOW CONTROLS ONLY */
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('min-win-btn')) {
       const win = e.target.closest('.draggable-window');
