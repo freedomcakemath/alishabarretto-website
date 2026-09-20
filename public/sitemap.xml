@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:37363/</loc>
+    <loc>//localhost:33135/</loc>
     <lastmod>2026-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/projects/basileia/</loc>
+    <loc>//localhost:33135/projects/basileia/</loc>
     <lastmod>2026-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/projects/flowplanned/</loc>
+    <loc>//localhost:33135/projects/flowplanned/</loc>
     <lastmod>2026-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/projects/happyzoned-postmortem/</loc>
+    <loc>//localhost:33135/projects/happyzoned-postmortem/</loc>
     <lastmod>2026-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/projects/</loc>
+    <loc>//localhost:33135/projects/</loc>
     <lastmod>2026-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/posts/first-post/</loc>
+    <loc>//localhost:33135/posts/first-post/</loc>
     <lastmod>2026-09-15T19:06:34+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/posts/</loc>
+    <loc>//localhost:33135/posts/</loc>
     <lastmod>2026-09-15T19:06:34+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/essays/</loc>
+    <loc>//localhost:33135/essays/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/essays/you-could-skip-the-person/</loc>
+    <loc>//localhost:33135/essays/you-could-skip-the-person/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/essays/power-of-genuine-users/</loc>
+    <loc>//localhost:33135/essays/power-of-genuine-users/</loc>
     <lastmod>2024-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:37363/archives/</loc>
+    <loc>//localhost:33135/archives/</loc>
   </url><url>
-    <loc>//localhost:37363/categories/</loc>
+    <loc>//localhost:33135/categories/</loc>
   </url><url>
-    <loc>//localhost:37363/tags/</loc>
+    <loc>//localhost:33135/tags/</loc>
   </url>
 </urlset>
