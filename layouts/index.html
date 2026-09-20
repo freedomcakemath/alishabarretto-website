@@ -4,17 +4,21 @@
 <article class="first-entry home page-wrap" id="main-content">
 
   <header class="page-header">
-    <div class="photo-window" role="region" aria-label="Profile Picture Window">
-      <div class="photo-titlebar">
-        <span>BMPVIEW.EXE</span>
-        <span aria-hidden="true">[_][□][X]</span>
+    <div class="photo-window draggable-window" id="win-profile" role="region" aria-label="Profile Picture Window">
+      <div class="photo-titlebar window-drag-handle">
+        <span>BMPVIEW.EXE &mdash; PROFILE.BMP</span>
+        <span aria-hidden="true" class="win-controls">
+          <button type="button" class="win-control-btn min-win-btn" title="Minimize">_</button>
+          <button type="button" class="win-control-btn max-win-btn" title="Maximize">□</button>
+          <button type="button" class="win-control-btn close-win-btn" title="Close" data-win-id="win-profile" data-win-name="PROFILE.BMP">X</button>
+        </span>
       </div>
-      <div class="photo-body">
+      <div class="photo-body win-content-body">
         <img src="/images/profile.webp" alt="Profile photo" width="160" height="160" class="profile-img" />
       </div>
-      <div class="photo-statusbar">
-        <span>PROFILE.BMP</span>
+      <div class="photo-statusbar win-statusbar">
         <span>100% ZOOM</span>
+        <span>INDEX: 0x01</span>
       </div>
     </div>
 
@@ -45,8 +49,8 @@
 
   <div class="custom-bio">
     <style>
-      .page-wrap { max-width: 640px; margin: 0 auto; padding: 1.5rem 0 5rem 0; }
-      .page-header { margin-bottom: 1.8rem; }
+      .page-wrap { max-width: 640px; margin: 0 auto; padding: 1.5rem 0 10rem 0; }
+      .page-header { margin-bottom: 2rem; }
 
       .skip-link {
         position: fixed; top: -40px; left: 0;
@@ -71,18 +75,48 @@
         box-shadow: none !important;
       }
 
-      .photo-window {
+      /* RETRO WINDOW SYSTEM */
+      .photo-window, .img-window {
         border: 2px solid var(--primary);
         background-color: var(--theme);
-        margin: 0 auto 1.5rem auto;
-        max-width: 240px;
+        margin: 1.2rem auto;
+        position: relative;
+        transition: max-width 0.2s ease;
       }
+      .photo-window { max-width: 240px; }
+      .img-window { max-width: 440px; width: 100%; }
+
+      .photo-window.maximized, .img-window.maximized {
+        max-width: 100% !important;
+        margin: 1.5rem 0 !important;
+      }
+
       .photo-titlebar {
         background-color: var(--primary); color: var(--theme);
         font-family: monospace; font-size: 0.78rem; font-weight: bold;
         padding: 0.3rem 0.6rem;
         display: flex; justify-content: space-between; align-items: center;
+        cursor: move;
+        user-select: none;
       }
+
+      .win-controls { display: flex; gap: 3px; }
+      .win-control-btn {
+        background: transparent;
+        border: 1px solid var(--theme);
+        color: var(--theme);
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 0.75rem;
+        line-height: 1;
+        cursor: pointer;
+        padding: 1px 4px;
+      }
+      .win-control-btn:hover {
+        background-color: var(--theme);
+        color: var(--primary);
+      }
+
       .photo-body {
         padding: 0.8rem; text-align: center; background-color: var(--entry);
       }
@@ -91,6 +125,10 @@
         border: 2px solid var(--primary); display: block; margin: 0 auto;
         image-rendering: pixelated;
       }
+      .window-img {
+        width: 100%; height: auto; border: 1px solid var(--primary); display: block; image-rendering: pixelated;
+      }
+
       .photo-statusbar {
         font-family: monospace; font-size: 0.7rem; color: var(--secondary);
         border-top: 1px dashed var(--primary); padding: 0.3rem 0.6rem;
@@ -98,13 +136,67 @@
         display: flex; justify-content: space-between;
       }
 
+      .win-minimized .win-content-body,
+      .win-minimized .win-statusbar {
+        display: none !important;
+      }
+
+      /* RESTORE TRAY BAR (FIXED Z-INDEX TO PREVENT OVERLAP) */
+      .restore-tray-bar {
+        position: fixed !important; bottom: 85px !important; left: 0 !important;
+        width: 100% !important; background-color: var(--theme);
+        border-top: 2px solid var(--primary); border-bottom: 1px dashed var(--primary);
+        padding: 6px 10px; font-family: monospace; font-size: 0.78rem; z-index: 10001;
+        display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+        box-sizing: border-box; box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+      }
+      .restore-btn {
+        background: var(--entry); color: var(--primary);
+        border: 1px solid var(--primary); padding: 3px 8px;
+        font-family: monospace; font-size: 0.75rem; font-weight: bold;
+        cursor: pointer;
+      }
+      .restore-btn:hover {
+        background: var(--primary); color: var(--theme);
+      }
+
+      /* COMMAND PROMPT BAR */
+      .cmd-prompt-bar {
+        position: fixed !important; bottom: 32px !important; left: 0 !important;
+        width: 100% !important; background-color: var(--theme);
+        border-top: 2px solid var(--primary); padding: 4px 8px;
+        font-family: monospace; font-size: 0.8rem; z-index: 9998;
+        display: flex; flex-direction: column; gap: 2px; box-sizing: border-box;
+      }
+      .cmd-output {
+        color: var(--secondary); font-size: 0.75rem; max-height: 45px;
+        overflow-y: auto; white-space: pre-wrap;
+      }
+      .cmd-input-line {
+        display: flex; align-items: center; gap: 6px; color: var(--primary); font-weight: bold;
+      }
+      .cmd-input-line input {
+        flex-grow: 1; background: transparent; border: none; outline: none !important;
+        color: var(--primary); font-family: monospace; font-size: 0.8rem; font-weight: bold;
+      }
+
+      .win95-taskbar {
+        position: fixed !important; bottom: 0 !important; right: 0 !important;
+        left: auto !important; width: 100% !important; height: 32px;
+        border-top: 2px solid var(--primary); background-color: var(--theme);
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 6px; font-family: monospace; font-size: 0.78rem; z-index: 9999;
+        box-sizing: border-box;
+      }
+
+      /* TYPOGRAPHY & UX INFORMATION HIERARCHY */
       .header-center { text-align: center; }
       .site-title {
         font-size: 2rem; margin: 0 0 0.4rem 0; font-weight: 700;
         letter-spacing: -0.02em; color: var(--primary);
       }
       .subtitle-text {
-        font-size: 1.02rem; color: var(--secondary); margin-bottom: 0.8rem;
+        font-size: 0.98rem; color: var(--secondary); margin-bottom: 0.8rem;
         line-height: 1.4; font-family: monospace;
       }
       .action-bar {
@@ -116,7 +208,29 @@
       }
 
       .custom-bio {
-        font-size: 1rem; line-height: 1.7; color: var(--primary); margin-top: 1.5rem;
+        font-size: 0.96rem; line-height: 1.65; color: var(--primary); margin-top: 1.5rem;
+      }
+
+      .custom-bio h2 {
+        font-size: 0.82rem !important; font-weight: 700 !important;
+        letter-spacing: 0.12em !important; text-transform: uppercase !important;
+        color: var(--secondary) !important; margin-top: 2.4rem !important; margin-bottom: 1rem !important;
+        padding-bottom: 0.35rem !important;
+        border-bottom: 1px solid var(--border) !important;
+      }
+      .custom-bio h3 {
+        font-size: 1.05rem !important; font-weight: 600 !important;
+        margin-top: 1.5rem !important; margin-bottom: 0.4rem !important;
+        color: var(--primary) !important;
+        display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      }
+      .status-tag {
+        font-family: monospace; font-size: 0.68rem; font-weight: bold;
+        padding: 1px 5px; border: 1px solid var(--primary);
+        color: var(--primary); text-transform: uppercase;
+      }
+      .custom-bio p {
+        margin-top: 0 !important; margin-bottom: 0.8rem !important; color: var(--primary) !important;
       }
 
       .dialog-btn,
@@ -135,31 +249,15 @@
 
       @media print {
         body { background: #fff !important; color: #000 !important; }
-        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach, .win95-taskbar {
+        .dialog-box, .circuit-divider, .guestbook-box, .photo-window, .compliance-footer, .win95-attach, .win95-taskbar, .cmd-prompt-bar, .restore-tray-bar {
           border: 1px solid #000 !important; box-shadow: none !important;
         }
         a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
-        .skip-link, button, .win95-taskbar { display: none !important; }
+        .skip-link, button, .win95-taskbar, .cmd-prompt-bar, .restore-tray-bar { display: none !important; }
       }
 
       @media (prefers-reduced-motion: reduce) {
         * { animation: none !important; transition: none !important; }
-      }
-
-      .custom-bio h2 {
-        font-size: 0.85rem !important; font-weight: 700 !important;
-        letter-spacing: 0.15em !important; text-transform: uppercase !important;
-        color: var(--secondary) !important; margin-top: 2.2rem !important; margin-bottom: 1rem !important;
-        padding-bottom: 0.3rem !important;
-        border-bottom: 1px solid var(--border) !important;
-      }
-      .custom-bio h3 {
-        font-size: 1.1rem !important; font-weight: 600 !important;
-        margin-top: 1.6rem !important; margin-bottom: 0.3rem !important;
-        color: var(--primary) !important;
-      }
-      .custom-bio p {
-        margin-top: 0 !important; margin-bottom: 0.8rem !important; color: var(--primary) !important;
       }
 
       .circuit-divider {
@@ -201,9 +299,6 @@
       .attach-frame img {
         width: 100%; height: auto; border: 1px solid var(--primary); display: block; image-rendering: pixelated;
       }
-      .attach-frame span {
-        display: block; font-size: 0.7rem; color: var(--secondary); margin-top: 4px; font-family: monospace;
-      }
 
       .drawer-footer {
         margin-top: 1rem;
@@ -226,14 +321,9 @@
         color: var(--theme);
       }
 
-      .case-study-link {
-        font-family: monospace; font-size: 0.82rem; font-weight: bold;
-        margin-top: 0.4rem; margin-bottom: 1.2rem;
-      }
-
       .standby-log {
         border: 1px dashed var(--primary); padding: 1rem 1.2rem; margin: 2rem 0;
-        font-family: monospace; font-size: 0.9rem; line-height: 1.6; color: var(--primary);
+        font-family: monospace; font-size: 0.88rem; line-height: 1.6; color: var(--primary);
       }
 
       .see-more-container {
@@ -241,16 +331,18 @@
         margin-bottom: 2rem;
       }
 
-      .dialog-box { border: 2px solid var(--primary); padding: 0; margin-top: 2.2rem; }
+      .dialog-box { border: 2px solid var(--primary); padding: 0; margin-top: 2.2rem; position: relative; }
       .dialog-header {
         background-color: var(--primary); color: var(--theme);
         font-family: monospace; font-size: 0.82rem; font-weight: bold;
         padding: 0.4rem 0.8rem;
         display: flex; justify-content: space-between; align-items: center;
+        cursor: move;
+        user-select: none;
       }
       .dialog-body { padding: 1.2rem; }
       .dialog-body-text {
-        font-size: 0.95rem; color: var(--primary); margin-bottom: 1.2rem; font-family: monospace;
+        font-size: 0.92rem; color: var(--primary); margin-bottom: 1.2rem; font-family: monospace;
       }
       .dialog-btn {
         display: inline-block; padding: 0.4rem 0.9rem; color: var(--primary);
@@ -298,13 +390,6 @@
       }
       .credits-line a { color: var(--secondary); text-decoration: underline; }
 
-      .win95-taskbar {
-        position: fixed !important; bottom: 0 !important; right: 0 !important;
-        left: auto !important; width: auto !important; height: 32px;
-        border: 2px solid var(--primary); background-color: var(--theme);
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 6px; font-family: monospace; font-size: 0.78rem; z-index: 9999;
-      }
       .taskbar-left { display: flex; align-items: center; gap: 8px; }
       .start-menu-btn {
         font-weight: bold; border: 1px solid var(--primary); padding: 2px 8px;
@@ -312,7 +397,7 @@
         background: var(--theme); color: var(--primary);
       }
       .win95-start-menu {
-        display: none; position: fixed; bottom: 38px; right: 6px; left: auto;
+        display: none; position: fixed; bottom: 70px; left: 6px;
         width: 220px; background-color: var(--theme); border: 2px solid var(--primary);
         z-index: 10000; font-family: monospace;
       }
@@ -338,8 +423,11 @@
     </style>
 
     <h2>BUILD_LOG.TXT &mdash; active / current work</h2>    
-    <h3 id="flowplanned">FlowPlanned, 2025 to now</h3>
-        <p>Building FlowPlanned, a <span class="win95-tip" data-tooltip="Zero cloud calls. Runs 100% local.">local-first planner</span> for Windows. Local agents, no cloud, no account, no telemetry. A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.
+    <h3 id="flowplanned">
+      FlowPlanned, 2025 to now 
+      <span class="status-tag">[ACTIVE]</span>
+    </h3>
+    <p>Building FlowPlanned, a <span class="win95-tip" data-tooltip="Zero cloud calls. Runs 100% local.">local-first planner</span> for Windows. Local agents, no cloud, no account, no telemetry. A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.
 Talking to Japanese paper planner brands about licensing native offline software. Paper people already understand the argument, which makes the conversation short.</p>
     
     {{ $flowplanned := site.GetPage "projects/flowplanned.md" }}
@@ -359,22 +447,39 @@ Talking to Japanese paper planner brands about licensing native offline software
 
     <p>Currently deep in solar panel research and LoRaWAN communications too, figuring out how to keep things running and talking to each other without needing a signal or a subscription.</p>
 
-    <!-- SYSTEM STANDBY LOG WITH COLLAPSIBLE ATTACHMENT FOR FIG 0.0 -->
+    <!-- SYSTEM STANDBY LOG WITH RETRO WINDOW IMAGE -->
     <div class="standby-log">
       <strong>[ LOG: SYSTEM STANDBY ]</strong><br>
 Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet place in the Himalayas first, mostly to remember what silence sounded like. That stillness did something unexpected, it made me want to never fully stop moving again. I then decided to travel through Southeast Asia, and I'm still out here now, working out of whatever city or island has decent wifi that week. FlowPlanned got built somewhere in between all of that, mostly because paper planners and cloud apps refusing to talk to each other stopped being a minor annoyance and started being the whole problem.      
-      <details class="win95-attach" style="margin-top: 0.8rem;">
+      
+      <details class="win95-attach" style="margin-top: 0.8rem;" open>
         <summary>[ ATT: ATTACHMENT_0.JPG ]</summary>
-        <div class="attach-frame">
-          <img src="/images/himalayas-trip.jpeg" alt="Himalayas travel route photo" />
-          <span>FIG 0.0 &mdash; HIMALAYAS TRAVEL ROUTE</span>
+        <div class="img-window draggable-window" id="win-himalayas" role="region" aria-label="Himalayas Travel Image Window">
+          <div class="photo-titlebar window-drag-handle">
+            <span>BMPVIEW.EXE &mdash; HIMALAYAS.JPG</span>
+            <span aria-hidden="true" class="win-controls">
+              <button type="button" class="win-control-btn min-win-btn" title="Minimize">_</button>
+              <button type="button" class="win-control-btn max-win-btn" title="Maximize">□</button>
+              <button type="button" class="win-control-btn close-win-btn" title="Close" data-win-id="win-himalayas" data-win-name="HIMALAYAS.JPG">X</button>
+            </span>
+          </div>
+          <div class="photo-body win-content-body">
+            <img src="/images/himalayas-trip.jpeg" alt="Himalayas travel route photo" class="window-img" />
+          </div>
+          <div class="photo-statusbar win-statusbar">
+            <span>FIG 0.0 &mdash; HIMALAYAS ROUTE</span>
+            <span>800x600</span>
+          </div>
         </div>
       </details>
     </div>
 
     <h2>ARCHIVE.DIR &mdash; closed, done, or dormant</h2>
 
-    <h3 id="basileia">Basileia, 2023 to 2025 (exited)</h3>
+    <h3 id="basileia">
+      Basileia, 2023 to 2025 
+      <span class="status-tag">[EXITED]</span>
+    </h3>
     <p>A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.</p>
     
     {{ $basileia := site.GetPage "projects/basileia.md" }}
@@ -390,7 +495,10 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
     </details>
     {{ end }}
 
-    <h3 id="happyzoned">Happy Zoned, 2024 (archived)</h3>
+    <h3 id="happyzoned">
+      Happy Zoned, 2024 
+      <span class="status-tag">[ARCHIVED]</span>
+    </h3>
     <p>Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.</p>
     
     {{ $happyzoned := site.GetPage "projects/happy-zoned.md" }}
@@ -422,12 +530,16 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
 
     <p>Also: a vocational baking programme at IHM, which is either irrelevant or the most relevant thing here, depending on how you feel about formulas.</p>
 
-    <div class="dialog-box" role="dialog" aria-labelledby="support-dialog-title">
-      <div class="dialog-header" id="support-dialog-title">
+    <div class="dialog-box draggable-window" id="win-independence" role="dialog" aria-labelledby="support-dialog-title">
+      <div class="dialog-header window-drag-handle" id="support-dialog-title">
         <span>C:\&gt; INDEPENDENCE.EXE</span>
-        <span aria-hidden="true">[X]</span>
+        <span aria-hidden="true" class="win-controls">
+          <button type="button" class="win-control-btn min-win-btn" title="Minimize">_</button>
+          <button type="button" class="win-control-btn max-win-btn" title="Maximize">□</button>
+          <button type="button" class="win-control-btn close-win-btn" title="Close" data-win-id="win-independence" data-win-name="INDEPENDENCE.EXE">X</button>
+        </span>
       </div>
-      <div class="dialog-body">
+      <div class="dialog-body win-content-body">
         <p class="dialog-body-text">
           As an engineer, I focus on building pragmatic solutions from bare-metal circuits to local-first software. Direct support keeps this independent work real and sustainable.
         </p>
@@ -444,8 +556,6 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
         </div>
       </div>
     </div>
-
-    <!-- SendInMore Partial Insertion -->
 
     <div class="guestbook-box" id="guestbook" role="form" aria-label="Guestbook Form">
       <div class="guestbook-title">[ BOOK: Sign the Guestbook / Leave a Note ]</div>
@@ -487,6 +597,21 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
 
   </div>
 </article>
+
+<!-- RESTORE TRAY BAR (FIXED HIGHEST Z-INDEX) -->
+<div class="restore-tray-bar" id="restore-tray" style="display: none;">
+  <span>[ RESTORE CLOSED WINDOWS ]:</span>
+  <div id="restore-buttons-container" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+</div>
+
+<!-- COMMAND PROMPT BAR -->
+<div class="cmd-prompt-bar">
+  <div class="cmd-output" id="cmd-output">Type 'help' for available commands.</div>
+  <div class="cmd-input-line">
+    <span>&gt;_</span>
+    <input type="text" id="cmd-input" placeholder="type a command..." aria-label="Command Line Input" autocomplete="off" />
+  </div>
+</div>
 
 <div class="win95-start-menu" id="start-menu">
   <div class="start-menu-inner">
@@ -535,6 +660,159 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
   function toggleStartMenu() {
     const menu = document.getElementById('start-menu');
     if (menu) menu.classList.toggle('open');
+  }
+
+  /* DRAGGABLE RETRO WINDOWS */
+  document.querySelectorAll('.draggable-window').forEach(win => {
+    const handle = win.querySelector('.window-drag-handle');
+    if (!handle) return;
+
+    let isDragging = false, startX, startY;
+
+    handle.addEventListener('mousedown', (e) => {
+      if (e.target.classList.contains('win-control-btn')) return;
+      isDragging = true;
+      win.style.position = 'relative';
+      startX = e.clientX;
+      startY = e.clientY;
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+
+    function onMouseMove(e) {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      win.style.left = `${dx}px`;
+      win.style.top = `${dy}px`;
+    }
+
+    function onMouseUp() {
+      isDragging = false;
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+  });
+
+  /* MINIMIZE, MAXIMIZE & CLOSE WINDOW CONTROLS */
+  document.addEventListener('click', function(e) {
+    // MINIMIZE
+    if (e.target.classList.contains('min-win-btn')) {
+      const win = e.target.closest('.draggable-window');
+      if (win) win.classList.toggle('win-minimized');
+    }
+
+    // MAXIMIZE
+    if (e.target.classList.contains('max-win-btn')) {
+      const win = e.target.closest('.draggable-window');
+      if (win) win.classList.toggle('maximized');
+    }
+
+    // CLOSE
+    if (e.target.classList.contains('close-win-btn')) {
+      const winId = e.target.getAttribute('data-win-id');
+      const winName = e.target.getAttribute('data-win-name') || 'WINDOW';
+      const win = document.getElementById(winId) || e.target.closest('.draggable-window');
+      
+      if (win) {
+        win.style.display = 'none';
+        addRestoreButton(winId, winName);
+      }
+    }
+  });
+
+  /* RESTORE CLOSED WINDOWS TRAY */
+  function addRestoreButton(winId, winName) {
+    const tray = document.getElementById('restore-tray');
+    const container = document.getElementById('restore-buttons-container');
+    if (!tray || !container) return;
+
+    if (document.getElementById(`restore-btn-${winId}`)) return;
+
+    tray.style.display = 'flex';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'restore-btn';
+    btn.id = `restore-btn-${winId}`;
+    btn.textContent = `[+ RESTORE: ${winName}]`;
+
+    btn.onclick = function() {
+      const targetWin = document.getElementById(winId);
+      if (targetWin) {
+        targetWin.style.display = 'block';
+        targetWin.classList.remove('win-minimized');
+      }
+      btn.remove();
+      if (container.children.length === 0) {
+        tray.style.display = 'none';
+      }
+    };
+
+    container.appendChild(btn);
+  }
+
+  /* INTERACTIVE COMMAND PROMPT (>_) */
+  const cmdInput = document.getElementById('cmd-input');
+  const cmdOutput = document.getElementById('cmd-output');
+
+  if (cmdInput) {
+    cmdInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const val = this.value.trim().toLowerCase();
+        this.value = '';
+        executeCmd(val);
+      }
+    });
+  }
+
+  function executeCmd(cmd) {
+    let response = '';
+    switch (cmd) {
+      case 'help':
+        response = 'Available commands: help, whoami, projects, essays, archives, guestbook, restore, clear, sudo rm -rf';
+        break;
+      case 'whoami':
+        response = 'alishabarretto — Engineer & Builder. Local-first software & low-power hardware.';
+        break;
+      case 'projects':
+      case 'flowplanned':
+        document.getElementById('flowplanned')?.scrollIntoView({ behavior: 'smooth' });
+        response = 'Navigated to Projects section.';
+        break;
+      case 'essays':
+        document.getElementById('essays')?.scrollIntoView({ behavior: 'smooth' });
+        response = 'Navigated to Essays section.';
+        break;
+      case 'archives':
+        window.location.href = '/archives/';
+        response = 'Redirecting to Archives...';
+        break;
+      case 'guestbook':
+        document.getElementById('guestbook')?.scrollIntoView({ behavior: 'smooth' });
+        response = 'Navigated to Guestbook.';
+        break;
+      case 'restore':
+        document.querySelectorAll('.draggable-window').forEach(w => {
+          w.style.display = 'block';
+          w.classList.remove('win-minimized');
+        });
+        document.getElementById('restore-buttons-container').innerHTML = '';
+        document.getElementById('restore-tray').style.display = 'none';
+        response = 'All closed or minimized windows restored.';
+        break;
+      case 'clear':
+        cmdOutput.textContent = '';
+        return;
+      case 'sudo rm -rf':
+      case 'rm -rf':
+        document.body.style.display = 'none';
+        alert('SYSTEM ERROR: / SEGFAULT. Page erased. Reloading...');
+        setTimeout(() => location.reload(), 1000);
+        return;
+      default:
+        response = `Command not recognized: '${cmd}'. Type 'help' for options.`;
+    }
+    cmdOutput.textContent = `> ${cmd}\n${response}`;
   }
 
   document.addEventListener('click', function (e) {
