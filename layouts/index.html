@@ -30,32 +30,32 @@
     </div>
   </aside>
 
-  <!-- RIGHT SIDE: PIC ATTACHMENTS (WITHOUT TOP TITLES) -->
+  <!-- RIGHT SIDE: PIC ATTACHMENTS -->
   <aside class="desktop-gutter right-gutter" aria-label="Sidebar Photo Attachments">
     <div class="photo-attachment-card">
       <div class="photo-thumbnail-frame">
-        <img src="/images/image_1.jpg" alt="Photo Attachment 1" class="window-img" />
+        <img src="/images/image_1.png" alt="Handcrafted Basileia personal care products and artisanal soap gift hamper arranged for a product photoshoot." class="window-img" />
       </div>
       <div class="photo-attachment-caption">FIG 0.1</div>
     </div>
 
     <div class="photo-attachment-card">
       <div class="photo-thumbnail-frame">
-        <img src="/images/image_2.jpg" alt="Photo Attachment 2" class="window-img" />
+        <img src="/images/image_2.png" alt="Side-by-side comparison of handwritten entries in a physical paper planner alongside the FlowPlanned offline desktop app interface." class="window-img" />
       </div>
       <div class="photo-attachment-caption">FIG 0.2</div>
     </div>
 
     <div class="photo-attachment-card">
       <div class="photo-thumbnail-frame">
-        <img src="/images/image_3.jpg" alt="Photo Attachment 3" class="window-img" />
+        <img src="/images/image_3.png" alt="Outdoor shooting range setup set against the mountain landscape of the Himalayas." class="window-img" />
       </div>
       <div class="photo-attachment-caption">FIG 0.3</div>
     </div>
 
     <div class="photo-attachment-card">
       <div class="photo-thumbnail-frame">
-        <img src="/images/image_4.jpg" alt="Photo Attachment 4" class="window-img" />
+        <img src="/images/image_4.png" alt="Architectural concept sketch and spatial floor plan layout for the Happy Zoned mobile sleeping caravan in Dubai." class="window-img" />
       </div>
       <div class="photo-attachment-caption">FIG 0.4</div>
     </div>
@@ -140,7 +140,7 @@
         box-shadow: none !important;
       }
 
-      /* DESKTOP & TABLET MARGIN GUTTERS: STICKY NOTES LEFT, IMAGES RIGHT, COMPACT & SMALL */
+      /* DESKTOP & TABLET MARGIN GUTTERS: STICKY NOTES LEFT, IMAGES RIGHT */
       .sidebar-layout-grid {
         position: fixed;
         top: 70px;
@@ -167,7 +167,6 @@
         padding-right: 4px;
       }
 
-      /* Hide scrollbar for a cleaner retro look while retaining scrollability */
       .sidebar-layout-grid .desktop-gutter::-webkit-scrollbar {
         width: 4px;
       }
@@ -209,18 +208,6 @@
         padding: 1px;
         background: var(--entry);
       }
-      .empty-slot-frame {
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px dashed var(--primary);
-      }
-      .empty-slot-label {
-        font-size: 0.55rem;
-        color: var(--secondary);
-        font-weight: bold;
-      }
       .photo-attachment-caption {
         font-size: 0.55rem;
         color: var(--secondary);
@@ -231,6 +218,13 @@
       .mobile-notes-fallback {
         display: none;
         margin-bottom: 1.5rem;
+      }
+
+      .mobile-photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-top: 10px;
       }
 
       @media (max-width: 768px) {
@@ -564,10 +558,10 @@
 
     <!-- TABLET & MOBILE FALLBACK DRAWER FOR PINNED NOTES & PIC SLOTS -->
     <details class="win95-attach mobile-notes-fallback">
-      <summary>[ ATT: PINNED FIELD NOTES &amp; PIC SLOTS ]</summary>
-      <div class="attach-frame" style="max-width: 100%; border: none; padding: 8px; display: grid; grid-template-columns: 1fr; gap: 10px;">
+      <summary>[ ATT: PINNED FIELD NOTES &amp; GALLERY ]</summary>
+      <div class="attach-frame" style="max-width: 100%; border: none; padding: 8px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 0.58rem; font-weight: bold; color: var(--secondary); margin-bottom: 2px;">
-          [ NOTE: These are things I'm actively writing about. Nothing's published yet, check back soon. ]
+          [ FIELD NOTES ]
         </div>
         <div class="sticky-note-card">
           <div class="sticky-note-header"><span>[PIN] IN PROGRESS</span><span>01/04</span></div>
@@ -585,6 +579,37 @@
           <div class="sticky-note-header"><span>[PIN] COOKING</span><span>04/04</span></div>
           <div class="sticky-note-body"><strong>RECIPES.TXT</strong><br>One pan or five, whatever's local, and the recipes actually worth repeating.</div>
         </div>
+
+        <div style="font-size: 0.58rem; font-weight: bold; color: var(--secondary); margin-top: 8px; margin-bottom: 2px;">
+          [ PHOTO ATTACHMENTS ]
+        </div>
+        <div class="mobile-photo-grid">
+          <div class="photo-attachment-card">
+            <div class="photo-thumbnail-frame">
+              <img src="/images/image_1.png" alt="Handcrafted Basileia personal care products and artisanal soap gift hamper arranged for a product photoshoot." class="window-img" />
+            </div>
+            <div class="photo-attachment-caption">FIG 0.1</div>
+          </div>
+          <div class="photo-attachment-card">
+            <div class="photo-thumbnail-frame">
+              <img src="/images/image_2.png" alt="Side-by-side comparison of handwritten entries in a physical paper planner alongside the FlowPlanned offline desktop app interface." class="window-img" />
+            </div>
+            <div class="photo-attachment-caption">FIG 0.2</div>
+          </div>
+          <div class="photo-attachment-card">
+            <div class="photo-thumbnail-frame">
+              <img src="/images/image_3.png" alt="Outdoor shooting range setup set against the mountain landscape of the Himalayas." class="window-img" />
+            </div>
+            <div class="photo-attachment-caption">FIG 0.3</div>
+          </div>
+          <div class="photo-attachment-card">
+            <div class="photo-thumbnail-frame">
+              <img src="/images/image_4.png" alt="Architectural concept sketch and spatial floor plan layout for the Happy Zoned mobile sleeping caravan in Dubai." class="window-img" />
+            </div>
+            <div class="photo-attachment-caption">FIG 0.4</div>
+          </div>
+        </div>
+
         <div class="drawer-footer">
           <button type="button" class="close-drawer-btn">▲ Collapse Drawer</button>
         </div>
@@ -658,7 +683,7 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
             </span>
           </div>
           <div class="photo-body win-content-body">
-            <img src="/images/himalayas-trip.jpeg" alt="Himalayas travel route photo" class="window-img" />
+            <img src="/images/himalayas-trip.jpeg" alt="Scenic view along the mountain travel route in the Himalayas." class="window-img" />
           </div>
           <div class="photo-statusbar win-statusbar">
             <span>FIG 0.0 &mdash; HIMALAYAS ROUTE</span>
@@ -777,7 +802,7 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
         [ ACCESSIBILITY &amp; SUSTAINABILITY DECLARATION ]
       </div>
       <div>
-        Engineered in accordance with <strong>EU Directive 2016/2102</strong> and <strong>WCAG 2.1 Level AA</strong>. Built with keyboard hotkeys (Press <code>G</code>=Guestbook, <code>E</code>=Essays, <code>T</code>=Top), zero cookies.
+        Engineered in accordance with <strong>EU Directive 2016/2102</strong> and <strong>WCAG 2.1 Level AA</strong>. Built with keyboard hotkeys (Press <code>G</code>=Guestbook, <code>E</code>=Essays, <code>T</code>=Top), zero cookies, and ultra-low carbon static delivery (&lt;20KB/view).
       </div>
 
       <div style="margin-top: 1rem; border-top: 1px dashed var(--border); padding-top: 0.8rem;">
@@ -878,7 +903,7 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
     }
   });
 
-  /* MINIMIZE WINDOW CONTROLS ONLY */
+  /* MINIMIZE / MAXIMIZE WINDOW CONTROLS */
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('min-win-btn')) {
       const win = e.target.closest('.draggable-window');
