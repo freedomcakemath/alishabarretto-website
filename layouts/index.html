@@ -157,16 +157,28 @@
         pointer-events: auto;
         position: static;
         width: 140px;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         font-family: monospace;
+        padding-right: 4px;
+      }
+
+      /* Hide scrollbar for a cleaner retro look while retaining scrollability */
+      .sidebar-layout-grid .desktop-gutter::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar-layout-grid .desktop-gutter::-webkit-scrollbar-thumb {
+        background: var(--primary);
       }
 
       .sticky-note-card {
         background: var(--entry);
         border: 1px solid var(--primary);
-        padding: 5px 7px;
+        padding: 4px 6px;
         box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
       }
       .sticky-note-header {
@@ -180,25 +192,25 @@
         justify-content: space-between;
       }
       .sticky-note-body {
-        font-size: 0.64rem;
-        line-height: 1.25;
+        font-size: 0.62rem;
+        line-height: 1.2;
         color: var(--primary);
       }
 
       .photo-attachment-card {
         background: var(--theme);
         border: 1px solid var(--primary);
-        padding: 4px;
+        padding: 3px;
         text-align: center;
         box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
       }
       .photo-thumbnail-frame {
         border: 1px solid var(--primary);
-        padding: 2px;
+        padding: 1px;
         background: var(--entry);
       }
       .empty-slot-frame {
-        height: 60px;
+        height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -212,7 +224,7 @@
       .photo-attachment-caption {
         font-size: 0.55rem;
         color: var(--secondary);
-        margin-top: 3px;
+        margin-top: 2px;
         font-weight: bold;
       }
 
