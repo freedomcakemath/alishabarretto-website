@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
-
-  <!-- FAVICON CONFIGURATION (SQUARE ASPECT RATIO PRESERVATION) -->
-  <link rel="icon" type="image/webp" sizes="32x32" href="{{ "/images/profile.webp" | relURL }}">
-  <link rel="icon" type="image/webp" sizes="192x192" href="{{ "/images/profile.webp" | relURL }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ "/images/profile.webp" | relURL }}">
-  <link rel="shortcut icon" href="{{ "/images/profile.webp" | relURL }}">
-</head>
-<body>
-
 {{ define "main" }}
 <a href="#main-content" class="skip-link">[ SKIP TO MAIN CONTENT (TAB + ENTER) ]</a>
 
-<!-- DESKTOP & TABLET TWO-COLUMN WRAPPER FOR SIDEBAR CARDS -->
+<!-- DESKTOP & TABLET TWO-COLUMN WRAPPER FOR SIDEBAR CARDS (STICKY NOTES LEFT, IMAGES RIGHT) -->
 <div class="sidebar-layout-grid" aria-label="Desktop and Tablet Sidebar Layout">
   <!-- LEFT SIDE: FIELD NOTES -->
   <aside class="desktop-gutter left-gutter" aria-label="Sidebar Field Notes">
@@ -80,16 +65,16 @@
 <article class="first-entry home page-wrap" id="main-content">
 
   <header class="page-header">
-    <div class="photo-window draggable-window" id="win-profile" role="region" aria-labelledby="win-profile-title">
-      <div class="photo-titlebar window-drag-handle" id="win-profile-title">
+    <div class="photo-window draggable-window" id="win-profile" role="region" aria-label="Profile Picture Window">
+      <div class="photo-titlebar window-drag-handle">
         <span>BMPVIEW.EXE &mdash; PROFILE.BMP</span>
-        <span class="win-controls">
-          <button type="button" class="win-control-btn min-win-btn" title="Minimize window" aria-label="Minimize profile picture window" aria-expanded="true">_</button>
-          <button type="button" class="win-control-btn max-win-btn" title="Maximize window" aria-label="Maximize profile picture window" aria-expanded="false">□</button>
+        <span aria-hidden="true" class="win-controls">
+          <button type="button" class="win-control-btn min-win-btn" title="Minimize">_</button>
+          <button type="button" class="win-control-btn max-win-btn" title="Maximize">□</button>
         </span>
       </div>
       <div class="photo-body win-content-body">
-        <img src="/images/profile.webp" alt="Profile picture of alishabarretto" width="160" height="160" class="profile-img" />
+        <img src="/images/profile.webp" alt="Profile photo" width="160" height="160" class="profile-img" />
       </div>
       <div class="photo-statusbar win-statusbar">
         <span>100% ZOOM</span>
@@ -105,7 +90,7 @@
       </div>
 
       <div class="action-bar">
-        <button onclick="document.body.classList.toggle('dark-mode')" class="dialog-btn" type="button">
+        <button onclick="document.body.classList.toggle('dark-mode')" class="dialog-btn">
           [ HC: HIGH-CONTRAST ]
         </button>
         <a href="#" onclick="openSecureMail(event)" class="dialog-btn">
@@ -124,19 +109,6 @@
 
   <div class="custom-bio">
     <style>
-      /* SCREEN-READER ONLY UTILITY CLASS */
-      .sr-only {
-        position: absolute !important;
-        width: 1px !important;
-        height: 1px !important;
-        padding: 0 !important;
-        margin: -1px !important;
-        overflow: hidden !important;
-        clip: rect(0, 0, 0, 0) !important;
-        white-space: nowrap !important;
-        border: 0 !important;
-      }
-
       .page-wrap { 
         max-width: 780px !important; 
         width: 88% !important;
@@ -152,10 +124,8 @@
         z-index: 99999; text-decoration: none;
       }
       .skip-link:focus { top: 0; }
-      
-      /* KEYBOARD FOCUS INDICATOR IMPROVEMENTS */
-      a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
-        outline: 2px solid var(--primary) !important;
+      a:focus, button:focus, input:focus, textarea:focus {
+        outline: 2px dashed var(--primary) !important;
         outline-offset: 3px !important;
       }
 
@@ -207,7 +177,7 @@
         }
       }
 
-      /* DESKTOP & TABLET MARGIN GUTTERS */
+      /* DESKTOP & TABLET MARGIN GUTTERS: STICKY NOTES LEFT, IMAGES RIGHT */
       .sidebar-layout-grid {
         position: fixed;
         top: 70px;
@@ -329,9 +299,7 @@
         user-select: none;
       }
 
-      .win-controls { display: flex; gap: 4px; }
-      
-      /* ACCESSIBLE TOUCH TARGETS FOR CONTROL BUTTONS */
+      .win-controls { display: flex; gap: 3px; }
       .win-control-btn {
         background: transparent;
         border: 1px solid var(--theme);
@@ -341,14 +309,9 @@
         font-size: 0.75rem;
         line-height: 1;
         cursor: pointer;
-        padding: 2px;
-        min-width: 28px;
-        min-height: 28px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        padding: 1px 4px;
       }
-      .win-control-btn:hover, .win-control-btn:focus-visible {
+      .win-control-btn:hover {
         background-color: var(--theme);
         color: var(--primary);
       }
@@ -357,12 +320,12 @@
         padding: 0.8rem; text-align: center; background-color: var(--entry);
       }
       .profile-img {
-        width: 160px; height: 160px; object-fit: cover; object-position: center;
+        width: 160px; height: 160px; object-fit: cover;
         border: 2px solid var(--primary); display: block; margin: 0 auto;
         image-rendering: pixelated;
       }
       .window-img {
-        width: 100%; height: auto; object-fit: cover; border: 1px solid var(--primary); display: block; image-rendering: pixelated;
+        width: 100%; height: auto; border: 1px solid var(--primary); display: block; image-rendering: pixelated;
       }
 
       .photo-statusbar {
@@ -392,7 +355,7 @@
 
       .win95-taskbar {
         position: fixed !important; bottom: 0 !important; right: 0 !important;
-        left: auto !important; width: 100% !important; height: 36px;
+        left: auto !important; width: 100% !important; height: 32px;
         border-top: 2px solid var(--primary); background-color: var(--theme);
         display: flex; align-items: center; justify-content: space-between;
         padding: 0 6px; font-family: monospace; font-size: 0.78rem; z-index: 9999;
@@ -475,12 +438,18 @@
         overflow: hidden; white-space: nowrap; user-select: none; letter-spacing: 0.05em;
       }
 
-      /* ACCESSIBLE TOOLTIP SUPPORT USING ABBR / FOCUSABLE SPANS */
-      abbr.win95-tip {
-        text-decoration: underline dashed var(--primary);
-        cursor: help;
-        color: var(--primary);
+      .win95-tip {
+        position: relative; border-bottom: 1px dashed var(--primary); cursor: help; color: var(--primary);
       }
+      .win95-tip::after {
+        content: attr(data-tooltip);
+        position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+        background-color: var(--entry); color: var(--primary); border: 1px solid var(--primary);
+        padding: 3px 6px; font-family: monospace; font-size: 0.72rem; white-space: nowrap;
+        box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+        opacity: 0; pointer-events: none; transition: opacity 0.15s ease; z-index: 100;
+      }
+      .win95-tip:hover::after { opacity: 1; }
 
       details.win95-attach {
         margin-top: 0.4rem; margin-bottom: 0.6rem; font-family: monospace; font-size: 0.78rem;
@@ -492,8 +461,7 @@
       }
       details.win95-attach summary {
         cursor: pointer; color: var(--primary); border: 1px dashed var(--primary);
-        padding: 6px 10px; display: inline-block; user-select: none; font-weight: bold;
-        min-height: 24px;
+        padding: 3px 6px; display: inline-block; user-select: none; font-weight: bold;
       }
       details.win95-attach summary:hover { background: var(--primary); color: var(--theme); }
 
@@ -514,14 +482,13 @@
         background: transparent;
         color: var(--primary);
         border: 1px solid var(--primary);
-        padding: 6px 12px;
+        padding: 3px 8px;
         font-family: monospace;
         font-size: 0.75rem;
         font-weight: bold;
         cursor: pointer;
-        min-height: 32px;
       }
-      .close-drawer-btn:hover, .close-drawer-btn:focus-visible {
+      .close-drawer-btn:hover {
         background: var(--primary);
         color: var(--theme);
       }
@@ -550,11 +517,9 @@
         font-size: 0.92rem; color: var(--primary); margin-bottom: 1.2rem; font-family: monospace;
       }
       .dialog-btn {
-        display: inline-flex; align-items: center; justify-content: center;
-        padding: 0.5rem 1rem; color: var(--primary);
+        display: inline-block; padding: 0.4rem 0.9rem; color: var(--primary);
         font-family: monospace; font-size: 0.82rem; font-weight: bold;
         border: 2px solid var(--primary); text-decoration: none !important; cursor: pointer;
-        min-height: 36px;
       }
 
       .guestbook-box {
@@ -570,10 +535,10 @@
         margin-bottom: 0.2rem; font-weight: bold;
       }
       .guestbook-field input, .guestbook-field textarea {
-        width: 100%; padding: 0.5rem; border: 1px solid var(--primary);
+        width: 100%; padding: 0.4rem; border: 1px solid var(--primary);
         font-family: monospace; font-size: 0.82rem; color: var(--primary); box-sizing: border-box;
       }
-      .guestbook-submit { font-size: 0.8rem; padding: 0.4rem 1rem; }
+      .guestbook-submit { font-size: 0.8rem; padding: 0.3rem 0.8rem; }
 
       .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.2rem; }
       .micro-badge {
@@ -599,12 +564,12 @@
 
       .taskbar-left { display: flex; align-items: center; gap: 8px; }
       .start-menu-btn {
-        font-weight: bold; border: 1px solid var(--primary); padding: 4px 10px;
+        font-weight: bold; border: 1px solid var(--primary); padding: 2px 8px;
         cursor: pointer; display: flex; align-items: center; gap: 4px;
-        background: var(--theme); color: var(--primary); min-height: 28px;
+        background: var(--theme); color: var(--primary);
       }
       .win95-start-menu {
-        display: none; position: fixed; bottom: 42px; left: 6px;
+        display: none; position: fixed; bottom: 70px; left: 6px;
         width: 220px; background-color: var(--theme); border: 2px solid var(--primary);
         z-index: 10000; font-family: monospace;
       }
@@ -617,19 +582,19 @@
       }
       .start-menu-items { flex-grow: 1; }
       .start-item {
-        display: block; padding: 10px 12px; color: var(--primary); text-decoration: none;
+        display: block; padding: 8px 12px; color: var(--primary); text-decoration: none;
         border-bottom: 1px dashed var(--border); font-size: 0.8rem; font-weight: bold;
       }
-      .start-item:hover, .start-item:focus-visible { background-color: var(--primary); color: var(--theme); }
+      .start-item:hover { background-color: var(--primary); color: var(--theme); }
       .taskbar-middle { display: flex; gap: 6px; align-items: center; margin: 0 6px; }
-      .taskbar-app { border: 1px solid var(--primary); padding: 3px 8px; font-weight: bold; font-size: 0.72rem; color: var(--primary); }
+      .taskbar-app { border: 1px solid var(--primary); padding: 2px 8px; font-weight: bold; font-size: 0.72rem; color: var(--primary); }
       .sys-tray {
-        border: 1px solid var(--primary); padding: 3px 8px;
+        border: 1px solid var(--primary); padding: 2px 8px;
         display: flex; align-items: center; gap: 8px; font-weight: bold; color: var(--primary);
       }
     </style>
 
-    <!-- TABLET & MOBILE FALLBACK DRAWER -->
+    <!-- TABLET & MOBILE FALLBACK DRAWER FOR PINNED NOTES & PIC SLOTS -->
     <details class="win95-attach mobile-notes-fallback">
       <summary>[ ATT: PINNED FIELD NOTES &amp; GALLERY ]</summary>
       <div class="attach-frame" style="max-width: 100%; border: none; padding: 8px; display: flex; flex-direction: column; gap: 10px;">
@@ -694,7 +659,7 @@
       FlowPlanned, 2025 to now 
       <span class="status-tag">[ACTIVE]</span>
     </h3>
-    <p>Building FlowPlanned, a <abbr class="win95-tip" title="Zero cloud calls. Runs 100% local.">local-first planner</abbr> for Windows. Local agents, no cloud, no account, no telemetry. A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.
+    <p>Building FlowPlanned, a <span class="win95-tip" data-tooltip="Zero cloud calls. Runs 100% local.">local-first planner</span> for Windows. Local agents, no cloud, no account, no telemetry. A digital planner that behaves like a paper notebook. Everything stays on your machine, including the AI. Built because every planner I tried wanted an account before it would let me write a single line. The real reason it exists is simpler: I was traveling with a paper planner in one bag and a phone full of half-used apps in the other, and neither one talked to the other. I vibe-coded the whole thing myself, piece by piece, until it stopped feeling like a compromise.
 Talking to Japanese paper planner brands about licensing native offline software. Paper people already understand the argument, which makes the conversation short.</p>
     
     {{ $flowplanned := site.GetPage "projects/flowplanned.md" }}
@@ -719,24 +684,23 @@ Talking to Japanese paper planner brands about licensing native offline software
       <strong>[ LOG: SYSTEM STANDBY ]</strong><br>
 Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet place in the Himalayas first, mostly to remember what silence sounded like. That stillness did something unexpected, it made me want to never fully stop moving again. I then decided to travel through Southeast Asia, and I'm still out here now, working out of whatever city or island has decent wifi that week. FlowPlanned got built somewhere in between all of that, mostly because paper planners and cloud apps refusing to talk to each other stopped being a minor annoyance and started being the whole problem.      
 
-      <!-- ASCII MARGINALIA: HIDDEN FROM SCREEN READERS WITH VISUAL ALT TEXT -->
-      <pre class="ascii-marginalia" aria-hidden="true">
+      <!-- ASCII MARGINALIA: MOUNTAIN ELEVATION PROFILE -->
+      <pre class="ascii-marginalia">
     /\
    /  \    /\_     FIELD ELEVATION PROFILE: HIMALAYAS ROUTE
   /    \  /   \    Peak Elevation: ~3,400m
  /      \/     \   Noise Level: -94dBm (Pure Silence)
 /________________\
       </pre>
-      <p class="sr-only">Field Elevation Profile for the Himalayas Route: Peak Elevation approximately 3,400 meters.</p>
 
       <details class="win95-attach" style="margin-top: 0.8rem;" open>
         <summary>[ ATT: ATTACHMENT_0.JPG ]</summary>
-        <div class="img-window draggable-window" id="win-himalayas" role="region" aria-labelledby="win-himalayas-title">
-          <div class="photo-titlebar window-drag-handle" id="win-himalayas-title">
+        <div class="img-window draggable-window" id="win-himalayas" role="region" aria-label="Himalayas Travel Image Window">
+          <div class="photo-titlebar window-drag-handle">
             <span>BMPVIEW.EXE &mdash; HIMALAYAS.JPG</span>
-            <span class="win-controls">
-              <button type="button" class="win-control-btn min-win-btn" title="Minimize window" aria-label="Minimize Himalayas travel image window" aria-expanded="true">_</button>
-              <button type="button" class="win-control-btn max-win-btn" title="Maximize window" aria-label="Maximize Himalayas travel image window" aria-expanded="false">□</button>
+            <span aria-hidden="true" class="win-controls">
+              <button type="button" class="win-control-btn min-win-btn" title="Minimize">_</button>
+              <button type="button" class="win-control-btn max-win-btn" title="Maximize">□</button>
             </span>
           </div>
           <div class="photo-body win-content-body">
@@ -809,9 +773,9 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
     <div class="dialog-box draggable-window" id="win-independence" role="dialog" aria-labelledby="support-dialog-title">
       <div class="dialog-header window-drag-handle" id="support-dialog-title">
         <span>C:\&gt; INDEPENDENCE.EXE</span>
-        <span class="win-controls">
-          <button type="button" class="win-control-btn min-win-btn" title="Minimize window" aria-label="Minimize independence support dialog" aria-expanded="true">_</button>
-          <button type="button" class="win-control-btn max-win-btn" title="Maximize window" aria-label="Maximize independence support dialog" aria-expanded="false">□</button>
+        <span aria-hidden="true" class="win-controls">
+          <button type="button" class="win-control-btn min-win-btn" title="Minimize">_</button>
+          <button type="button" class="win-control-btn max-win-btn" title="Maximize">□</button>
         </span>
       </div>
       <div class="dialog-body win-content-body">
@@ -835,8 +799,8 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
     <div class="guestbook-box" id="guestbook" role="form" aria-label="Guestbook Form">
       <div class="guestbook-title">[ BOOK: Sign the Guestbook / Leave a Note ]</div>
       <form action="https://formsubmit.co/alishabarretto@protonmail.com" method="POST">
-        <input type="text" name="_honey" style="display:none" tabIndex="-1" aria-hidden="true" />
-        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_captcha" value="false">
 
         <div class="guestbook-field">
           <label for="gb-name">YOUR NAME / HANDLE:</label>
@@ -879,23 +843,23 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
   </div>
 </article>
 
-<div class="win95-start-menu" id="start-menu" aria-hidden="true" role="menu">
+<div class="win95-start-menu" id="start-menu">
   <div class="start-menu-inner">
-    <div class="start-sidebar" aria-hidden="true">WINDOWS 95</div>
+    <div class="start-sidebar">WINDOWS 95</div>
     <div class="start-menu-items">
-      <a href="#flowplanned" onclick="toggleStartMenu()" class="start-item" role="menuitem">[GO] Projects Index</a>
-      <a href="/essays/" onclick="toggleStartMenu()" class="start-item" role="menuitem">[DOC] Essays &amp; Books</a>
-      <a href="/archives/" onclick="toggleStartMenu()" class="start-item" role="menuitem">[DIR] Archive Index</a>
-      <a href="#guestbook" onclick="toggleStartMenu()" class="start-item" role="menuitem">[BOOK] Sign Guestbook</a>
-      <a href="{{ "index.xml" | relURL }}" target="_blank" onclick="toggleStartMenu()" class="start-item" role="menuitem">[RSS] RSS Feed (.XML)</a>
+      <a href="#flowplanned" onclick="toggleStartMenu()" class="start-item">[GO] Projects Index</a>
+      <a href="/essays/" onclick="toggleStartMenu()" class="start-item">[DOC] Essays &amp; Books</a>
+      <a href="/archives/" onclick="toggleStartMenu()" class="start-item">[DIR] Archive Index</a>
+      <a href="#guestbook" onclick="toggleStartMenu()" class="start-item">[BOOK] Sign Guestbook</a>
+      <a href="{{ "index.xml" | relURL }}" target="_blank" onclick="toggleStartMenu()" class="start-item">[RSS] RSS Feed (.XML)</a>
     </div>
   </div>
 </div>
 
 <div class="win95-taskbar" role="navigation" aria-label="System Taskbar">
   <div class="taskbar-left">
-    <button onclick="toggleStartMenu()" class="start-menu-btn" aria-label="Open Windows Start Menu" aria-expanded="false" id="start-menu-button">
-      <span aria-hidden="true">[::]</span> <strong>Start</strong>
+    <button onclick="toggleStartMenu()" class="start-menu-btn" aria-label="Open Start Menu">
+      <span>[::]</span> <strong>Start</strong>
     </button>
     <div class="taskbar-middle">
       <span class="taskbar-app">[EXE] ALISHABARRETTO.EXE</span>
@@ -904,8 +868,7 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
   <div class="sys-tray">
     <span aria-hidden="true">[SND]</span>
     <span aria-hidden="true">[DSK]</span>
-    <!-- PREVENT ANNOUNCEMENT SPAM ON SCREEN READERS -->
-    <span id="win95-clock" aria-live="off">12:00:00 AM</span>
+    <span id="win95-clock">12:00:00 AM</span>
   </div>
 </div>
 
@@ -926,12 +889,7 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
 
   function toggleStartMenu() {
     const menu = document.getElementById('start-menu');
-    const btn = document.getElementById('start-menu-button');
-    if (menu && btn) {
-      const isOpen = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      menu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    }
+    if (menu) menu.classList.toggle('open');
   }
 
   /* DRAGGABLE RETRO WINDOWS */
@@ -966,32 +924,24 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
     }
   });
 
-  /* MINIMIZE / MAXIMIZE WINDOW CONTROLS WITH ARIA STATE UPDATES */
+  /* MINIMIZE / MAXIMIZE WINDOW CONTROLS */
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('min-win-btn')) {
       const win = e.target.closest('.draggable-window');
-      if (win) {
-        const isMinimized = win.classList.toggle('win-minimized');
-        e.target.setAttribute('aria-expanded', !isMinimized);
-      }
+      if (win) win.classList.toggle('win-minimized');
     }
 
     if (e.target.classList.contains('max-win-btn')) {
       const win = e.target.closest('.draggable-window');
-      if (win) {
-        const isMaximized = win.classList.toggle('maximized');
-        e.target.setAttribute('aria-expanded', isMaximized);
-      }
+      if (win) win.classList.toggle('maximized');
     }
   });
 
   document.addEventListener('click', function (e) {
     const menu = document.getElementById('start-menu');
-    const btn = document.getElementById('start-menu-button');
+    const btn = document.querySelector('.start-menu-btn');
     if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
       menu.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      menu.setAttribute('aria-hidden', 'true');
     }
 
     if (e.target.classList.contains('close-drawer-btn')) {
@@ -1007,12 +957,6 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
     if (e.key === 'Escape') {
-      const menu = document.getElementById('start-menu');
-      if (menu && menu.classList.contains('open')) {
-        toggleStartMenu();
-        return;
-      }
-
       const openDetails = document.querySelectorAll('details.win95-attach[open]');
       if (openDetails.length > 0) {
         const activeDetails = openDetails[openDetails.length - 1];
@@ -1033,6 +977,3 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
   });
 </script>
 {{ end }}
-
-</body>
-</html>
