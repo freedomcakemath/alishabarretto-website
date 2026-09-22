@@ -129,15 +129,52 @@
         outline-offset: 3px !important;
       }
 
+      /* HIGH CONTRAST / DARK MODE FIXES */
       body.dark-mode {
-        background-color: #0d0d0d !important;
+        --primary: #00ff66 !important;
+        --secondary: #00cc52 !important;
+        --theme: #000000 !important;
+        --entry: #0a0a0a !important;
+        --border: #00ff66 !important;
+        background-color: #000000 !important;
         color: #00ff66 !important;
       }
-      body.dark-mode *, body.dark-mode a {
-        background-color: #0d0d0d !important;
+      
+      body.dark-mode a {
+        color: #00ff66 !important;
+      }
+
+      body.dark-mode .photo-titlebar,
+      body.dark-mode .dialog-header,
+      body.dark-mode .start-sidebar,
+      body.dark-mode details.win95-attach[open] summary,
+      body.dark-mode .start-item:hover,
+      body.dark-mode .dialog-btn:hover {
+        background-color: #00ff66 !important;
+        color: #000000 !important;
+      }
+
+      body.dark-mode .win-control-btn {
+        border-color: #000000 !important;
+        color: #000000 !important;
+      }
+
+      body.dark-mode input, 
+      body.dark-mode textarea {
+        background-color: #0a0a0a !important;
         color: #00ff66 !important;
         border-color: #00ff66 !important;
-        box-shadow: none !important;
+      }
+
+      /* OS LEVEL FORCED HIGH CONTRAST MODE */
+      @media (forced-colors: active) {
+        .dialog-btn, .photo-window, .sticky-note-card, .guestbook-box, .compliance-footer {
+          border: 2px solid CanvasText !important;
+        }
+        .photo-titlebar, .dialog-header {
+          background-color: Highlight !important;
+          color: HighlightText !important;
+        }
       }
 
       /* DESKTOP & TABLET MARGIN GUTTERS: STICKY NOTES LEFT, IMAGES RIGHT */
@@ -378,8 +415,8 @@
       .guestbook-field input,
       .guestbook-field textarea,
       .micro-badge {
-        background-color: transparent !important;
-        box-shadow: none !important;
+        background-color: transparent;
+        box-shadow: none;
       }
 
       @media print {
@@ -419,8 +456,8 @@
       }
       details.win95-attach[open] summary {
         border-style: solid;
-        background-color: var(--primary) !important;
-        color: var(--theme) !important;
+        background-color: var(--primary);
+        color: var(--theme);
       }
       details.win95-attach summary {
         cursor: pointer; color: var(--primary); border: 1px dashed var(--primary);
