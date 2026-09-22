@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
 
-  <!-- FAVICON CONFIGURATION -->
-  <link rel="icon" type="image/webp" href="{{ "/images/profile.webp" | relURL }}">
+  <!-- FAVICON CONFIGURATION (SQUARE ASPECT RATIO PRESERVATION) -->
+  <link rel="icon" type="image/webp" sizes="32x32" href="{{ "/images/profile.webp" | relURL }}">
+  <link rel="icon" type="image/webp" sizes="192x192" href="{{ "/images/profile.webp" | relURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "/images/profile.webp" | relURL }}">
   <link rel="shortcut icon" href="{{ "/images/profile.webp" | relURL }}">
 </head>
 <body>
@@ -333,12 +335,12 @@
         padding: 0.8rem; text-align: center; background-color: var(--entry);
       }
       .profile-img {
-        width: 160px; height: 160px; object-fit: cover;
+        width: 160px; height: 160px; object-fit: cover; object-position: center;
         border: 2px solid var(--primary); display: block; margin: 0 auto;
         image-rendering: pixelated;
       }
       .window-img {
-        width: 100%; height: auto; border: 1px solid var(--primary); display: block; image-rendering: pixelated;
+        width: 100%; height: auto; object-fit: cover; border: 1px solid var(--primary); display: block; image-rendering: pixelated;
       }
 
       .photo-statusbar {
