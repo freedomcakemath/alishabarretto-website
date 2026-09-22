@@ -24,6 +24,9 @@ buildFuture = true
     name = "bluesky"
     url = "https://bsky.app/profile/alishabarretto.bsky.social"
   [[params.socialIcons]]
+    name = "mastodon"
+    url = "https://mastodon.social/@alishabarretto"
+  [[params.socialIcons]]
     name = "email"
     url = "mailto:alishabarretto@protonmail.com"
 
