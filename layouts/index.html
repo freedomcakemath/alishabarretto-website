@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+
+  <!-- FAVICON CONFIGURATION -->
+  <link rel="icon" type="image/webp" href="{{ "/images/profile.webp" | relURL }}">
+  <link rel="shortcut icon" href="{{ "/images/profile.webp" | relURL }}">
+</head>
+<body>
+
 {{ define "main" }}
 <a href="#main-content" class="skip-link">[ SKIP TO MAIN CONTENT (TAB + ENTER) ]</a>
 
@@ -977,3 +990,6 @@ Took a few months off after Basileia and the Happy Zoned attempt. Rented a quiet
   });
 </script>
 {{ end }}
+
+</body>
+</html>
