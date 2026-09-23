@@ -2,6 +2,7 @@
 title: "You Could Skip the Person"
 date: 2026-09-15
 draft: false
+canonicalURL: "https://alishabarretto.substack.com/p/you-could-skip-the-person"
 description: "Why communities turned transactional once money made strangers enough."
 ---
 
@@ -33,5 +34,3 @@ A world that only knows how to transact will keep making full rooms and thin day
 
 The future will not belong to the pile of notes. It will belong to the communities that can still thrive when there is no receipt for the decent thing.
 
----
-*Posted in Substack*

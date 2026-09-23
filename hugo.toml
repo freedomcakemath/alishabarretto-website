@@ -4,13 +4,11 @@ title = 'Alisha Barretto'
 theme = 'PaperMod'
 
 enableRobotsTXT = true
-buildDrafts = true
+buildDrafts = false   # drafts stay off the live site
 buildFuture = true
+disableKinds = ["taxonomy", "term"]   # no empty /tags/ or /categories/ pages
 
-  env = 'production'
-  ShowSocials = true
-
-  # Restored Social Icons
+# Social icons
   [[params.socialIcons]]
     name = "x"
     url = "https://x.com/alisha_barretto"
@@ -26,9 +24,6 @@ buildFuture = true
   [[params.socialIcons]]
     name = "mastodon"
     url = "https://mastodon.social/@alishabarretto"
-  [[params.socialIcons]]
-    name = "email"
-    url = "mailto:alishabarretto@protonmail.com"
 
 # Header Navigation Menu
 [[menu.main]]
@@ -39,7 +34,7 @@ buildFuture = true
 
 [[menu.main]]
   identifier = "archives"
-  name = "Archives"
+  name = "Past work"
   url = "/archives/"
   weight = 20
 
@@ -48,10 +43,43 @@ buildFuture = true
     [markup.goldmark.renderer]
       unsafe = true
 
-
-
-
-
 [params]
-  defaultTheme = "light"
-  disableThemeToggle = true
+  # SEO: the homepage <title> and the default meta description
+  homeTitle = "Alisha Barretto: FlowPlanned, LoRaWAN projects and essays"
+  description = "I build FlowPlanned, a planner that runs entirely on your computer, plus LoRaWAN and solar projects. Before that I ran a skincare brand from my kitchen."
+  images = ["images/og-profile.jpg"]
+  env = "production"
+  ShowSocials = true
+  defaultTheme = "auto"        # follows the visitor's OS setting until they use the toggle
+  disableThemeToggle = false
+
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS", "llms"]
+
+# Structured data: tells search engines this site is a person, and which profiles are theirs
+# Site-wide footer link
+[params.footer]
+  text = "[Accessibility](/accessibility/) · [Privacy](/privacy/)"
+
+[params.schema]
+  publisherType = "Person"
+  sameAs = [
+    "https://x.com/alisha_barretto",
+    "https://alishabarretto.substack.com",
+    "https://medium.com/@alishabarretto",
+    "https://bsky.app/profile/alishabarretto.bsky.social",
+    "https://mastodon.social/@alishabarretto",
+  ]
+
+# Favicons (?v=2 makes browsers fetch the new face icon)
+[params.assets]
+  favicon = "/favicon.ico?v=2"
+  favicon16x16 = "/favicon-16x16.png?v=2"
+  favicon32x32 = "/favicon-32x32.png?v=2"
+  apple_touch_icon = "/apple-touch-icon.png?v=2"

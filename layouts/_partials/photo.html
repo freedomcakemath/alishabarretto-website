@@ -1,0 +1,5 @@
+{{- /* A captioned photo in a small window. Takes a dict: src, w, h, alt, caption. */ -}}
+<figure class="window window--figure">
+  <img src="{{ .src }}" alt="{{ .alt }}" width="{{ .w }}" height="{{ .h }}" loading="lazy" />
+  <figcaption>{{ .caption }}</figcaption>
+</figure>

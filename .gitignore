@@ -1,2 +1,5 @@
 public/
 .hugo_build.lock
+resources/_gen/
+# full-size photo originals, kept locally only
+image-originals/

@@ -2,7 +2,7 @@
 title: "Basileia"
 date: 2026-09-17
 draft: false
-summary: "Building an organic skincare brand from scratch, growing it through word-of-mouth, and handing it over during an international move."
+summary: "A skincare brand I built from my kitchen, grew by word of mouth, and handed to another founder when I moved."
 ---
 
 It started with frustration, not ambition.

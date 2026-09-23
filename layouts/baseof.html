@@ -1,0 +1,42 @@
+{{- /* Copy of PaperMod's baseof.html with a skip link added before the header. */ -}}
+{{- if lt hugo.Version "0.146.0" }}
+{{- errorf "=> hugo v0.146.0 or greater is required for hugo-PaperMod to build " }}
+{{- end -}}
+
+<!DOCTYPE html>
+{{- $theme := site.Params.defaultTheme | default "auto" }}
+{{- if eq $theme "dark" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="dark">
+{{- else if eq $theme "light" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="light">
+{{- else }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="auto">
+{{- end }}
+
+<head>
+    {{- partial "head.html" . }}
+</head>
+
+{{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) }}
+<body class="list" id="top">
+{{- else }}
+<body id="top">
+{{- end }}
+    {{- /* Added: first tab stop on every page */}}
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    {{ partialCached "header.html" . .Page -}}
+    <main class="main{{ if .IsHome }} main--wide{{ end }}" id="main-content" tabindex="-1">
+        {{- block "main" . }}{{ end }}
+    </main>
+    {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
+    <script>
+      /* Builds email links from two parts, so the address never appears in the HTML */
+      document.querySelectorAll('.js-email').forEach(function (a) {
+        var address = a.dataset.u + '@' + a.dataset.d;
+        a.href = 'mailto:' + address;
+        if (a.dataset.show) a.textContent = address;
+      });
+    </script>
+</body>
+
+</html>
