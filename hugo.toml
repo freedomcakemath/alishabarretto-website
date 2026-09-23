@@ -83,3 +83,7 @@ disableKinds = ["taxonomy", "term"]   # no empty /tags/ or /categories/ pages
   favicon16x16 = "/favicon-16x16.png?v=2"
   favicon32x32 = "/favicon-32x32.png?v=2"
   apple_touch_icon = "/apple-touch-icon.png?v=2"
+
+# Search engine ownership verification (a meta tag only; no analytics or tracking)
+[params.analytics.google]
+  SiteVerificationTag = "J0t2hXy356b9YkgcKYlxjA6M_jW0u7dBng5Sap4nTas"
