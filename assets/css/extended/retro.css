@@ -146,6 +146,52 @@ details.drawer summary, .close-drawer-btn, .note-form label, .crumbs, .aside-tit
   border-bottom: 5px double var(--primary);
 }
 
+/* FlowPlanned diagram: floating interface pieces over a dot grid, explaining local-first */
+.fp-diagram { margin: 0.4rem 0 1.6rem; }
+.fp-stage {
+  position: relative; aspect-ratio: 16 / 8.5;
+  background-image: radial-gradient(var(--tertiary) 1px, transparent 1.4px);
+  background-size: 14px 14px; background-position: 7px 7px;
+  border-top: 1px solid var(--primary); border-bottom: 1px solid var(--border);
+}
+.fp-pc { position: absolute; left: 6%; top: 14%; width: 50%; }
+.fp-items { list-style: none; margin: 0; padding: 0.4rem 0.9rem 0.6rem; background: var(--entry); }
+.fp-items li {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.7rem;
+  padding: 0.55rem 0; border-bottom: 1px dashed var(--tertiary); margin: 0;
+}
+.fp-items li:last-child { border-bottom: 0; }
+.fp-icon {                       /* a tiny page: ruled lines */
+  width: 22px; height: 26px; border: 2px solid var(--primary); background:
+    linear-gradient(var(--primary), var(--primary)) 3px 6px / 12px 2px no-repeat,
+    linear-gradient(var(--primary), var(--primary)) 3px 11px / 12px 2px no-repeat,
+    linear-gradient(var(--primary), var(--primary)) 3px 16px / 8px 2px no-repeat, var(--theme);
+}
+.fp-icon--ai { border-radius: 50%; width: 24px; height: 24px; background: var(--accent); border-color: var(--accent); }
+.fp-what { font-family: var(--font-display); font-stretch: 90%; font-weight: 700; font-size: 0.95rem; }
+.fp-where {
+  font-family: var(--font-display); font-stretch: 115%; font-weight: 700; font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
+}
+.fp-cloud {
+  position: absolute; right: 6%; top: 8%; width: 26%;
+  border-style: dashed; border-color: var(--secondary); box-shadow: none;
+}
+.fp-cloud .window-title { background: var(--border); color: var(--secondary); }
+.fp-cloud p { margin: 0; padding: 0.6rem 0.8rem; font-style: italic; font-size: 0.9rem; color: var(--secondary); }
+.fp-chip {
+  position: absolute; margin: 0;
+  font-family: var(--font-display); font-stretch: 110%; font-weight: 700; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 0.45rem 0.8rem; border: 2px solid var(--primary); background: var(--theme);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.fp-chip--signup { right: 7%; top: 48%; }
+.fp-chip--signup s { color: var(--secondary); text-decoration-thickness: 2px; }
+.fp-chip-note { margin-left: 0.5rem; color: var(--accent); }
+.fp-chip--offline { left: 12%; bottom: 10%; background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.fp-diagram figcaption { font-size: 0.72rem; color: var(--secondary); padding-top: 0.5rem; }
+
 /* Front page: lead story (1-8) and a right-hand column (9-12) divided by a column rule */
 .front { padding: 2rem 0 1rem; }
 .lead { grid-column: 1 / 9; }
@@ -441,6 +487,10 @@ body.dark-mode a { color: #00ff66 !important; }
   .columns { column-count: 1; text-align: left; hyphens: manual; }
   .second { display: block; }
   .obit--main, .obit--second { grid-column: 1 / -1; }
+  .fp-stage { aspect-ratio: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px 12px; }
+  .fp-pc, .fp-cloud, .fp-chip { position: static; width: auto; }
+  .fp-pc { align-self: stretch; }
+  .fp-cloud { min-width: 55%; }
   .obit--second { border-left: 0; padding-left: 0; border-top: 1px solid var(--primary); padding-top: 1.4rem; margin-top: 1rem; }
   .classifieds { display: block; }
   .ad + .ad { border-left: 0; border-top: 1px solid var(--primary); }

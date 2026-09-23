@@ -22,10 +22,25 @@
         <h2 class="headline" id="lead-title">A planner that works like paper</h2>
         <p class="deck">Japanese paper planner brands are talking about licensing it.</p>
 
-        <!-- Replace with the FlowPlanned screenshot when it's ready -->
-        <figure class="lead-photo">
-          <div class="shot-placeholder" role="img" aria-label="FlowPlanned screenshot coming soon">Screenshot coming soon</div>
-          <figcaption>FlowPlanned, running locally on a PC.</figcaption>
+        <!-- How FlowPlanned works, drawn as floating interface pieces (idea from voca.city's hero).
+             Swap for a real screenshot later: a <figure class="lead-photo"> with the image and a caption. -->
+        <figure class="fp-diagram" aria-labelledby="fp-caption">
+          <div class="fp-stage">
+            <div class="window fp-pc">
+              <div class="window-title"><span>This PC</span></div>
+              <ul class="fp-items">
+                <li><span class="fp-icon" aria-hidden="true"></span><span class="fp-what">Your planner pages</span><span class="fp-where">stay here</span></li>
+                <li><span class="fp-icon fp-icon--ai" aria-hidden="true"></span><span class="fp-what">The AI</span><span class="fp-where">runs here</span></li>
+              </ul>
+            </div>
+            <div class="window fp-cloud">
+              <div class="window-title"><span>Cloud</span></div>
+              <p>Not used</p>
+            </div>
+            <p class="fp-chip fp-chip--signup"><s>Sign up</s><span class="visually-hidden">: not needed</span> <span class="fp-chip-note">No account</span></p>
+            <p class="fp-chip fp-chip--offline">Works offline</p>
+          </div>
+          <figcaption id="fp-caption">How FlowPlanned works: your pages and the AI both stay on your PC. An illustration, not a screenshot.</figcaption>
         </figure>
 
         <div class="columns">
