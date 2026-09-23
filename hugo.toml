@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://alishabarretto.statichost.page/'
 locale = 'en-us'
 title = 'Alisha Barretto'
 theme = 'PaperMod'
