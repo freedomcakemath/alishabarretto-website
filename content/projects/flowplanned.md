@@ -2,7 +2,7 @@
 title: "FlowPlanned"
 date: 2026-09-17
 draft: false
-summary: "A local-first digital planner built to feel like a paper notebook, powered entirely on your machine with local AI."
+summary: "A local planner for your PC that behaves like a paper notebook. Everything runs on your machine, AI included."
 ---
 
 A digital planner that behaves like a paper notebook.

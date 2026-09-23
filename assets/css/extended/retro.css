@@ -1,0 +1,458 @@
+/* ==========================================================================
+   A newspaper read on a Windows 95 desktop.
+   Newspaper structure for the words (masthead, columns, rules, kickers, decks);
+   Windows 95 for the frame (windows around photos and forms, the taskbar).
+   Type: Archivo (width axis) for headlines, labels and chrome;
+         Alegreya for reading.
+   ========================================================================== */
+
+/* ACCESSIBILITY */
+html { scroll-padding-bottom: 56px; } /* keeps focused and jumped-to content clear of the taskbar */
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.skip-link {
+  position: fixed; top: -48px; left: 0;
+  background: var(--accent); color: var(--on-accent);
+  padding: 8px 12px; font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+  z-index: 99999; text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+main:focus { outline: none; } /* skip-link target */
+a:focus-visible, button:focus-visible, summary:focus-visible,
+input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+/* Links inside text are underlined so they don't rely on colour alone */
+.main a:not(.btn):not(.taskbar-item) { text-decoration: underline; text-underline-offset: 0.15em; }
+
+/* NEWSPAPER TYPE ROLES */
+.label, .kicker, .folio, .dateline, .obit-dates, .status-tag, .window-title, .btn, .taskbar-item,
+details.drawer summary, .close-drawer-btn, .note-form label, .crumbs, .aside-title,
+.site-notes h2, figcaption, .meta, .classifieds-head, .section-name, .headline, .nameplate, .obit-name, .minor-head {
+  font-family: var(--font-display);
+}
+.label {
+  font-stretch: 125%; font-weight: 700; font-size: 0.68rem;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--secondary); margin: 0;
+}
+.kicker {                      /* the small line above a headline */
+  font-stretch: 125%; font-weight: 700; font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+.headline {
+  font-stretch: 75%; font-weight: 800;
+  font-size: clamp(2rem, 3.8vw, 3.3rem); line-height: 1; letter-spacing: -0.005em;
+  margin: 0 0 0.8rem; text-wrap: balance;
+}
+.headline--small { font-size: clamp(1.4rem, 2vw, 1.7rem); line-height: 1.08; }
+.deck {                        /* the standfirst under a headline */
+  font-size: 1.2rem; line-height: 1.4; font-style: italic; color: var(--secondary);
+  margin: 0 0 1.2rem; max-width: 36em; text-wrap: pretty;
+}
+.dateline { font-stretch: 110%; font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.meta { font-stretch: 110%; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary); }
+
+/* WINDOWS */
+.window {
+  border: 2px solid var(--primary);
+  background: var(--theme);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.window-title {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-stretch: 110%; font-weight: 700; font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 0.7rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.window-title h2 { font: inherit; margin: 0; color: inherit; }
+.main .window-title a { color: var(--on-accent); }
+.window-body { padding: 1.2rem; }
+.window-body > :last-child { margin-bottom: 0; }
+
+.window--photo { max-width: 220px; margin: 0 0 1rem; }
+.window--photo .window-body { padding: 0.7rem; background: var(--entry); }
+.profile-img {
+  width: 160px; height: 160px; object-fit: cover;
+  border: 2px solid var(--primary); display: block; margin: 0 auto;
+}
+.window-img { width: 100%; height: auto; display: block; }
+
+.window--figure { margin: 0; padding: 4px; }
+.window--figure img { width: 100%; height: auto; display: block; }
+.window--figure figcaption {
+  font-stretch: 100%; font-size: 0.7rem; font-weight: 600; line-height: 1.3;
+  color: var(--secondary); padding: 6px 2px 2px;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  color: var(--primary);
+  background: var(--theme);
+  font-stretch: 110%; font-size: 0.74rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid var(--primary);
+  box-shadow: 2px 2px 0 var(--shadow);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn--accent { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn--small { padding: 0.3rem 0.7rem; font-size: 0.68rem; }
+.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn:active { box-shadow: none; transform: translate(2px, 2px); }
+.action-bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 1rem; }
+.social-icons { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 1rem; }
+.status-tag {
+  font-stretch: 115%; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+  padding: 1px 5px; border: 1px solid var(--secondary);
+  color: var(--secondary); text-transform: uppercase; white-space: nowrap;
+}
+
+/* ==========================================================================
+   HOMEPAGE: THE FRONT PAGE (12-column grid; each section composes it differently)
+   ========================================================================== */
+.main.main--wide { max-width: none; padding: 0; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.grid > * { grid-column: 1 / -1; min-width: 0; }
+
+/* Masthead: folio line, nameplate, double rule */
+.masthead { padding-top: 1.4rem; }
+.folio {
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  font-stretch: 115%; font-weight: 600; font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--secondary);
+  border-bottom: 1px solid var(--primary); padding-bottom: 0.5rem; margin: 0;
+}
+.nameplate {
+  text-align: center;
+  font-stretch: 62%; font-weight: 900;
+  font-size: clamp(3rem, 10.6vw, 9.6rem);
+  line-height: 0.86; letter-spacing: -0.005em; text-transform: uppercase;
+  margin: 0; padding: 0.9rem 0 1rem;
+  border-bottom: 5px double var(--primary);
+}
+
+/* Front page: lead story (1-8) and a right-hand column (9-12) divided by a column rule */
+.front { padding: 2rem 0 1rem; }
+.lead { grid-column: 1 / 9; }
+.lead-photo { margin: 0 0 1.4rem; }
+.lead-photo figcaption { font-size: 0.72rem; color: var(--secondary); padding-top: 0.4rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+.shot-placeholder {
+  border: 2px dashed var(--tertiary); background: var(--entry);
+  color: var(--secondary);
+  aspect-ratio: 16 / 7;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-stretch: 115%; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.columns {                      /* newspaper body copy in two ruled columns */
+  column-count: 2; column-gap: 28px; column-rule: 1px solid var(--border);
+  text-align: justify; hyphens: auto;
+}
+.columns p { margin: 0 0 0.9rem; }
+.columns .window--figure { break-inside: avoid; margin: 0.2rem 0 1rem; }
+.columns .row-action { text-align: left; font-style: italic; }
+
+.second {
+  grid-column: 9 / 13;
+  border-left: 1px solid var(--primary);
+  padding-left: 28px;
+}
+.writer { padding-bottom: 1.4rem; margin-bottom: 1.4rem; border-bottom: 1px solid var(--primary); }
+.writer-bio { font-size: 1rem; line-height: 1.5; margin: 0 0 1rem; }
+.brief p { font-size: 1rem; line-height: 1.5; margin: 0 0 0.9rem; }
+
+/* The feature: the one full-bleed band. Photo left, text right; the photo stretches to the text's height. */
+.feature {
+  background: var(--band); color: var(--on-band);
+  display: grid; grid-template-columns: 5fr 7fr;
+  margin: 3.5rem 0 1rem;
+}
+.feature-photo { margin: 0; position: relative; min-height: 520px; }
+.feature-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.feature-photo figcaption {
+  position: absolute; left: 0; bottom: 0;
+  background: var(--band); color: var(--on-band);
+  font-size: 0.7rem; font-weight: 600; padding: 0.35rem 0.7rem;
+}
+.feature-text { padding: 3.5rem 32px 3rem 48px; max-width: 40em; }
+.feature .kicker, .feature .headline { color: var(--on-band); }
+.feature .deck { color: var(--on-band); opacity: 0.85; }
+.feature-text > p:not(.kicker):not(.deck) { font-size: 1.15rem; line-height: 1.55; margin: 0 0 1rem; max-width: 32em; }
+.feature-inset { max-width: 180px; margin-top: 1.4rem; }
+.feature .window--figure { border-color: var(--on-band); }
+.feature .window--figure figcaption { color: var(--primary); }
+
+/* Section heads for the inside pages of the front page */
+.section-head {
+  grid-column: 1 / -1;
+  border-top: 5px double var(--primary);
+  padding-top: 0.8rem; margin: 2.5rem 0 1.6rem;
+  display: flex; align-items: baseline; gap: 1.2rem; flex-wrap: wrap;
+}
+.section-name {
+  font-stretch: 62%; font-weight: 900; text-transform: uppercase;
+  font-size: clamp(2rem, 4.2vw, 3.2rem); line-height: 1; margin: 0;
+}
+.section-head .deck { margin: 0; font-size: 1.05rem; }
+
+/* Obituaries: a wider main entry (1-7), a narrower one (8-12), column rule between */
+.obit { align-self: start; }
+.obit p { margin: 0 0 0.8rem; max-width: 34em; }
+.obit--main { grid-column: 1 / 8; }
+.obit--main .window--figure { float: right; width: 42%; margin: 0.3rem 0 0.8rem 1.2rem; }
+.obit--second { grid-column: 8 / 13; border-left: 1px solid var(--primary); padding-left: 28px; }
+.obit--second .window--figure { margin: 0 0 1rem; }
+.obit-name {
+  font-stretch: 85%; font-weight: 800; font-size: 1.6rem; line-height: 1.1;
+  text-transform: uppercase; margin: 0 0 0.6rem;
+}
+.obit-dates { display: block; font-stretch: 115%; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--secondary); margin-top: 0.3rem; }
+.more-link { grid-column: 1 / -1; margin: 1.4rem 0 0; font-style: italic; }
+
+/* Opinion (1-7) and Classifieds (9-12) */
+.opinion-main { grid-column: 1 / 8; }
+.opinion-main .section-head { margin-bottom: 1rem; }
+.op-list { list-style: none; margin: 0; padding: 0; }
+.op-list li { padding: 1rem 0; border-bottom: 1px solid var(--border); margin: 0; }
+.op-list h3 { font-family: var(--font-display); font-stretch: 85%; font-weight: 800; font-size: 1.45rem; line-height: 1.1; margin: 0 0 0.35rem; }
+.main .op-list h3 a { color: var(--primary); text-decoration: none; }
+.main .op-list h3 a:hover { text-decoration: underline; }
+.op-list .desc { font-style: italic; color: var(--secondary); margin: 0 0 0.3rem; }
+.minor-head { font-stretch: 125%; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 2rem 0 0.5rem; }
+.opinion-main > p { max-width: 34em; margin: 0 0 0.8rem; }
+
+.classifieds {
+  grid-column: 9 / 13; align-self: start;
+  border: 2px solid var(--primary); margin-top: 2.5rem;
+}
+.classifieds-head {
+  font-stretch: 62%; font-weight: 900; text-transform: uppercase; font-size: 1.9rem; line-height: 1;
+  text-align: center; margin: 0; padding: 0.6rem; border-bottom: 5px double var(--primary);
+}
+.ad { padding: 1rem; border-bottom: 1px solid var(--primary); font-size: 0.95rem; line-height: 1.45; }
+.ad:last-child { border-bottom: 0; }
+.ad p { margin: 0.3rem 0 0.8rem; }
+.aside-note { font-size: 0.85rem; font-style: italic; color: var(--secondary); }
+.notes-list { list-style: none; margin: 0; padding: 0; }
+.notes-list li { font-size: 0.88rem; line-height: 1.4; padding: 0.5rem 0; border-top: 1px dashed var(--border); margin: 0; }
+.notes-list .label { display: block; margin-bottom: 2px; }
+
+/* Letters (1-7) and About this paper (9-12) */
+.letters { padding: 3rem 0 1rem; }
+.letters-window { grid-column: 1 / 8; }
+.site-notes { grid-column: 9 / 13; align-self: start; }
+
+/* ==========================================================================
+   SHARED COMPONENTS
+   ========================================================================== */
+
+/* DRAWERS ("Continued" stories) */
+details.drawer { margin: 0.6rem 0 0.8rem; clear: both; }
+details.drawer summary {
+  cursor: pointer; color: var(--primary); border: 1px dashed var(--primary);
+  padding: 4px 10px; display: inline-block; user-select: none;
+  font-stretch: 110%; font-weight: 700; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+details.drawer summary:hover,
+details.drawer[open] summary {
+  border-style: solid; background: var(--accent); border-color: var(--accent); color: var(--on-accent);
+}
+.drawer-body { margin-top: 1rem; font-size: 1rem; }
+.drawer-body p { margin: 0 0 0.9rem; }
+.drawer-footer {
+  margin-top: 1rem; padding-top: 0.6rem;
+  border-top: 1px dashed var(--border); text-align: right;
+}
+.close-drawer-btn {
+  background: transparent; color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 4px 10px; font-stretch: 110%; font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  cursor: pointer;
+}
+.close-drawer-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* NOTE FORM */
+.note-form label {
+  display: block; font-stretch: 115%; font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--secondary);
+  margin: 0 0 0.25rem;
+}
+.note-form .field { margin-bottom: 1rem; }
+.note-form input,
+.note-form textarea {
+  width: 100%; padding: 0.5rem; border: 2px solid var(--primary);
+  background: var(--theme); color: var(--primary);
+  font-family: var(--font-body); font-size: 1rem; box-sizing: border-box;
+}
+.form-note { font-size: 0.85rem; color: var(--secondary); margin: 0 0 1rem; }
+
+/* SITE NOTES */
+.site-notes { font-size: 0.9rem; color: var(--secondary); line-height: 1.5; }
+.site-notes h2 {
+  font-stretch: 125%; font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary);
+  margin: 0 0 0.2rem; padding-top: 0.6rem; border-top: 1px solid var(--primary);
+}
+.site-notes p { margin: 0 0 1rem; }
+
+/* TASKBAR: in-page navigation */
+.win95-taskbar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 36px;
+  border-top: 2px solid var(--primary); background: var(--entry);
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 6px; z-index: 9999;
+  box-sizing: border-box; overflow-x: auto;
+}
+.taskbar-item {
+  border: 1px solid var(--primary); padding: 3px 10px;
+  font-stretch: 110%; font-weight: 700; font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--primary); text-decoration: none; white-space: nowrap;
+}
+.taskbar-item:first-child { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.taskbar-item:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* INNER PAGES: essays (the opinion pages), projects, past work, 404 */
+.page { max-width: 700px; margin: 0 auto; padding: 1.5rem 0 4rem; }
+.page .window { margin-top: 1rem; }
+.crumbs {
+  font-stretch: 115%; font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--secondary); margin-bottom: 1.5rem;
+}
+.main .crumbs a { color: var(--primary); }
+.page-title {
+  font-family: var(--font-display); font-stretch: 62%; font-weight: 900; text-transform: uppercase;
+  font-size: clamp(2.4rem, 7vw, 3.8rem); line-height: 0.95; margin: 0 0 0.6rem;
+  padding-bottom: 0.6rem; border-bottom: 5px double var(--primary);
+}
+.page-lede { font-size: 1.1rem; font-style: italic; color: var(--secondary); margin-bottom: 2rem; }
+.page .section-label {
+  font-family: var(--font-display); font-stretch: 125%; font-weight: 700; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.08em; margin: 2.5rem 0 0.6rem;
+}
+.post-single .post-title {
+  font-family: var(--font-display); font-stretch: 78%; font-weight: 800;
+  font-size: clamp(1.9rem, 5vw, 2.7rem); line-height: 1.02; margin-bottom: 0.4rem; text-wrap: balance;
+}
+.post-single .post-deck { font-size: 1.15rem; font-style: italic; color: var(--secondary); margin: 0 0 0.6rem; }
+.post-single .post-meta { font-family: var(--font-display); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--secondary); }
+.post-single .post-content { font-family: var(--font-body); font-size: 19px; line-height: 1.6; }
+.post-single .post-content > p:first-of-type::first-letter {   /* drop cap */
+  float: left; font-family: var(--font-display); font-stretch: 62%; font-weight: 900;
+  font-size: 4.2em; line-height: 0.8; padding: 0.08em 0.1em 0 0; color: var(--accent);
+}
+.pull-quote {
+  float: right; width: 42%; margin: 0.4rem 0 1rem 1.4rem; padding: 0.8rem 0;
+  border-top: 5px double var(--primary); border-bottom: 1px solid var(--primary);
+  font-family: var(--font-display); font-stretch: 80%; font-weight: 800;
+  font-size: 1.35rem; line-height: 1.15; color: var(--primary);
+}
+.pull-quote p { margin: 0; }
+
+.ruled-list { list-style: none; margin: 0 0 2rem; padding: 0; border-top: 2px solid var(--primary); }
+.ruled-list > li { border-bottom: 1px solid var(--border); padding: 1rem 0; margin: 0; }
+.ruled-list .row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 0.5rem 1rem; flex-wrap: wrap; margin: 0;
+  font-family: var(--font-display); font-stretch: 85%; font-weight: 800; font-size: 1.3rem; line-height: 1.15;
+}
+.main .ruled-list .row a { color: var(--primary); }
+.ruled-list .meta { font-weight: 500; white-space: nowrap; }
+.ruled-list .desc { font-size: 1rem; font-style: italic; color: var(--secondary); margin: 0.35rem 0 0; line-height: 1.5; }
+
+/* HIGH-CONTRAST MODE (the homepage button) */
+body.dark-mode {
+  --primary: #00ff66 !important;
+  --secondary: #00cc52 !important;
+  --tertiary: #00cc52 !important;
+  --theme: #000000 !important;
+  --entry: #0a0a0a !important;
+  --border: #00ff66 !important;
+  --accent: #00ff66 !important;
+  --on-accent: #000000 !important;
+  --band: #000000 !important;
+  --on-band: #00ff66 !important;
+  --shadow: transparent !important;
+}
+body.dark-mode a { color: #00ff66 !important; }
+
+/* OS-LEVEL FORCED COLOURS */
+@media (forced-colors: active) {
+  .btn, .window { border: 2px solid CanvasText; }
+  .window-title { background-color: Highlight; color: HighlightText; }
+}
+
+@media print {
+  .skip-link, button, .win95-taskbar { display: none !important; }
+  .window { box-shadow: none; }
+  .feature { background: none; color: inherit; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   SMALLER SCREENS: kept last so these win over the rules above
+   ========================================================================== */
+
+/* Tablet: stack the front page's columns, keep two-column body copy */
+@media (max-width: 1023px) {
+  .grid { padding: 0 24px; column-gap: 20px; }
+  .lead, .second, .opinion-main, .classifieds, .letters-window, .site-notes { grid-column: 1 / -1; }
+  .columns { text-align: left; hyphens: manual; }   /* justified text opens gaps in narrow columns */
+  .second { border-left: 0; padding-left: 0; border-top: 1px solid var(--primary); padding-top: 1.4rem; margin-top: 1.4rem;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .writer { border-bottom: 0; margin: 0; padding: 0; }
+  .obit--main { grid-column: 1 / 8; }
+  .obit--second { grid-column: 8 / 13; padding-left: 20px; }
+  .classifieds { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; }
+  .classifieds-head { grid-column: 1 / -1; }
+  .ad { border-bottom: 0; }
+  .ad + .ad { border-left: 1px solid var(--primary); }
+  .site-notes { margin-top: 2rem; }
+  .feature { grid-template-columns: 1fr 1fr; }
+  .feature-text { padding: 2.5rem 24px 2.5rem 32px; }
+}
+
+/* Phones: one column, left-aligned (no justified text), in reading order */
+@media (max-width: 720px) {
+  .grid { padding: 0 16px; }
+  .nameplate { font-size: 13.4vw; padding: 0.7rem 0 0.8rem; }
+  .folio { font-size: 0.62rem; }
+  .columns { column-count: 1; text-align: left; hyphens: manual; }
+  .second { display: block; }
+  .obit--main, .obit--second { grid-column: 1 / -1; }
+  .obit--second { border-left: 0; padding-left: 0; border-top: 1px solid var(--primary); padding-top: 1.4rem; margin-top: 1rem; }
+  .classifieds { display: block; }
+  .ad + .ad { border-left: 0; border-top: 1px solid var(--primary); }
+  .writer { border-bottom: 1px solid var(--primary); padding-bottom: 1.4rem; margin-bottom: 1.4rem; }
+  .feature { grid-template-columns: 1fr; margin-left: -0.5rem; margin-right: -0.5rem; } /* full-bleed past the body's phone padding */
+  .feature-photo { min-height: 0; aspect-ratio: 4 / 5; }
+  .feature-photo img { object-position: center 20%; }
+  .feature-text { padding: 2rem 16px; }
+  .obit--main .window--figure { float: none; width: 100%; max-width: 360px; margin: 0 0 1rem; }
+  .pull-quote { float: none; width: auto; margin: 1rem 0; }
+  .win95-taskbar { height: 40px; gap: 4px; padding: 0 4px; overflow-x: hidden; }
+  .taskbar-item { flex: 1 1 0; min-width: 0; text-align: center; padding: 5px 2px; font-size: 0.6rem; font-stretch: 85%; letter-spacing: 0; overflow: hidden; text-overflow: ellipsis; }
+  .page { padding-left: 0; padding-right: 0; }
+  .page .window-body { padding: 1rem 0.85rem; }   /* more width for reading on phones */
+}

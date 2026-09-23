@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{- /* Where "Close" and the back button go: projects belong to the archives page */ -}}
+{{- $back := cond (eq .Section "projects") (site.GetPage "/archives") .Parent }}
+<article class="post-single page">
+  <div class="window">
+    <div class="window-title">
+      <span>{{ .Title }}</span>
+      <a href="{{ with $back }}{{ .RelPermalink }}{{ else }}/{{ end }}" aria-label="Close and go back">Close</a>
+    </div>
+
+    <div class="window-body">
+      <header class="post-header" style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.8rem;">
+        <h1 class="post-title" style="font-size: 1.4rem; margin-bottom: 0.3rem;">{{ .Title }}</h1>
+        {{- with .Date }}
+        <div class="post-meta" style="font-size: 0.8rem; color: var(--secondary);">
+          <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 January 2006" }}</time>
+        </div>
+        {{- end }}
+      </header>
+
+      <div class="post-content md-content">
+        {{ .Content }}
+      </div>
+
+      {{- with .Params.canonicalURL }}
+      <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--secondary);">
+        First published on <a href="{{ . }}">Substack</a>.
+      </p>
+      {{- end }}
+
+      <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+        {{- with $back }}
+        <a href="{{ .RelPermalink }}" class="btn">&larr; {{ .Title }}</a>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</article>
+{{ end }}

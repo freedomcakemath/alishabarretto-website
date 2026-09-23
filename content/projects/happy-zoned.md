@@ -3,7 +3,7 @@ title: "Happy Zoned"
 date: 2026-09-17
 draft: false
 url: "/projects/happyzoned-postmortem/"
-summary: "Designing mobile caravan sleeping pods in Dubai to bridge the gap between traditional renting and high hotel prices."
+summary: "Caravan sleeping pods for budget stays in Dubai, and the zoning rules that stopped them."
 ---
 
 Dubai's rental market is pretty straightforward. You either rent an apartment, or you don't.

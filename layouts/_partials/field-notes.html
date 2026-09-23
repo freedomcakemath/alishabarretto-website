@@ -1,0 +1,12 @@
+{{- /* Pieces being written now, shown beside the writing section */ -}}
+{{- $notes := slice
+  (dict "topic" "Switching" "text" "Moving off Gmail and everything else that isn't mine to control, one service at a time.")
+  (dict "topic" "Travel gear" "text" "What's actually worth carrying across bags, countries, and the stuff that comes and goes.")
+  (dict "topic" "Off-grid" "text" "Solar, LoRaWAN, mesh radios.")
+  (dict "topic" "Recipes" "text" "One pan or five, whatever's local, and the recipes actually worth repeating.")
+-}}
+<ul class="notes-list">
+  {{- range $notes }}
+  <li><span class="label">{{ .topic }}</span> {{ .text }}</li>
+  {{- end }}
+</ul>

@@ -1,0 +1,14 @@
+{{- /* "Continued" drawer holding a project page's full write-up.
+       Takes a dict: "page" (the page path) and "label" (the summary text). */ -}}
+{{- $label := .label -}}
+{{- with site.GetPage .page }}
+<details class="drawer">
+  <summary>{{ $label | default "The full story" }}</summary>
+  <div class="drawer-body md-content">
+    {{ .Content }}
+    <div class="drawer-footer">
+      <button type="button" class="close-drawer-btn">Close<span class="visually-hidden"> {{ .Title }} story</span></button>
+    </div>
+  </div>
+</details>
+{{- end }}

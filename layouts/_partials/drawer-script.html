@@ -1,0 +1,24 @@
+{{- /* Closes <details> drawers: via their collapse button, or Escape for the last open one.
+       Takes the CSS selector of the drawers Escape should close. */ -}}
+<script>
+  function closeDrawer(details) {
+    details.open = false;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    details.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('close-drawer-btn')) {
+      const details = e.target.closest('details');
+      if (details) closeDrawer(details);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'Escape') {
+      const openDetails = document.querySelectorAll({{ printf "%s[open]" . }});
+      if (openDetails.length > 0) closeDrawer(openDetails[openDetails.length - 1]);
+    }
+  });
+</script>

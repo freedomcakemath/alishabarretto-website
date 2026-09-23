@@ -1,0 +1,26 @@
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+## Now
+
+- FlowPlanned (2025 to now): a local planner for PC that behaves like a paper notebook. It runs on your machine, the AI too, with no account. In licensing talks with Japanese paper planner brands.
+- LoRaWAN sensor projects and solar research: keeping small devices powered and talking without coverage or a subscription.
+
+## Past work
+
+{{- range where (where site.RegularPages "Section" "projects") "Title" "!=" "FlowPlanned" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Summary | plainify | htmlUnescape }}
+{{- end }}
+- Full list: {{ (site.GetPage "/archives").Permalink }}
+
+## Essays
+
+{{- range where site.RegularPages "Section" "essays" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Description }}{{ with .Params.canonicalURL }} (original: {{ . }}){{ end }}
+{{- end }}
+
+## Contact
+
+- The note form: {{ site.Home.Permalink }}#note
+- Substack: https://alishabarretto.substack.com

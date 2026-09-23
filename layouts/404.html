@@ -1,38 +1,16 @@
 {{- define "main" }}
-<div class="not-found-container" style="max-width: 650px; margin: 40px auto; padding: 20px; font-family: monospace;">
-    <div style="border: 1px dashed var(--tertiary); padding: 24px; border-radius: 4px; background: var(--entry);">
-        <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: var(--secondary);">
-            --------------------------------------------------<br>
-            RECORD STATUS : <span style="color: #e53e3e; font-weight: bold;">[404 - FILE NOT FOUND]</span><br>
-            DIRECTORY     : {{ .Permalink }}<br>
-            TIMESTAMP     : SYSTEM_NULL<br>
-            --------------------------------------------------
-        </p>
-
-        <h1 style="font-size: 1.5rem; margin: 16px 0 12px 0; font-family: monospace;">
-            &gt; ERROR_CODE: 404_PAGE_MISSING
-        </h1>
-
-        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--primary); margin-bottom: 24px;">
-            The requested document or path could not be located in the current archive. It may have been moved, renamed, or permanently purged from the system.
-        </p>
-
-        <div style="border-top: 1px dashed var(--tertiary); padding-top: 16px; margin-top: 16px;">
-            <p style="font-size: 0.85rem; color: var(--secondary); margin-bottom: 12px;">
-                &gt; EXECUTE_ACTION:
-            </p>
-            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                <a href="/" style="padding: 6px 12px; border: 1px solid var(--tertiary); text-decoration: none; color: var(--primary); background: var(--theme); font-size: 0.9rem;">
-                    [1] cd /root
-                </a>
-                <a href="/essays/" style="padding: 6px 12px; border: 1px solid var(--tertiary); text-decoration: none; color: var(--primary); background: var(--theme); font-size: 0.9rem;">
-                    [2] cd /essays
-                </a>
-                <a href="/archives/" style="padding: 6px 12px; border: 1px solid var(--tertiary); text-decoration: none; color: var(--primary); background: var(--theme); font-size: 0.9rem;">
-                    [3] cd /archives
-                </a>
-            </div>
-        </div>
+<article class="page">
+  <div class="window">
+    <div class="window-title"><span>Page not found</span></div>
+    <div class="window-body">
+      <h1 class="page-title" style="font-size: 1.4rem;">Nothing lives at this address.</h1>
+      <p class="page-lede">It may have moved, or it never existed.</p>
+      <div class="action-bar" style="justify-content: flex-start;">
+        <a href="/" class="btn">Home</a>
+        <a href="/essays/" class="btn">Essays</a>
+        <a href="/archives/" class="btn">Past work</a>
+      </div>
     </div>
-</div>
+  </div>
+</article>
 {{- end }}

@@ -1,0 +1,6 @@
+{{- /* Email link that keeps the address out of the HTML, so harvesting bots can't read it.
+       A script in baseof.html joins data-u and data-d into a mailto link on load.
+       Without JavaScript it points to the note form.
+       Takes a dict: "label" (link text; omit it to show the address itself) and "class". */ -}}
+<a href="/#note" class="js-email{{ with .class }} {{ . }}{{ end }}" data-u="alishabarretto" data-d="protonmail.com"{{ if not .label }} data-show="address"{{ end }}>{{ .label | default "my email (or use the note form)" }}</a>
+{{- /**/ -}}
