@@ -4,7 +4,7 @@
 
 ## Now
 
-- FlowPlanned (2025 to now): a local planner for PC that behaves like a paper notebook. It runs on your machine, the AI too, with no account. In licensing talks with Japanese paper planner brands.
+- FlowPlanned: a local planner for PC that behaves like a paper notebook. It runs on your machine, the AI too, with no account. In licensing talks with Japanese paper planner brands.
 - LoRaWAN sensor projects and solar research: keeping small devices powered and talking without coverage or a subscription.
 
 ## Past work

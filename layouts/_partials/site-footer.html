@@ -1,0 +1,20 @@
+<footer class="wrap grid foot">
+  <div class="why">
+    <h2>Why this site looks like this</h2>
+    <p>It's built to be light, like the things on it. One typeface, photos reduced to dots, no cookies and no tracking. Pages you've read once open again without a connection.</p>
+  </div>
+  <div class="ai">
+    <h2>On AI use</h2>
+    <p>I use AI to move faster on code and first drafts. The words and the design calls are mine.</p>
+  </div>
+  <div class="links">
+    <h2>Elsewhere</h2>
+    <ul>
+      {{- range site.Params.socialIcons }}
+      <li><a href="{{ .url }}">{{ if eq .name "x" }}X{{ else }}{{ .name | title }}{{ end }}</a></li>
+      {{- end }}
+      <li><a href="{{ "index.xml" | relURL }}">RSS</a></li>
+      <li><a href="/accessibility/">Accessibility</a> · <a href="/privacy/">Privacy</a></li>
+    </ul>
+  </div>
+</footer>

@@ -1,7 +1,7 @@
 ---
 title: "Accessibility"
 description: "What I've done to make this site accessible, how I tested it, what's still missing, and how to tell me about a problem."
-date: 2026-09-24
+date: 2026-09-28
 ---
 
 I want this site to be usable by everyone, including people who use a keyboard, a screen reader, zoom or high-contrast settings. I aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA.
@@ -13,13 +13,13 @@ I want this site to be usable by everyone, including people who use a keyboard, 
 - Links inside text are underlined, so they don't depend on colour.
 - Images have text descriptions. Pages use real headings, lists and landmarks.
 - The layout reflows down to 320px wide without sideways scrolling, and text can be zoomed.
-- There's a light and dark theme, which follows your system setting, and a separate high-contrast mode on the homepage.
+- There's a light and a dark theme, which follows your system setting.
 - If your system asks for reduced motion, smooth scrolling is turned off.
 - There are no single-key keyboard shortcuts that could clash with assistive technology.
 
 ## How I tested it
 
-On 24 September 2026 I checked every page with the automated tool axe-core against WCAG 2.0, 2.1 and 2.2 A and AA rules, in light and dark themes, at phone and desktop widths. It found no issues. I also checked keyboard order, focus, reflow at 320px and colour contrast by hand.
+On 28 September 2026, after the redesign, I checked every page with the automated tool axe-core against WCAG 2.0, 2.1 and 2.2 A and AA rules, in light and dark themes, at phone and desktop widths. It found no issues. I also checked on every page that the keyboard focus is always visible and that nothing scrolls sideways at 320px.
 
 ## What's not covered yet
 

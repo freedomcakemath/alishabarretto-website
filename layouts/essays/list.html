@@ -1,26 +1,23 @@
 {{ define "main" }}
-<article class="page">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Essays</nav>
+<header class="wrap grid page-head">
+  <p class="kicker">Essays</p>
+  <h1>Written along the way.</h1>
+  <p class="deck">Longer pieces, mostly about what technology does to how people treat each other. Most first appeared on my <a href="https://alishabarretto.substack.com">Substack</a>.</p>
+</header>
 
-  <h1 class="page-title">Essays</h1>
-  <p class="page-lede">
-    Longer pieces, mostly about what technology does to how people treat each other. Most first appeared on my <a href="https://alishabarretto.substack.com">Substack</a>.
-  </p>
-
-  <ul class="ruled-list">
+<section class="wrap grid essay-index" aria-label="All essays">
+  <ul class="essays">
     {{- range .Pages }}
     <li>
-      <div class="row">
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <time class="meta" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
-      </div>
-      {{- with .Description }}
-      <p class="desc">{{ . }}</p>
-      {{- end }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{- with .Description }}<p>{{ . }}</p>{{ end }}
     </li>
     {{- else }}
     <li>No essays published yet.</li>
     {{- end }}
   </ul>
-</article>
+  <aside class="essay-aside" aria-label="Follow along">
+    <p>New pieces go out on <a href="https://alishabarretto.substack.com">Substack</a> first. You can also follow this site by <a href="{{ "index.xml" | relURL }}">RSS</a>.</p>
+  </aside>
+</section>
 {{ end }}

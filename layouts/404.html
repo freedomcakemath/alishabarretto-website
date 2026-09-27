@@ -1,16 +1,7 @@
 {{- define "main" }}
-<article class="page">
-  <div class="window">
-    <div class="window-title"><span>Page not found</span></div>
-    <div class="window-body">
-      <h1 class="page-title" style="font-size: 1.4rem;">Nothing lives at this address.</h1>
-      <p class="page-lede">It may have moved, or it never existed.</p>
-      <div class="action-bar" style="justify-content: flex-start;">
-        <a href="/" class="btn">Home</a>
-        <a href="/essays/" class="btn">Essays</a>
-        <a href="/archives/" class="btn">Past work</a>
-      </div>
-    </div>
-  </div>
-</article>
+<header class="wrap grid page-head page-head--404">
+  <p class="kicker">Page not found</p>
+  <h1>Nothing lives at this address.</h1>
+  <p class="deck">It may have moved, or it never existed. Try <a href="/">the homepage</a>, <a href="/essays/">the essays</a> or <a href="/archives/">past work</a>.</p>
+</header>
 {{- end }}

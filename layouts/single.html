@@ -1,39 +1,27 @@
 {{ define "main" }}
-{{- /* Where "Close" and the back button go: projects belong to the archives page */ -}}
+{{- /* Essays, project write-ups, privacy and accessibility. Projects belong to the Past work page. */ -}}
 {{- $back := cond (eq .Section "projects") (site.GetPage "/archives") .Parent }}
-<article class="post-single page">
-  <div class="window">
-    <div class="window-title">
-      <span>{{ .Title }}</span>
-      <a href="{{ with $back }}{{ .RelPermalink }}{{ else }}/{{ end }}" aria-label="Close and go back">Close</a>
+{{- $kicker := cond (eq .Section "essays") "Essay" (cond (eq .Section "projects") "Past work" "") }}
+<article>
+  <header class="wrap grid page-head">
+    {{- with $kicker }}<p class="kicker"><a href="{{ with $back }}{{ .RelPermalink }}{{ end }}">{{ . }}</a></p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{- with (or .Description .Params.summary) }}<p class="deck">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="wrap grid article">
+    <div class="prose">
+      {{ .Content }}
     </div>
-
-    <div class="window-body">
-      <header class="post-header" style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.8rem;">
-        <h1 class="post-title" style="font-size: 1.4rem; margin-bottom: 0.3rem;">{{ .Title }}</h1>
-        {{- with .Date }}
-        <div class="post-meta" style="font-size: 0.8rem; color: var(--secondary);">
-          <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 January 2006" }}</time>
-        </div>
-        {{- end }}
-      </header>
-
-      <div class="post-content md-content">
-        {{ .Content }}
-      </div>
-
+    <aside class="article-aside" aria-label="About this page">
       {{- with .Params.canonicalURL }}
-      <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--secondary);">
-        First published on <a href="{{ . }}">Substack</a>.
-      </p>
+      <p>First published on <a href="{{ . }}">Substack</a>.</p>
       {{- end }}
-
-      <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
-        {{- with $back }}
-        <a href="{{ .RelPermalink }}" class="btn">&larr; {{ .Title }}</a>
-        {{- end }}
-      </div>
-    </div>
+      {{- with $back }}
+      <p><a href="{{ .RelPermalink }}">&larr; {{ if eq .Title "Essays & Writing" }}All essays{{ else }}{{ .Title }}{{ end }}</a></p>
+      {{- end }}
+      <p><a href="/#note">Write to me</a></p>
+    </aside>
   </div>
 </article>
 {{ end }}

@@ -1,227 +1,308 @@
 {{ define "main" }}
-{{- /* The homepage is set as a newspaper front page, read on a Windows 95 desktop:
-       newspaper structure for the words, windows for photos and forms, a taskbar for navigation. */ -}}
-<div class="paper">
-
-  <!-- MASTHEAD: folio line, nameplate, double rule -->
-  <header class="masthead">
-    <div class="grid">
-      <p class="folio">
-        <span>Southeast Asia</span>
-        <span>Last updated <time datetime="{{ site.Lastmod.Format "2006-01-02" }}">{{ site.Lastmod.Format "Monday, 2 January 2006" }}</time></span>
+{{- /* The homepage: "the route". One line runs down the page through the places the work happened. */ -}}
+  <!-- INTRO -->
+  <section class="wrap grid intro" aria-labelledby="intro-title">
+    <h1 id="intro-title"><span>Right now I build things</span> <span>that work without a signal.</span></h1>
+    <div class="lede">
+      <p><a href="#southeast-asia">FlowPlanned</a> is a planner that runs entirely on your PC, AI included. The <a href="#lorawan">LoRaWAN radios</a> I'm testing let small solar-powered devices keep talking where phones can't.</p>
+    </div>
+    <aside class="writer" aria-label="About me">
+      <picture class="dots">
+        <source srcset="/images/dither/profile-dark.png" media="(prefers-color-scheme: dark)">
+        <img src="/images/dither/profile-light.png" width="160" height="160" alt="Alisha Barretto">
+      </picture>
+      <ul>
+        <li><a href="#note">Write to me</a></li>
+        <li>{{ partial "email-link.html" (dict "label" "Email") }}</li>
+        <li><a href="https://alishabarretto.substack.com">Substack</a></li>
+        <li><a href="{{ "index.xml" | relURL }}">RSS</a></li>
+      </ul>
+      <p class="socials">
+        {{- range site.Params.socialIcons }}
+        <a href="{{ .url }}" rel="me" aria-label="{{ if eq .name "x" }}X{{ else }}{{ .name | title }}{{ end }}" title="{{ if eq .name "x" }}X{{ else }}{{ .name | title }}{{ end }}">{{ partial "svg.html" . }}</a>
+        {{- end }}
       </p>
-      <h1 class="nameplate">Alisha Barretto</h1>
-    </div>
-  </header>
+    </aside>
+  </section>
 
-  <!-- FRONT PAGE: lead story (1-8), the writer and a second story in the right column (9-12) -->
-  <section class="front" aria-label="Front page">
-    <div class="grid">
-      <article class="lead" id="flowplanned" aria-labelledby="lead-title">
-        <p class="kicker">Now building</p>
-        <h2 class="headline" id="lead-title">A planner that works like paper</h2>
-        <p class="deck">Japanese paper planner brands are talking about licensing it.</p>
+  <!-- OVERVIEW: the route in one line -->
+  <nav class="wrap overview" aria-label="The route">
+    <ol>
+      <li><a href="#india">India</a><span>A skincare brand</span></li>
+      <li><a href="#dubai">Dubai</a><span>Caravan sleeping pods</span></li>
+      <li><a href="#himalayas">The Himalayas</a><span>A few months off</span></li>
+      <li><a href="#southeast-asia">Southeast Asia</a><span>FlowPlanned and radios</span></li>
+    </ol>
+  </nav>
 
-        <!-- How FlowPlanned works, drawn as floating interface pieces (idea from voca.city's hero).
-             Swap for a real screenshot later: a <figure class="lead-photo"> with the image and a caption. -->
-        <figure class="fp-diagram" aria-labelledby="fp-caption">
-          <div class="fp-stage">
-            <div class="window fp-pc">
-              <div class="window-title"><span>This PC</span></div>
-              <ul class="fp-items">
-                <li><span class="fp-icon" aria-hidden="true"></span><span class="fp-what">Your planner pages</span><span class="fp-where">stay here</span></li>
-                <li><span class="fp-icon fp-icon--ai" aria-hidden="true"></span><span class="fp-what">The AI</span><span class="fp-where">runs here</span></li>
-              </ul>
-            </div>
-            <div class="window fp-cloud">
-              <div class="window-title"><span>Cloud</span></div>
-              <p>Not used</p>
-            </div>
-            <p class="fp-chip fp-chip--signup"><s>Sign up</s><span class="visually-hidden">: not needed</span> <span class="fp-chip-note">No account</span></p>
-            <p class="fp-chip fp-chip--offline">Works offline</p>
+  <!-- THE ROUTE -->
+  <section id="route" aria-labelledby="route-title">
+    <header class="wrap grid route-head">
+      <p class="kicker">The route so far</p>
+      <h2 id="route-title">Kitchen, caravan, mountain, laptop.</h2>
+    </header>
+
+    <ol class="route">
+
+      <li class="stop stop--india" id="india">
+        <div class="wrap grid">
+          <p class="place"><b>India</b><span>Basileia</span></p>
+          <div class="body">
+            <h3>A skincare brand that started with bad skin.</h3>
+            <p>Nothing on the market worked for my skin, so I learned formulation and made my own. First for me, then friends, then family, who became a reluctant testing department.</p>
+            <p>It became Basileia: fifteen hand-formulated products, a registered trademark, and gift hampers in five countries, all through word of mouth.</p>
+            <p>When I moved to Dubai, I handed the stock, formulas and equipment to another founder. Basileia didn't end. It just stopped being mine.</p>
+            {{- with site.GetPage "projects/basileia.md" }}
+            <details>
+              <summary>The full Basileia story</summary>
+              <div class="story">{{ .Content }}</div>
+            </details>
+            {{- end }}
           </div>
-          <figcaption id="fp-caption">How FlowPlanned works: your pages and the AI both stay on your PC. An illustration, not a screenshot.</figcaption>
-        </figure>
-
-        <div class="columns">
-          <p><span class="dateline">Southeast Asia.</span> FlowPlanned is a local planner for your PC that behaves like a paper notebook. It runs on your machine, the AI too, and it never asks you to sign up.</p>
-          <p>I started it while travelling with a paper planner in one bag and a phone full of half-used apps in the other. Neither talked to the other. So I built one thing that does both jobs, vibe-coding it piece by piece until it stopped feeling like a compromise.</p>
-          {{ partial "photo.html" (dict "src" "/images/image_2-360.webp" "w" 360 "h" 270 "alt" "Planning FlowPlanned in a paper planner." "caption" "Where it started: planning FlowPlanned on paper") }}
-          <p>I'm now talking to Japanese paper planner brands about licensing it. People who make paper already understand why software should work offline, so those conversations are short.</p>
-          <p class="row-action">If you want to know when it's out, <a href="#note">write to me</a>.</p>
+          <figure class="dots">
+            <picture>
+              <source srcset="/images/dither/image_1-dark.png" media="(prefers-color-scheme: dark)">
+              <img src="/images/dither/image_1-light.png" width="300" height="342" loading="lazy" alt="Handmade Basileia skincare products and a soap gift hamper.">
+            </picture>
+            <figcaption>Basileia, made by hand. <a href="/images/image_1-360.webp">Original photo</a></figcaption>
+          </figure>
         </div>
-        {{ partial "project-drawer.html" (dict "page" "projects/flowplanned.md" "label" "Continued: the full FlowPlanned story") }}
-      </article>
+      </li>
 
-      <div class="second">
-        <section class="writer" aria-labelledby="writer-title">
-          <h2 class="kicker" id="writer-title">The writer</h2>
-          <div class="window window--photo">
-            <div class="window-title"><span>Alisha Barretto</span></div>
-            <div class="window-body">
-              <img src="/images/profile-320.webp" alt="Alisha Barretto" width="160" height="160" class="profile-img" />
+      <li class="stop stop--dubai" id="dubai">
+        <div class="wrap grid">
+          <p class="place"><b>Dubai</b><span>Happy Zoned</span></p>
+          <h3>Building the caravan was the easy part.</h3>
+          <figure class="dots">
+            <picture>
+              <source srcset="/images/dither/image_4-dark.png" media="(prefers-color-scheme: dark)">
+              <img src="/images/dither/image_4-light.png" width="460" height="258" loading="lazy" alt="The Happy Zoned caravan, parked in Dubai.">
+            </picture>
+            <figcaption>The model caravan. <a href="/images/image_4-360.webp">Original photo</a></figcaption>
+          </figure>
+          <div class="body">
+            <p>Happy Zoned was caravan sleeping pods for budget stays. I designed the units myself, down to where the water tanks, the generator and the tow hitch go.</p>
+            <table class="stat">
+              <caption class="visually-hidden">Happy Zoned prices and costs</caption>
+              <tr><th scope="row">A bunk, per night</th><td>AED 50</td></tr>
+              <tr><th scope="row">The whole caravan, per week</th><td>AED 5,000</td></tr>
+              <tr><th scope="row">Building one unit</th><td>~AED 24,000</td></tr>
+            </table>
+            <p>The numbers worked. The paperwork didn't. Mobile housing had no neat category in GCC zoning, so I shelved it. New Zealand and Australia are friendlier to this kind of thing.</p>
+            {{- with site.GetPage "projects/happy-zoned.md" }}
+            <details>
+              <summary>The full Happy Zoned story</summary>
+              <div class="story">{{ .Content }}</div>
+            </details>
+            {{- end }}
+          </div>
+        </div>
+      </li>
+
+      <li class="stop stop--band" id="himalayas">
+        <div class="wrap grid">
+          <p class="place"><b>The Himalayas</b><span>Time off</span></p>
+          <div class="body">
+            <h3>I went to the Himalayas for the silence. Then I kept moving.</h3>
+            <p>After Basileia and Happy Zoned I took a few months off. I rented a quiet place in the mountains, mostly to remember what silence sounded like.</p>
+            <p>The stillness had an odd effect: it made me never want to fully stop moving again.</p>
+          </div>
+          <figure class="dots">
+            <picture>
+              <img src="/images/dither/himalayas-dark.png" width="420" height="560" loading="lazy" alt="Sitting on a hillside among trees in the Himalayas.">
+            </picture>
+            <figcaption>The Himalayas. <a href="/images/himalayas-720.webp">Original</a></figcaption>
+          </figure>
+        </div>
+      </li>
+
+      <li class="stop stop--here" id="southeast-asia">
+        <div class="wrap grid">
+          <p class="place"><b>Southeast Asia</b><span>You are here</span></p>
+          <div class="head">
+            <h3>A planner that works like paper.</h3>
+            <p class="deck">Japanese paper planner brands are talking about licensing it.</p>
+          </div>
+
+          <figure class="diagram" aria-labelledby="fp-cap">
+            <svg class="narrow" viewBox="0 0 360 436" role="img" aria-labelledby="fp-cap">
+              <rect class="box-acc" x="1" y="1" width="358" height="248"/>
+              <text class="cap ink" x="18" y="30">Your PC</text>
+              <rect class="box" x="18" y="46" width="322" height="90"/>
+              <line class="line" x1="34" y1="70" x2="320" y2="70" stroke-width="1"/>
+              <line class="line" x1="34" y1="90" x2="280" y2="90" stroke-width="1"/>
+              <text class="big ink" x="34" y="122">Your planner pages</text>
+              <rect class="box" x="18" y="148" width="322" height="84"/>
+              <circle class="acc" cx="42" cy="176" r="9"/>
+              <text class="muted" x="62" y="181">runs here too</text>
+              <text class="big ink" x="34" y="218">The AI</text>
+              <line class="dash" x1="180" y1="252" x2="180" y2="332"/>
+              <line class="cross" x1="168" y1="280" x2="192" y2="304"/>
+              <line class="cross" x1="192" y1="280" x2="168" y2="304"/>
+              <text class="muted" x="204" y="297">nothing sent</text>
+              <rect class="dash" x="60" y="336" width="240" height="92"/>
+              <text class="cap muted" x="80" y="362">Cloud</text>
+              <text class="big muted" x="80" y="392">Not used</text>
+              <text class="muted" x="80" y="414">no account, no sign-up</text>
+            </svg>
+            <svg class="wide" viewBox="0 0 900 250" role="img" aria-labelledby="fp-cap">
+              <!-- Your PC holds both the pages and the AI -->
+              <rect class="box-acc" x="1" y="20" width="520" height="200"/>
+              <text class="cap ink" x="22" y="50">Your PC</text>
+              <rect class="box" x="22" y="72" width="230" height="124"/>
+              <line class="line" x1="42" y1="104" x2="232" y2="104" stroke-width="1"/>
+              <line class="line" x1="42" y1="126" x2="232" y2="126" stroke-width="1"/>
+              <line class="line" x1="42" y1="148" x2="200" y2="148" stroke-width="1"/>
+              <text class="big ink" x="42" y="182">Your planner pages</text>
+              <rect class="box" x="272" y="72" width="228" height="124"/>
+              <circle class="acc" cx="300" cy="108" r="9"/>
+              <text class="big ink" x="292" y="182">The AI</text>
+              <text class="muted" x="322" y="113">runs here too</text>
+              <!-- Nothing crosses to the cloud -->
+              <line class="dash" x1="530" y1="120" x2="690" y2="120"/>
+              <line class="cross" x1="598" y1="108" x2="622" y2="132"/>
+              <line class="cross" x1="622" y1="108" x2="598" y2="132"/>
+              <text class="muted" x="560" y="158">nothing sent</text>
+              <rect class="dash" x="700" y="62" width="198" height="116"/>
+              <text class="cap muted" x="720" y="92">Cloud</text>
+              <text class="big muted" x="720" y="134">Not used</text>
+              <text class="muted" x="720" y="160">no account, no sign-up</text>
+            </svg>
+            <figcaption id="fp-cap">How FlowPlanned works: your pages and the AI both stay on your PC. It works offline and never asks you to sign up.</figcaption>
+          </figure>
+
+          <div class="body">
+            <p>I started FlowPlanned while travelling with a paper planner in one bag and a phone full of half-used apps in the other. Neither talked to the other. So I built one thing that does both jobs, vibe-coding it piece by piece until it stopped feeling like a compromise.</p>
+            <p>People who make paper already understand why software should work offline, so those conversations are short.</p>
+            <p>If you want to know when it's out, <a href="#note">write to me</a>.</p>
+            {{- with site.GetPage "projects/flowplanned.md" }}
+            <details>
+              <summary>The full FlowPlanned story</summary>
+              <div class="story">{{ .Content }}</div>
+            </details>
+            {{- end }}
+          </div>
+          <figure class="aside dots">
+            <picture>
+              <source srcset="/images/dither/image_2-dark.png" media="(prefers-color-scheme: dark)">
+              <img src="/images/dither/image_2-light.png" width="300" height="225" loading="lazy" alt="Planning FlowPlanned in a paper planner.">
+            </picture>
+            <figcaption>Where it started: planning FlowPlanned on paper. <a href="/images/image_2-360.webp">Original photo</a></figcaption>
+          </figure>
+
+          <div class="sub" id="lorawan">
+            <div class="sub-grid">
+              <div class="text">
+                <p class="kicker">On the side</p>
+                <h3>Radios that work where phones don't.</h3>
+                <p>I'm building LoRaWAN sensor projects and reading a lot about solar. LoRaWAN is long range and low power, and it works where there's no coverage and no plan to pay for.</p>
+                <p>What I'm figuring out is how to keep small devices powered and talking to each other with neither.</p>
+                <p class="ask">I work on this independently, so the funding comes from people who want it to exist. <a href="https://link.depay.com/11aGEB9LQxzQvC2IY02u6d" target="_blank" rel="noopener noreferrer">Chip in with crypto</a>.</p>
+              </div>
+              <figure class="diagram" aria-labelledby="lora-cap">
+                <svg class="narrow" viewBox="0 0 360 425" role="img" aria-labelledby="lora-cap">
+                  <circle class="dash" cx="300" cy="70" r="70"/>
+                  <path class="line" d="M286 112 L300 42 L314 112 M291 90 H309 M295 70 H305 M291 90 L305 70 M309 90 L295 70"/>
+                  <path class="wave" d="M286 42 Q 300 28 314 42 M278 36 Q 300 14 322 36"/>
+                  <text class="cap muted" x="300" y="162" text-anchor="middle">Phone tower</text>
+                  <text class="cap muted" x="10" y="50">Phone coverage</text>
+                  <text class="muted" x="10" y="70">ends here</text>
+                  <text class="muted" x="10" y="190">long range,</text>
+                  <text class="muted" x="10" y="208">low power radio</text>
+                  <rect class="acc" x="30" y="296" width="26" height="8" transform="rotate(-20 43 300)"/>
+                  <rect class="box" x="34" y="310" width="20" height="26"/>
+                  <rect class="acc" x="120" y="356" width="26" height="8" transform="rotate(-20 133 360)"/>
+                  <rect class="box" x="124" y="370" width="20" height="26"/>
+                  <rect class="acc" x="262" y="340" width="26" height="8" transform="rotate(-20 275 344)"/>
+                  <rect class="box" x="266" y="354" width="20" height="26"/>
+                  <path class="wave" d="M50 302 Q 90 240 162 228"/>
+                  <path class="wave" d="M136 362 Q 150 300 172 252"/>
+                  <path class="wave" d="M274 344 Q 230 300 190 252"/>
+                  <rect class="box" x="163" y="210" width="34" height="40"/>
+                  <line class="line" x1="180" y1="210" x2="180" y2="184"/>
+                  <circle class="acc" cx="180" cy="180" r="5"/>
+                  <text class="cap ink" x="206" y="236">Gateway</text>
+                  <text class="cap ink" x="10" y="418">Solar sensors</text>
+                </svg>
+                <svg class="wide" viewBox="0 0 520 330" role="img" aria-labelledby="lora-cap">
+                  <!-- The phone tower's coverage stops short of the sensors -->
+                  <circle class="dash" cx="470" cy="50" r="95"/>
+                  <path class="line" d="M456 92 L470 22 L484 92 M461 70 H479 M465 50 H475 M461 70 L475 50 M479 70 L465 50"/>
+                  <path class="wave" d="M456 22 Q 470 8 484 22 M448 16 Q 470 -6 492 16"/>
+                  <text class="cap muted" x="470" y="116" text-anchor="middle">Phone tower</text>
+                  <text class="cap muted" x="352" y="168">Phone coverage</text>
+                  <text class="muted" x="352" y="188">ends here</text>
+                  <!-- Three solar-powered sensor nodes -->
+                  <g>
+                    <rect class="acc" x="30" y="236" width="26" height="8" transform="rotate(-20 43 240)"/>
+                    <rect class="box" x="34" y="250" width="20" height="26"/>
+                    <rect class="acc" x="150" y="276" width="26" height="8" transform="rotate(-20 163 280)"/>
+                    <rect class="box" x="154" y="290" width="20" height="26"/>
+                    <rect class="acc" x="76" y="136" width="26" height="8" transform="rotate(-20 89 140)"/>
+                    <rect class="box" x="80" y="150" width="20" height="26"/>
+                  </g>
+                  <text class="cap ink" x="0" y="112">Solar sensors</text>
+                  <!-- Long-range radio to the gateway -->
+                  <path class="wave" d="M62 250 Q 160 200 250 212"/>
+                  <path class="wave" d="M180 296 Q 230 260 256 226"/>
+                  <path class="wave" d="M106 160 Q 190 170 250 204"/>
+                  <rect class="box" x="258" y="196" width="34" height="40"/>
+                  <line class="line" x1="275" y1="196" x2="275" y2="168"/>
+                  <circle class="acc" cx="275" cy="164" r="5"/>
+                  <text class="cap ink" x="304" y="222">Gateway</text>
+                  <text class="muted" x="200" y="322">long range, low power radio</text>
+                </svg>
+                <figcaption id="lora-cap">Solar-powered sensors send small messages over long-range radio to a gateway, out where phone coverage doesn't reach.</figcaption>
+              </figure>
             </div>
           </div>
-          <p class="writer-bio">I'm building FlowPlanned, a planner that runs entirely on your computer, AI included. On the side I'm testing LoRaWAN radios and solar nodes, so a community can stay in touch without a signal. Before this I ran a skincare brand out of my kitchen.</p>
-          <div class="action-bar">
-            <a href="#note" class="btn btn--accent">Write to me</a>
-            {{ partial "email-link.html" (dict "label" "Email" "class" "btn") }}
-            <a href="{{ "index.xml" | relURL }}" class="btn">RSS</a>
-          </div>
-          <div class="social-icons">
-            {{ partial "social_icons.html" (dict "socialIcons" .Site.Params.socialIcons) }}
-          </div>
-          <button type="button" id="hc-toggle" aria-pressed="false" class="btn btn--small">High contrast</button>
-        </section>
+        </div>
+      </li>
+    </ol>
+  </section>
 
-        <article class="brief" id="lorawan" aria-labelledby="lorawan-title">
-          <p class="kicker">Research</p>
-          <h2 class="headline headline--small" id="lorawan-title">Radios that work where phones don't</h2>
-          <p>I'm also building LoRaWAN sensor projects and reading a lot about solar. LoRaWAN is long range and low power, and it works where there's no coverage and no plan to pay for. What I'm figuring out is how to keep small devices powered and talking to each other with neither.</p>
-        </article>
+  <!-- WRITING -->
+  <section class="wrap grid writing" id="writing" aria-labelledby="writing-title">
+    <h2 id="writing-title">Written along the way.</h2>
+    <p class="intro-line">Mostly about what technology does to how people treat each other. Most of it first appeared on <a href="https://alishabarretto.substack.com">Substack</a>.</p>
+    <div class="essays-col">
+    <ul class="essays">
+      {{- range where site.RegularPages "Section" "essays" }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <p>{{ .Description }}</p>
+      </li>
+      {{- end }}
+    </ul>
+    <p class="more"><a href="/essays/">All essays</a> · <a href="/archives/">Everything else I've worked on</a></p>
+    </div>
+    <aside class="notes" aria-labelledby="notes-title">
+      <h3 id="notes-title">In the works</h3>
+      <p class="notes-lede">Pieces I'm writing now. Nothing's published yet.</p>
+      {{ partial "field-notes.html" . }}
+    </aside>
+  </section>
+
+  <!-- LETTERS -->
+  <section class="wrap grid letters" id="note" aria-labelledby="letters-title">
+    <h2 id="letters-title">Write to me.</h2>
+    <form class="form" action="https://formsubmit.co/alishabarretto@protonmail.com" method="POST">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="field">
+        <label for="note-name">Name</label>
+        <input type="text" id="note-name" name="Name" autocomplete="name" required>
       </div>
-    </div>
-  </section>
-
-  <!-- THE FEATURE: the one full-bleed band. The photo fills its column, so there is never empty space under it. -->
-  <section class="feature" id="feature" aria-labelledby="feature-title">
-    <figure class="feature-photo">
-      <img src="/images/himalayas-720.webp" alt="Mountain view along the travel route in the Himalayas." width="720" height="960" loading="lazy" />
-      <figcaption>The Himalayas</figcaption>
-    </figure>
-    <div class="feature-text">
-      <p class="kicker">The feature</p>
-      <h2 class="headline" id="feature-title">I went to the Himalayas for the silence. Then I kept moving.</h2>
-      <p>After Basileia and the Happy Zoned attempt I took a few months off. I rented a quiet place in the Himalayas, mostly to remember what silence sounded like.</p>
-      <p>The stillness had an odd effect: it made me never want to fully stop moving again. So I went to Southeast Asia, and I'm still here, working from whichever city or island has decent wifi that week. FlowPlanned got built somewhere in the middle of all that.</p>
-      <div class="feature-inset">
-        {{ partial "photo.html" (dict "src" "/images/image_3-360.webp" "w" 360 "h" 474 "alt" "At a shooting range in the Himalayas." "caption" "Shooting range, Himalayas") }}
+      <div class="field">
+        <label for="note-email">Email (optional)</label>
+        <input type="email" id="note-email" name="Email" autocomplete="email">
       </div>
-    </div>
-  </section>
-
-  <!-- FROM THE ARCHIVE: the businesses before FlowPlanned -->
-  <section class="obits" id="archive" aria-labelledby="obits-title">
-    <div class="grid">
-      <header class="section-head">
-        <h2 class="section-name" id="obits-title">From the archive</h2>
-        <p class="deck">Two businesses I started, and what became of them.</p>
-      </header>
-
-      <article class="obit obit--main" id="basileia" aria-labelledby="basileia-title">
-        {{ partial "photo.html" (dict "src" "/images/image_1-360.webp" "w" 360 "h" 411 "alt" "Handcrafted Basileia personal care products and a soap gift hamper arranged for a product shoot." "caption" "Basileia products, made by hand") }}
-        <h3 class="obit-name" id="basileia-title">Basileia <span class="obit-dates">2023 to 2025</span></h3>
-        <p>A skincare brand, born in a kitchen. Fifteen hand-formulated products, a registered trademark, orders shipped to five countries.</p>
-        <p>It lives on with a new owner. When I moved to Dubai, I handed the stock, formulas and equipment to a local founder instead of letting it go quiet.</p>
-        {{ partial "project-drawer.html" (dict "page" "projects/basileia.md" "label" "Continued: the full Basileia story") }}
-      </article>
-
-      <article class="obit obit--second" id="happyzoned" aria-labelledby="happyzoned-title">
-        {{ partial "photo.html" (dict "src" "/images/image_4-360.webp" "w" 360 "h" 202 "alt" "The caravan built as a model for Happy Zoned in Dubai." "caption" "The Happy Zoned caravan, Dubai") }}
-        <h3 class="obit-name" id="happyzoned-title">Happy Zoned <span class="obit-dates">2024</span></h3>
-        <p>Caravan sleeping pods for budget stays in Dubai: AED 50 a night for a bunk, AED 5,000 a week for the whole caravan.</p>
-        <p>Stopped early by GCC zoning rules. Shelved, not dead. New Zealand and Australia are friendlier to this kind of thing.</p>
-        {{ partial "project-drawer.html" (dict "page" "projects/happy-zoned.md" "label" "Continued: the full Happy Zoned story") }}
-      </article>
-
-      <p class="more-link"><a href="/archives/">More in the archive: everything else I've worked on &rarr;</a></p>
-    </div>
-  </section>
-
-  <!-- OPINION (1-7) and CLASSIFIEDS (9-12) -->
-  <section class="opinion" id="opinion" aria-labelledby="opinion-title">
-    <div class="grid">
-      <div class="opinion-main">
-        <header class="section-head">
-          <h2 class="section-name" id="opinion-title">Opinion</h2>
-          <p class="deck">Mostly about what technology does to how people treat each other. Most first appeared on Substack.</p>
-        </header>
-        <ul class="op-list">
-          {{- range first 3 (where site.RegularPages "Section" "essays") }}
-          <li>
-            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            <p class="desc">{{ .Description }}</p>
-            <time class="meta" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
-          </li>
-          {{- end }}
-        </ul>
-        <p class="more-link"><a href="/essays/">All essays &rarr;</a></p>
-
-        <h3 class="minor-head">Teaching</h3>
-        <p>Career sessions for school students on Youth Day, peer support groups during lockdown, and soap-making workshops for women starting their first business.</p>
-        <p>Also: a vocational baking programme at IHM, which is either irrelevant or the most relevant thing here, depending on how you feel about formulas.</p>
+      <div class="field">
+        <label for="note-message">Your message</label>
+        <textarea id="note-message" name="Message" rows="6" required></textarea>
       </div>
-
-      <aside class="classifieds" aria-labelledby="classifieds-title">
-        <h2 class="classifieds-head" id="classifieds-title">Classifieds</h2>
-        <div class="ad">
-          <h3 class="label">Wanted</h3>
-          <p>Funding for LoRaWAN and solar research. I work independently, so it comes from people who want this work to exist.</p>
-          <a href="https://link.depay.com/11aGEB9LQxzQvC2IY02u6d" target="_blank" rel="noopener noreferrer" class="btn btn--small">Chip in with crypto</a>
-        </div>
-        <div class="ad">
-          <h3 class="label">In the works</h3>
-          <p class="aside-note">Pieces I'm writing now. Nothing's published yet.</p>
-          {{ partial "field-notes.html" . }}
-        </div>
-      </aside>
-    </div>
+      <button type="submit" class="button">Send</button>
+    </form>
+    <p class="aside">Messages go to my inbox through FormSubmit. I only use them to reply. <a href="/privacy/">Privacy</a>. Or email me directly: {{ partial "email-link.html" (dict) }}</p>
   </section>
-
-  <!-- LETTERS TO THE EDITOR (1-7) and ABOUT THIS PAPER (9-12) -->
-  <section class="letters" aria-label="Letters and site notes">
-    <div class="grid">
-      <section class="window letters-window" id="note" aria-labelledby="note-title">
-        <div class="window-title"><h2 id="note-title">Letters to the editor</h2></div>
-        <div class="window-body">
-          <form class="note-form" action="https://formsubmit.co/alishabarretto@protonmail.com" method="POST">
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-            <input type="hidden" name="_captcha" value="false">
-            <div class="field">
-              <label for="note-name">Name</label>
-              <input type="text" id="note-name" name="Name" autocomplete="name" required />
-            </div>
-            <div class="field">
-              <label for="note-email">Email (optional)</label>
-              <input type="email" id="note-email" name="Email" autocomplete="email" />
-            </div>
-            <div class="field">
-              <label for="note-message">Your letter</label>
-              <textarea id="note-message" name="Message" rows="5" required></textarea>
-            </div>
-            <p class="form-note">Letters go to my inbox through FormSubmit. I only use them to reply. <a href="/privacy/">Privacy</a></p>
-            <button type="submit" class="btn btn--accent">Send</button>
-          </form>
-        </div>
-      </section>
-
-      <footer class="site-notes">
-        <h2>About this paper</h2>
-        <p>No cookies, no analytics, no tracking. <a href="/privacy/">Privacy notice</a>.</p>
-        <h2>Accessibility</h2>
-        <p>I want this site to work with a keyboard, a screen reader, zoom, and in light, dark or high-contrast mode. If something gets in your way, tell me. <a href="/accessibility/">Accessibility statement</a>.</p>
-        <h2>On AI use</h2>
-        <p>I use AI to move faster on code and first drafts. The words and the design calls are mine, rewritten until they sound like me.</p>
-        <p>Email: {{ partial "email-link.html" (dict) }}</p>
-      </footer>
-    </div>
-  </section>
-</div>
-
-<nav class="win95-taskbar" aria-label="On this page">
-  <a href="#top" class="taskbar-item">Front</a>
-  <a href="#feature" class="taskbar-item">Feature</a>
-  <a href="#archive" class="taskbar-item">Archive</a>
-  <a href="#opinion" class="taskbar-item">Opinion</a>
-  <a href="#note" class="taskbar-item">Letters</a>
-</nav>
-
-<script>
-  /* HIGH-CONTRAST MODE: green on black, announced as a pressed toggle */
-  document.getElementById('hc-toggle').addEventListener('click', function () {
-    const on = document.body.classList.toggle('dark-mode');
-    this.setAttribute('aria-pressed', on);
-  });
-</script>
-{{ partial "drawer-script.html" "details.drawer" }}
 {{ end }}

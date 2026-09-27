@@ -1,0 +1,12 @@
+{{- $s := .Section }}
+<header class="wrap top">
+  <a class="name" href="/">Alisha Barretto</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="/#route">The route</a></li>
+      <li><a href="/essays/"{{ if eq $s "essays" }} aria-current="page"{{ end }}>Essays</a></li>
+      <li><a href="/archives/"{{ if or (eq $s "archives") (eq $s "projects") }} aria-current="page"{{ end }}>Past work</a></li>
+      <li><a href="/#note">Write to me</a></li>
+    </ul>
+  </nav>
+</header>

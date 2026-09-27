@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{- $dirs := slice
-  (dict "name" "Basileia" "status" "2023 to 2025, exited" "page" "projects/basileia.md"
+  (dict "name" "Basileia" "status" "Exited" "page" "projects/basileia.md"
         "text" "A personal care brand I bootstrapped from a kitchen. Fifteen products formulated by hand, trademark registered, supply quotes with resorts, orders shipped to five countries. The trademark itself is a crowned B wrapped in florals, which is a fancier sentence than anything else about how this business actually ran. I also ran soap-making workshops for women starting their own thing, and once sold out a table at a university exhibition before I'd even finished the branding. I exited by transferring the stock and the business to another local founder instead of letting it go quiet.")
-  (dict "name" "Happy Zoned" "status" "2024, archived" "page" "projects/happy-zoned.md"
+  (dict "name" "Happy Zoned" "status" "Archived" "page" "projects/happy-zoned.md"
         "text" "Mobile sleeping pods for budget stays in Dubai, priced simply: shared bunks by the night, the whole caravan by the week. It ran straight into GCC zoning rules before it ran into much else. I archived it rather than fight the regulation, and kept a very specific education in how regional compliance kills good ideas early. Markets like New Zealand and Australia are friendlier to this kind of thing, so it's shelved, not dead.")
 -}}
 {{- $files := slice
@@ -21,43 +21,59 @@
   (dict "name" "BOLT IoT Evangelist"
         "text" "Taught IoT and machine learning to people who had never soldered anything, mostly by building the thing with them.")
 -}}
-<article class="page">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Past work</nav>
+{{- $teach := slice
+  (dict "name" "Teaching"
+        "text" "Career sessions for school students on Youth Day, peer support groups during lockdown, and soap-making and formulation workshops for women starting their first business. Some of them went on to start small businesses of their own.")
+  (dict "name" "Baking"
+        "text" "A vocational baking programme at IHM, and I still bake. It's either irrelevant here or the most relevant thing on the page, depending on how you feel about formulas.")
+-}}
+<header class="wrap grid page-head">
+  <p class="kicker">Past work</p>
+  <h1>Closed, done, or dormant.</h1>
+  <p class="deck">The businesses I started and how each one ended, then the work before them: UX, no-code communities, engineering and hardware.</p>
+</header>
 
-  <h1 class="page-title">Past work</h1>
-  <p class="page-lede">Work that is closed, done, or dormant.</p>
-
-  <h2 class="section-label">Businesses I started</h2>
-  <ul class="ruled-list">
+<section class="wrap grid ledger" aria-labelledby="biz-title">
+  <h2 id="biz-title">Businesses I started</h2>
+  <ul>
     {{- range $dirs }}
     <li>
-      <div class="row"><span>{{ .name }}</span><span class="meta">{{ .status }}</span></div>
-      <p class="desc">{{ .text }}</p>
-      {{- with site.GetPage .page }}
-      <details class="drawer" style="margin-top: 0.6rem;">
-        <summary>The full story<span class="visually-hidden"> of {{ .Title }}</span></summary>
-        <div class="drawer-body md-content">
-          {{ .Content }}
-          <div class="drawer-footer">
-            <button type="button" class="close-drawer-btn">Close</button>
-          </div>
-        </div>
-      </details>
-      {{- end }}
+      <p class="ledger-name"><b>{{ .name }}</b>{{ with .status }}<span>{{ . }}</span>{{ end }}</p>
+      <div class="ledger-text">
+        <p>{{ .text }}</p>
+        {{- with site.GetPage .page }}
+        <details>
+          <summary>The full {{ .Title }} story</summary>
+          <div class="story">{{ .Content }}</div>
+        </details>
+        {{- end }}
+      </div>
     </li>
     {{- end }}
   </ul>
+</section>
 
-  <h2 class="section-label">Other work</h2>
-  <ul class="ruled-list">
+<section class="wrap grid ledger" aria-labelledby="work-title">
+  <h2 id="work-title">Other work</h2>
+  <ul>
     {{- range $files }}
     <li>
-      <div class="row"><span>{{ .name }}</span>{{ with .status }}<span class="meta">{{ . }}</span>{{ end }}</div>
-      <p class="desc">{{ .text }}</p>
+      <p class="ledger-name"><b>{{ .name }}</b>{{ with .status }}<span>{{ . }}</span>{{ end }}</p>
+      <div class="ledger-text"><p>{{ .text }}</p></div>
     </li>
     {{- end }}
   </ul>
-</article>
+</section>
 
-{{ partial "drawer-script.html" "details.drawer" }}
+<section class="wrap grid ledger ledger--side" aria-labelledby="teach-title">
+  <h2 id="teach-title">Teaching, and baking</h2>
+  <ul>
+    {{- range $teach }}
+    <li>
+      <p class="ledger-name"><b>{{ .name }}</b></p>
+      <div class="ledger-text"><p>{{ .text }}</p></div>
+    </li>
+    {{- end }}
+  </ul>
+</section>
 {{ end }}

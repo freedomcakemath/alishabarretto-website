@@ -7,7 +7,7 @@ summary: "A skincare brand I built from my kitchen, grew by word of mouth, and h
 
 It started with frustration, not ambition.
 
-In 2021, nothing on the market seemed to work for my skin. Most things made it worse before they made it better, if they made it better at all. So I started reading ingredient lists and learning formulation because I didn't have much choice.
+Nothing on the market seemed to work for my skin. Most things made it worse before they made it better, if they made it better at all. So I started reading ingredient lists and learning formulation because I didn't have much choice.
 
 A small store called Conscious Life introduced me to handmade skincare. I found the woman making the products and started asking questions. Those conversations changed how I thought about formulation.
 

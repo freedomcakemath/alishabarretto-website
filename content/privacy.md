@@ -11,7 +11,7 @@ The short version: this site doesn't use cookies, analytics or tracking. The onl
 - **The note form.** If you send a note, I receive your name, your message, and your email address if you give one. I use them only to read and reply to your note. The form is handled by [FormSubmit](https://formsubmit.co/), which passes it on to my email inbox. FormSubmit is based outside the EU. By sending the form you agree to it being processed this way (GDPR Article 6(1)(a)).
 - **Email.** If you email me directly, your message is stored by my email provider, Proton Mail.
 - **Server logs.** Like every web host, the host that serves this site keeps short-lived logs of requests (IP address, browser, page and time) to keep the service running and secure.
-- **Your theme choice.** If you use the light/dark toggle, your browser remembers the choice in its own local storage. It never leaves your device.
+- **Offline copies.** Your browser keeps a copy of the pages you've read here, so they open without a connection. The copy stays on your device, and clearing this site's data in your browser removes it.
 
 ## What's not collected
 
